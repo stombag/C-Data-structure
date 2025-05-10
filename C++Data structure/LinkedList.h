@@ -23,6 +23,4 @@ void Remove(Node** head, Node* remove);
 Node* GetNode(Node* head, int index);
 int GetNodeCount(Node* head);
 
-// really push 
-// is a really push?
-// past
+// Master
