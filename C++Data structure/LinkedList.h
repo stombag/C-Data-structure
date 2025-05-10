@@ -23,6 +23,4 @@ void Remove(Node** head, Node* remove);
 Node* GetNode(Node* head, int index);
 int GetNodeCount(Node* head);
 
-// 테스트 
-//  5.10 테스트
-// 안녕 모두 커밋 
+// 진짜 커밋후 푸시해보기
