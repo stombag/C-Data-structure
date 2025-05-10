@@ -23,4 +23,6 @@ void Remove(Node** head, Node* remove);
 Node* GetNode(Node* head, int index);
 int GetNodeCount(Node* head);
 
-// 진짜 커밋후 푸시해보기
+// really push 
+// is a really push?
+// past
