@@ -25,14 +25,17 @@ void Destroy(Node* node);
 // void는 구조체에 넣을 필요가 없다. 행동?
 // Node* node는 삭제할 노드 넣는거다.
 void Push(Node** Head, Node* node);
-//Node**는 Node*를 가르킨다. 즉 Node** head는 Node* 타입의 포인터를 가리키는 포인터 변수 이다.  
+//Node**는 Node*를 가르킨다. 즉 Node** head는 Node* 타입의 포인터를 가리키"는 포인터 변수 이다.  
 //연결 리스트의 헤드 포인터를 변경하려면 원래의 포인터 자체를 변경해야 한다. 이를 위해 포인터의 주소를 전달하는, 즉 포인터에 대한 포인터(**)를 사용한다.
 void Insert(Node* current, Node* node);
 // Node* current는 새로운 노드를 삽입할 위치의 이전 노드를 가리키는 포인터이다.
 // Node* node 삽입할 새로운 노드를 가리키는 포인터이다. 
-void InsertHead(Node** current, Node* head);
+
+/*void InsertHead(Node** current, Node* head);
 // Node** current 리스트의 헤드 포인터의 주소를 가리키는 포인터입니다.
 // Node* head 리스트에 삽입할 새로운노드의 포인터이다.
+*/
+
 void Remove(Node** head, Node* remove);
 // Node** head 리스트의 헤드 포인터의 주소를 가리키는 포인터이다
 // Node* remove 삭제할 노드의 포인터이다.
