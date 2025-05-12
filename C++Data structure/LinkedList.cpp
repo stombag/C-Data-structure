@@ -16,7 +16,6 @@ Node* Create(DataType data)
 	return newNode;
 	// newNode가 가리키는 주소값을 반환한다 즉 그 주소값의 위치에 값을 넣는다. 
 }
-
 Node* DummyHead()
 {
 	Node* dummyhead = new Node();
