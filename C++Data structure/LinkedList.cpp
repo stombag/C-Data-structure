@@ -53,6 +53,8 @@ void Push(Node** head, Node* node)
 
 void Insert(Node* current, Node* node)
 {
+	node->NextNode = current->NextNode;
+	current->NextNode = node;
 }
 
 /*void InsertHead(Node** current, Node* head)
@@ -62,14 +64,41 @@ void Insert(Node* current, Node* node)
 
 void Remove(Node** head, Node* remove)
 {
+	if (*head == remove)
+	{
+		*head = remove->NextNode;
+	}
+	else
+	{
+		Node* current = *head;
+		while (current != nullptr && current->NextNode != remove)
+			current = current->NextNode;
+
+		if (current != nullptr)
+			current->NextNode = remove->NextNode;
+	}
 }
 
 Node* GetNode(Node* head, int index)
 {
-	return nullptr;
+
+	Node* current = head;
+	while (current != nullptr && (--index >= 0))
+		current = current->NextNode;
+
+	return current;
 }
 
 int GetNodeCount(Node* head)
 {
-	return 0;
+	int count = 0;
+	Node* current = head;
+	while (current != nullptr)
+	{
+		current = current->NextNode;
+		count++;
+
+			
+	}
+	return count;
 }
