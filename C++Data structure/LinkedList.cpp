@@ -2,13 +2,14 @@
 #include "LinkedList.h"
 using namespace std;
 
-void LinkedList::Push(DataType data)
+void LinkedList::Push(DataType data) // 연결 리스트의 끝에 새로운 노드를 추가하는 역할을 한다.
+// void이므로 값을 반환하지 않습니다. 
 {
-	Node* newNode = new Node(data);
-	Node* tail = dummyHead;
-	while (tail->NextNode != nullptr)
-		tail = tail->NextNode;
-	tail->NextNode = newNode;
+	Node* newNode = new Node(data); // 동적으로 생성하고 data값으로 갖는 노드를 하나 만들고 newNode는 그 노드의 주소를 저장한다.
+	Node* tail = dummyHead; //tail 포인터를 사용해 리스트의 마지막 노드를 찾기 위한 준비를 한다.
+	while (tail->NextNode != nullptr) //NextNoder가 nullptr이 아닐 때까지 이동한다. 
+		tail = tail->NextNode; // 리스트 끝으로 이동한다. 
+	tail->NextNode = newNode; // NextNod == nullptr 인 노드를 찾으면 -> 그 노드가 현재 꼬리(tail) 노드이다.
 
 }
 
