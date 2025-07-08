@@ -5,11 +5,26 @@ using namespace std;
 void LinkedList::Push(DataType data) // 연결 리스트의 끝에 새로운 노드를 추가하는 역할을 한다.
 // void이므로 값을 반환하지 않습니다. 
 {
-	Node* newNode = new Node(data); // 동적으로 생성하고 data값으로 갖는 노드를 하나 만들고 newNode는 그 노드의 주소를 저장한다.
-	Node* tail = dummyHead; //tail 포인터를 사용해 리스트의 마지막 노드를 찾기 위한 준비를 한다.
+	// Node* 는 Node 타입의 주소만 저장할 수 있는 변수이다. 
+	// 즉 Node를 가리키는 포인터를 의미한다 .
+
+	Node* newNode = new Node(data); 
+	// 동적으로 생성하고 data값으로 갖는 노드를 하나 만들고 newNode는 만든 노드의 주소를 저장한다.
+	// 새로 만들었기때문에 newNode 와 tail는 주소값이 다르다
+
+	Node* tail = dummyHead;
+	//tail 포인터를 사용해 리스트의 마지막 노드를 찾기 위한 준비를 한다.
+
+	// new Node()는 새로운 객체를 만들고 값을 반환한다 newNode는 Node* 타입의 객체의 주소값을 저장하는거다 
+	// new 는 동적할당하고 주소값을 반환한다
+
 	while (tail->NextNode != nullptr) //NextNoder가 nullptr이 아닐 때까지 이동한다. 
 		tail = tail->NextNode; // 리스트 끝으로 이동한다. 
-	tail->NextNode = newNode; // NextNod == nullptr 인 노드를 찾으면 -> 그 노드가 현재 꼬리(tail) 노드이다.
+	// 첫번째노드에서 Nextnode가 값이 잇으면 tail에 그 첫번째 노드의 NextNode를 넣으면 tail이 가리키는건 첫번째노드의 NextNode이다 
+	// 그 NextNode가 값이 없으면 종료하고 있으면 두번째 노드의 NextNode를 tail에 넣는다
+
+	//tail을 마지막 노드까지 이동시킨 뒤, 그 노드의 NextNode에 이번에 만든 노드를 연결한다.
+	tail->NextNode = newNode; 
 
 }
 
@@ -24,10 +39,12 @@ void LinkedList::Insert(int index, DataType data)// linkedlist 클래스 멤버함수이
 	// 동시에 current->NextNode가 Nullptr이 아닌 동안만 반복한다.
 		//결과 적으로 current는 삽입 위치 직전노드를 가리키게 된다.
 		current = current->NextNode;
+		// current->NextNode가 가리키는 노드를 current에 주소값을 넣는다 .
 	}
 	newNode->NextNode = current->NextNode;
 	// 새 노드의 NextNode를 현재 노드의 다음 노드로 설정한다.
 	// 즉 새 노드를 기존 리스트에 연결하는 준비를 한다. 
+
 	current->NextNode = newNode;
 	// 현재 노드의 nextNode를 새노드로 설정한다. 
 	// 이로써 새 노드가 리스트에 실제로 삽입한다.
