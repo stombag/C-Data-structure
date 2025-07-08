@@ -69,8 +69,9 @@ void LinkedList::Remove(int index) // index 위치에 있는 노드를 삭제한다.
 		// 이렇게 하면 target 노드가 리스트에서 제거 한다
 		delete target;
 		// 제거한 노드의 메모리를 해제한다. 메모리 누수 방지 
-
 	}
+
+	// index가 1인경우 2번째 노드를 없애 버린다 .
 }
 
 DataType LinkedList::Get(int index) // 리스트에서 index위치에 있는 노드의 데이터 값을 반환한다.
