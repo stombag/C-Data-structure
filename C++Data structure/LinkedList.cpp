@@ -148,20 +148,3 @@ void LinkedList::Clear() // 리스트에 있는 모든 노드를 메모리에서 삭제해서 리스트
 	// 이때 카운트는 0이 된다.
 }
 
-int main()
-{
-	LinkedList list;
-	list.Push(10);
-	list.Push(20);
-	list.Push(30);
-	list.print();
-
-	list.Insert(1, 49);
-	list.print();
-
-	list.Remove(2);
-	list.print();
-
-	cout << "2" << list.Get(2) << endl;
-	cout << "노드 수" << list.Count() << endl;
-}
