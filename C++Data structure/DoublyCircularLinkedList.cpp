@@ -66,14 +66,11 @@ void DoublyCircularLinkedList::remove(int index) {
 }
 
 int DoublyCircularLinkedList::get(int index) const {
-    if (index < 0 || index >= count) return -1; // 넣은 숫자가 마이너스 이거나 
+    if (index < 0 || index >= count) return  -1; // 넣은 숫자가 마이너스 이거나 
 
     Node* current = dummyHead->next; // 더미헤드의 다음 노드를 current라는 이름으로 정한다.
     for (int i = 0; i < index; ++i) // current의 위치를 이동 시킨다. 
         current = current->next;
-
-    cout << current->data << endl;
-
     return current->data; //이동 시킨 current에 있는 data 값을 반환한다.
 }
 

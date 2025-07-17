@@ -28,7 +28,8 @@ int main()
 	list.append(10);
 	list.append(20);
 	list.print();
-	list.get(1);
+	cout<< list.get(1) <<endl;
+	
 	list.size();
 	list.clear();
 	list.print();
