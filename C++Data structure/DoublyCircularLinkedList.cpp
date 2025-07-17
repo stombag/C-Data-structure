@@ -72,24 +72,28 @@ int DoublyCircularLinkedList::get(int index) const {
     for (int i = 0; i < index; ++i) // current의 위치를 이동 시킨다. 
         current = current->next;
 
-    return current->data;
+    cout << current->data << endl;
+
+    return current->data; //이동 시킨 current에 있는 data 값을 반환한다.
 }
 
 void DoublyCircularLinkedList::print() const {
-    Node* current = dummyHead->next;
+    Node* current = dummyHead->next; // 노드의 주소를 저장하는 장소를 current로 정하고 거기에 더미헤드의 다음를 가리키는 주소값을 넣는다.
     cout << "List: ";
-    for (int i = 0; i < count; ++i) {
-        cout << current->data << " ";
-        current = current->next;
+    for (int i = 0; i < count; ++i) { // count의 숫자 만큼 반복되게 한다
+        cout << current->data << " "; // current의 data값을 출력한다
+        current = current->next; // current의 위치를 변경시킨다.
     }
     cout << endl;
 }
 
+
 void DoublyCircularLinkedList::clear() {
-    while (count > 0)
-        remove(0);
+    while (count > 0) // count가 0이 될때까지 실행한다.
+        remove(0); // 
 }
 
 int DoublyCircularLinkedList::size() const {
-    return count;
+    cout << count << endl;
+    return count; //현재 까지 있는 노드 숫자를 가져와서 반환하기
 }
