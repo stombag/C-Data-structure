@@ -34,4 +34,6 @@ int main()
 	list.clear();
 	list.print();
 
+	//7.18
+
 }
