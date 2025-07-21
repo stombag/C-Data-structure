@@ -36,16 +36,16 @@ int main()
 	//list.print();
 
 
-	VariadicCircularLinkedList list;
-    list.push(100);              // 맨 앞에 100 추가
-	list.push(200);
-	list.insert(2, 111);
-	list.push(300);
-	list.addMultiple(5,12,22, 10, 22, 55);
-    list.print(); // 출력 예: 100 -> 200 -> 10 -> 20 -> 30 -> (back to dummy)
+	//VariadicCircularLinkedList list;
+ //   list.push(100);              // 맨 앞에 100 추가
+	//list.push(200);
+	//list.insert(2, 111);
+	//list.push(300);
+	//list.addMultiple(5,12,22, 10, 22, 55);
+ //   list.print(); // 출력 예: 100 -> 200 -> 10 -> 20 -> 30 -> (back to dummy)
 
-	list.addMultiple(5,12,22, 10, 22, 55);
-    list.print(); // 출력 예: 100 -> 200 -> 10 -> 20 -> 30 -> (back to dummy)
-    return 0;
+	//list.addMultiple(5,12,22, 10, 22, 55);
+ //   list.print(); // 출력 예: 100 -> 200 -> 10 -> 20 -> 30 -> (back to dummy)
+ //   return 0;
 
 }
