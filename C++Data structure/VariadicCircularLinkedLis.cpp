@@ -46,50 +46,40 @@ void VariadicCircularLinkedList::insert(int index, int value)
 
     Count++; // add 1 to the count 
 }
-
-void VariadicCircularLinkedList::addMultiple(int count, ...) {
-    va_list args;//가변 인자 목록을 처리할때 사용하는 타입  
-   // 여러 개의 인자를 받아야 할때 이 변수로 인자들을 하나씩 읽을 수 있게 된다. 
-   
-    va_start(args, count);  
-    // va_start는 가변 인자를 읽기 시작할 수 있도록 초기화 합니다. 
-    // args : 우리가 사용할 인자 목록 변수
-    // count : 고정 인자 중 마지막 인자 변수 이름입니다. 이걸 기준으로 그 뒤부터가 가변 인자라고 컴파일러가 판단합니다.
-    // 즉 count 뒤에 오는 인자들을 va_list를 통해 하나씩 꺼내쓸 수 있게 됩니다. 
-    Node* tail = dummy; // creating tail and initialize to the dummy
+void VariadicCircularLinkedList::addMultiple(int count, ...)
+{
+    // 조금 더 공부가 필요한거 같다.
     
-    for (int i = 0; i < Count; i++)
-    {
+    va_list args; // 가변 인자를 처리하기 위한 C 스타일 타입
+    va_start(args, count); // 가변 인자 리스트를 초기화 한다
+    Node* tail = dummy->next; // 마지막을 더미헤드 다음으로 초기화 한다.
+
+
+    for (int i = 0; i < count; i++) { // 가변 인자 크기 만큼 반복한다.
+        int value = va_arg(args, int); // 가변인자에서 int 타입의 값을 앞에서 부터 꺼낸다
+
+    while (tail->next != dummy) // 마지막이 더미헤드가 아닐때까지 원형이라 다음 노드가 더미헤드 그게 마지막 노드다 
         tail = tail->next;
 
-    }  // Isn't tail's next node the dummy node? 
-      // set tail to the next node of tail
-   
-    for (int i = 0; i < count;i++) { 
-        int value = va_arg(args, int); //Va_ 가변인자에서 하나씩 값을 꺼내오는 매크로 입니다.
-        // 여기서 꺼내오는 인자는 int 타입으로 지정되어 있으며, 각 반복마다 하나씩 꺼내와 value에 저장됩니다.
-        Node* newNode = new Node(value); // 저장된 value를 newNode에 넣기
-      
-        while(tail->next )
-        tail = tail->next;
-         // Isn't tail's next node the dummy node? 
-      // set tai
-        
-        newNode->next = dummy;// newNode의 다음을 dummy로 둔다
-        tail->next = newNode;// tail에 다음 노드를 newNode로 두고
+        Node* newNode = new Node(value); // 가변인자에서 꺼낸 int 타입을 값을 넣고 새로운 노드로 넣는다. 
+        tail->next = newNode;       // 현재 tail의 다음에 새 노드 연결
+        tail = newNode; // 마지막노드를 새노드로 받아드린다.
+        newNode->next = dummy;      // 새 노드는 dummy를 가리키도록 (원형 구조 유지)
+        Count++; // 카운트 추가
     }
 
-    va_end(args);}
+    va_end(args); // 이제 더이상  가변 인자 목록을 사용하지 않겠다는 의미 // @@@ 근데 한번더 호출하니깐  우연히 호출된거라고 GPT가 말함 이상해
+    
 
+
+}
 void VariadicCircularLinkedList::print() const {
     Node* current = dummy->next; //creating a current and current initialliaze to the dummy next 
     while (current != dummy)  { // isn't  current the dummy?
         cout << current->data << endl; 
         current = current->next;// moving the current 
     }
- 
-    cout << Count << endl;
-    cout << "(back to dummy)" << endl; // end
+     cout << "(back to dummy)" << endl; // end
 }
 
 void VariadicCircularLinkedList::clear() {
