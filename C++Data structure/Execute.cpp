@@ -4,6 +4,8 @@
 #include "DoublyCircularLinkedList.h"
 #include"VariadicCircularLinkedList.h"
 #include "Stack.h"
+#include "StackLinkedList.h"
+
 using namespace std;
 
 int main()
@@ -47,22 +49,40 @@ int main()
 	//list.addMultiple(5,12,22, 10, 22, 55);
  //   list.print(); // 출력 예: 100 -> 200 -> 10 -> 20 -> 30 -> (back to dummy)
  //   return 0;
-   Stack s(5);
+   
+	//Stack s(5);
 
-    s.push(10);
-    s.push(20);
-    s.push(30);
-    s.print();  // 30 20 10
+ //   s.push(10);
+ //   s.push(20);
+ //   s.push(30);
+ //   s.print();  // 30 20 10
 
-    int value;
+ //   int value;
 
-    if (s.pop(value))
-        cout << "pop된 값: " << value << endl;
+ //   if (s.pop(value))
+ //       cout << "pop된 값: " << value << endl;
 
-    if (s.pop(value))
-        cout << "pop된 값: " << value << endl;
+ //   if (s.pop(value))
+ //       cout << "pop된 값: " << value << endl;
 
-    s.print();  // 남은 값 출력
+ //   s.print();  // 남은 값 출력
+ //   return 0;
 
-    return 0;
+
+	//StackLinkedList sl;
+	//sl.push(100);
+	//sl.push(200);
+	//sl.push(300);
+	//sl.print();
+
+	//sl.pop();
+	//sl.print();
+
+	//cout << sl.peek() << endl;
+	//
+
+	//return 0;
+
+
+
 }

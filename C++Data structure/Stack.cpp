@@ -45,7 +45,7 @@ bool Stack::isEmpty() const {
 bool Stack::isFull() const {
     return top == capacity - 1;
 }
-
+1
 void Stack::print() const {
     if (isEmpty()) {
         cout << "스택이 비어있습니다!" << endl;

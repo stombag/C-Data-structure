@@ -61,7 +61,7 @@ void VariadicCircularLinkedList::addMultiple(int count, ...)
     while (tail->next != dummy) // 마지막이 더미헤드가 아닐때까지 원형이라 다음 노드가 더미헤드 그게 마지막 노드다 
         tail = tail->next;
 
-        Node* newNode = new Node(value); // 가변인자에서 꺼낸 int 타입을 값을 넣고 새로운 노드로 넣는다. 
+        Node* newNode = new Node(value); v// 가변인자에서 꺼낸 int 타입을 값을 넣고 새로운 노드로 넣는다. 
         tail->next = newNode;       // 현재 tail의 다음에 새 노드 연결
         tail = newNode; // 마지막노드를 새노드로 받아드린다.
         newNode->next = dummy;      // 새 노드는 dummy를 가리키도록 (원형 구조 유지)
