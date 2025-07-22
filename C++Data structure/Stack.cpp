@@ -21,12 +21,13 @@ void Stack::push(int value) {
     // 배열의 위치가 변경된다. 
 }
 
-bool Stack::pop(int& result) { // 주소를 전달해서  원본을 바꾼다. 
+bool Stack::pop(int& result) { // 주소를 전달해서  원본을 바꾼다
+
     if (isEmpty()) {
-        return false;  // 실패
+        return false;  // 실패 : 꺼낼 값이 없음 
     }
     result = arr[top--]; // 맨위에 워치한 배열을 이동시켜서 연결을 끈고 그 값을 result에 넣는다. 
-    return true;  // 성공
+    return true;  // 성공 : 값을 꺼낸다.
 }
 
 bool Stack::peek(int& result) const {
