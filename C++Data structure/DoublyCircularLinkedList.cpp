@@ -4,114 +4,94 @@
 using namespace std;
 
 DoublyCircularLinkedList::DoublyCircularLinkedList() {
-    dummyHead = new Node(); // ¸®½ºÆ® ¸¸µéÀÚ 
-    dummyHead->next = dummyHead; // ´ÙÀ½ ³ëµå¸¦ ´õ¹Ì·Î
-    dummyHead->prev = dummyHead; //ÀÌÀü ³ëµå¸¦ ´õ¹Ì·Î
-    count = 0; // Ä«¿îÆ® ÃÊ±âÈ­
+    dummyHead = new Node(); // ë¦¬ìŠ¤íŠ¸ ë§Œë“¤ìž 
+    dummyHead->next = dummyHead; // ë‹¤ìŒ ë…¸ë“œë¥¼ ë”ë¯¸ë¡œ
+    dummyHead->prev = dummyHead; //ì´ì „ ë…¸ë“œë¥¼ ë”ë¯¸ë¡œ
+    count = 0; // ì¹´ìš´íŠ¸ ì´ˆê¸°í™”
 }
 
 DoublyCircularLinkedList::~DoublyCircularLinkedList() {
-    clear(); // ´Ù Áö¿ì±â
-    delete dummyHead; // ´õ¹Ìµ¥ÀÌÅÍ Áö¿ì±â 
+    clear(); // ë‹¤ ì§€ìš°ê¸°
+    delete dummyHead; // ë”ë¯¸ë°ì´í„° ì§€ìš°ê¸° 
 }
 
 void DoublyCircularLinkedList::append(int value)
 {
-    Node* last = dummyHead->prev;  //¶ó½ºÆ®¶ó´Â ÀÌ¸§À»  ´õ¹ÌÇìµå ÀÌÀü³ëµåÀÇ ÀÌ¸§À¸·Î Á¤ÇÑ´Ù== ÀÌÀü³ëµå ¸¶Áö¸· ³ëµå
-    Node* newNode = new Node(value); // »õ·Î¿î ³ëµå¿¡ °ªÀ» ³Ö°í ¸¸µç´Ù.
+    Node* last = dummyHead->prev;  //ë¼ìŠ¤íŠ¸ë¼ëŠ” ì´ë¦„ì„  ë”ë¯¸í—¤ë“œ ì´ì „ë…¸ë“œì˜ ì´ë¦„ìœ¼ë¡œ ì •í•œë‹¤== ì´ì „ë…¸ë“œ ë§ˆì§€ë§‰ ë…¸ë“œ
+    Node* newNode = new Node(value); // ìƒˆë¡œìš´ ë…¸ë“œì— ê°’ì„ ë„£ê³  ë§Œë“ ë‹¤.
 
-    newNode->next = dummyHead; // »õ³ëµåÀÇ ´ÙÀ½ ³ëµå¸¦ ´õ¹ÌÇìµå·Î ³Ö´Â´Ù
-    newNode->prev = last; // ÀÌÀü¸¦ °¡¸®Å°´Â °É ¸¶Áö¸· ³ëµå·Î ÇØ¼­ ¿¬°áÇÑ´Ù
-    last->next = newNode; // ¸¶Áö¸· ³ëµåÀÇ ´ÙÀ½ ³ëµå¸¦ ¿ø·¡´Â ´õ¹ÌÇìµå¿´´Âµ¥ »õ·Î¿î³ëµå·Î Á¤ÇÑ´Ù
-    dummyHead->prev = newNode; // ¸¶Áö¸·À¸·Î ´õ¹ÌÇìµåÀÇ ÀÌÀü ³ëµå¸¦ »õ·Î¸¸µç ³ëµå·Î ³Ö¾î¼­ ¿¬°á½ÃÅ²´Ù.
+    newNode->next = dummyHead; // ìƒˆë…¸ë“œì˜ ë‹¤ìŒ ë…¸ë“œë¥¼ ë”ë¯¸í—¤ë“œë¡œ ë„£ëŠ”ë‹¤
+    newNode->prev = last; // ì´ì „ë¥¼ ê°€ë¦¬í‚¤ëŠ” ê±¸ ë§ˆì§€ë§‰ ë…¸ë“œë¡œ í•´ì„œ ì—°ê²°í•œë‹¤
+    last->next = newNode; // ë§ˆì§€ë§‰ ë…¸ë“œì˜ ë‹¤ìŒ ë…¸ë“œë¥¼ ì›ëž˜ëŠ” ë”ë¯¸í—¤ë“œì˜€ëŠ”ë° ìƒˆë¡œìš´ë…¸ë“œë¡œ ì •í•œë‹¤
+    dummyHead->prev = newNode; // ë§ˆì§€ë§‰ìœ¼ë¡œ ë”ë¯¸í—¤ë“œì˜ ì´ì „ ë…¸ë“œë¥¼ ìƒˆë¡œë§Œë“  ë…¸ë“œë¡œ ë„£ì–´ì„œ ì—°ê²°ì‹œí‚¨ë‹¤.
 
-    count++; // Ãß°¡ÇÒ¶§¸¶´Ù Ä«¿îÆ®¸¦ ¿Ã¸°´Ù.
+    count++; // ì¶”ê°€í• ë•Œë§ˆë‹¤ ì¹´ìš´íŠ¸ë¥¼ ì˜¬ë¦°ë‹¤.
 }
 
 void DoublyCircularLinkedList::insert(int index, int value) {
-    if (index < 0 || index > count) return; // ¸¸¾à ³Ö°í ½ÍÀº À§Ä¡°¡ ¸¶ÀÌ³Ê½ºÀÌ¸é ¾ÈµÈ°ÔÇÑ´Ù. ¶ÇÇÑ  ³Ö°í ½ÍÀº À§Ä¡°¡ ¸¸µç ¸®½ºÆ®º¸´Ù Å¬ °æ¿ì¿¡µµ ÇÔ¼ö¸¦ Á¾·áÇÑ´Ù.
+    if (index < 0 || index > count) return; // ë§Œì•½ ë„£ê³  ì‹¶ì€ ìœ„ì¹˜ê°€ ë§ˆì´ë„ˆìŠ¤ì´ë©´ ì•ˆëœê²Œí•œë‹¤. ë˜í•œ  ë„£ê³  ì‹¶ì€ ìœ„ì¹˜ê°€ ë§Œë“  ë¦¬ìŠ¤íŠ¸ë³´ë‹¤ í´ ê²½ìš°ì—ë„ í•¨ìˆ˜ë¥¼ ì¢…ë£Œí•œë‹¤.
 
-    Node* current = dummyHead; // ÇöÀç¶ó´Â ÀÌ¸§¿¡ ³ëµåÀÇÁÖ¼Ò°ª ÀúÀåÇÑ´Â °÷¾Ö ´õ¹ÌÇìµå¸¦ ³Ö´Â´Ù.  ´õ¹ÌÇìµå ºÎÅÍ ½ÃÀÛÇØ¾ßÇÏ±â ¶§¹®ÀÌ´Ù
-    for (int i = 0; i < index; ++i) // ³Ö°í ½ÍÀº À§Ä¡±îÁö ÇöÀç³ëµå¸¦ ÀÌµ¿ ½ÃÅ²´Ù. 
+    Node* current = dummyHead; // í˜„ìž¬ë¼ëŠ” ì´ë¦„ì— ë…¸ë“œì˜ì£¼ì†Œê°’ ì €ìž¥í•œëŠ” ê³³ì•  ë”ë¯¸í—¤ë“œë¥¼ ë„£ëŠ”ë‹¤.  ë”ë¯¸í—¤ë“œ ë¶€í„° ì‹œìž‘í•´ì•¼í•˜ê¸° ë•Œë¬¸ì´ë‹¤
+    for (int i = 0; i < index; ++i) // ë„£ê³  ì‹¶ì€ ìœ„ì¹˜ê¹Œì§€ í˜„ìž¬ë…¸ë“œë¥¼ ì´ë™ ì‹œí‚¨ë‹¤. 
         current = current->next;
 
-    Node* newNode = new Node(value);// »õ³ëµå ¸¸µé±â 
-    Node* nextNode = current->next;// ÀÌµ¿½ÃÅ² ÇöÀçÀÇ ´ÙÀ½À» ´ÙÀ½³ëµå¿¡ ³Ö´Â´Ù.
+    Node* newNode = new Node(value);// ìƒˆë…¸ë“œ ë§Œë“¤ê¸° 
+    Node* nextNode = current->next;// ì´ë™ì‹œí‚¨ í˜„ìž¬ì˜ ë‹¤ìŒì„ ë‹¤ìŒë…¸ë“œì— ë„£ëŠ”ë‹¤.
 
-    newNode->next = nextNode;  // »õ·Î¸¸µç ³ëµåÀÇ ´ÙÀ½À» ´ÙÀ½³ëµå¿¡ ³Ö´Â´Ù
-    newNode->prev = current; // »õ·Î ¸¸µç ³ëµåÀÇ ÀÌÀü¸¦ ÇöÀç¿¡ ¿¬°á ½ÃÅ²´Ù.
-    current->next = newNode; // ÇöÀç³ëµåÀÇ ´ÙÀ½ ³ëµå¸¦ »õ³ëµå¿¡ ¿¬°á ½ÃÅ²´Ù.
-    nextNode->prev = newNode; // ´ÙÀ½ ³ëµåÀÇ ÀÌÀü¸¦ »õ·Î ¸¸µç ³ëµå¿¡ ¿¬°á ½ÃÅ²´Ù
+    newNode->next = nextNode;  // ìƒˆë¡œë§Œë“  ë…¸ë“œì˜ ë‹¤ìŒì„ ë‹¤ìŒë…¸ë“œì— ë„£ëŠ”ë‹¤
+    newNode->prev = current; // ìƒˆë¡œ ë§Œë“  ë…¸ë“œì˜ ì´ì „ë¥¼ í˜„ìž¬ì— ì—°ê²° ì‹œí‚¨ë‹¤.
+    current->next = newNode; // í˜„ìž¬ë…¸ë“œì˜ ë‹¤ìŒ ë…¸ë“œë¥¼ ìƒˆë…¸ë“œì— ì—°ê²° ì‹œí‚¨ë‹¤.
+    nextNode->prev = newNode; // ë‹¤ìŒ ë…¸ë“œì˜ ì´ì „ë¥¼ ìƒˆë¡œ ë§Œë“  ë…¸ë“œì— ì—°ê²° ì‹œí‚¨ë‹¤
 
-    // »ðÀÔÇÑ ³ëµå¸¦ ÀÌÀüÇÏ°í ´ÙÀ½ ³ëµå¸¦ ¿¬°á ½ÃÅ²´Ù.
+    // ì‚½ìž…í•œ ë…¸ë“œë¥¼ ì´ì „í•˜ê³  ë‹¤ìŒ ë…¸ë“œë¥¼ ì—°ê²° ì‹œí‚¨ë‹¤.
     count++;
 }
 
 void DoublyCircularLinkedList::remove(int index) {
-    if (index < 0 || index >= count) return; //¾ø¾Ö¾ßÇÏ´Â ÀÚ¸®¼ýÀÚ°¡ 0º¸´Ù ÀÛ°Å³ª ¸®½ºÆ®º¸´Ù Å« ¼ýÀÚ¸¦ ÀÔ·ÂÇÒ°æ¿ì Á¾·áÇÑ´Ù.
+    if (index < 0 || index >= count) return; //ì—†ì• ì•¼í•˜ëŠ” ìžë¦¬ìˆ«ìžê°€ 0ë³´ë‹¤ ìž‘ê±°ë‚˜ ë¦¬ìŠ¤íŠ¸ë³´ë‹¤ í° ìˆ«ìžë¥¼ ìž…ë ¥í• ê²½ìš° ì¢…ë£Œí•œë‹¤.
 
-    Node* current = dummyHead->next; // ´õ¹ÌÇìµåÀÇ ´ÙÀ½¸¦ current·Î ÀÌ¸§ ºÙÀÎ´Ù.
-    for (int i = 0; i < index; ++i) //current¸¦ ÀÌµ¿½ÃÅ²´Ù. indexÀÇ ¼ýÀÚ ¸¸Å­
+    Node* current = dummyHead->next; // ë”ë¯¸í—¤ë“œì˜ ë‹¤ìŒë¥¼ currentë¡œ ì´ë¦„ ë¶™ì¸ë‹¤.
+    for (int i = 0; i < index; ++i) //currentë¥¼ ì´ë™ì‹œí‚¨ë‹¤. indexì˜ ìˆ«ìž ë§Œí¼
         current = current->next;
 
-    Node* prevNode = current->prev; // currentÀÇ ÀÌÀü¸¦ °¡¸®Å°´Â ³ëµå¸¦ ÀÌÀü³ëµå
-    Node* nextNode = current->next; // currentÀÇ ´ÙÀ½¸¦ °¡¸®Å°´Â ³ëµå¸¦ ´ÙÀ½³ëµå
+    Node* prevNode = current->prev; // currentì˜ ì´ì „ë¥¼ ê°€ë¦¬í‚¤ëŠ” ë…¸ë“œë¥¼ ì´ì „ë…¸ë“œ
+    Node* nextNode = current->next; // currentì˜ ë‹¤ìŒë¥¼ ê°€ë¦¬í‚¤ëŠ” ë…¸ë“œë¥¼ ë‹¤ìŒë…¸ë“œ
 
-    prevNode->next = nextNode; //ÀÌÀü³ëµåÀÇ ´ÙÀ½À» ´ÙÀ½³ëµå·Î ¿¬°á ½ÃÅ²´Ù.
-    nextNode->prev = prevNode; // ´ÙÀ½³ëµåÀÇ ÀÌÀü¸¦ ÀÌÀü³ëµå·Î ¿¬°á ½ÃÅ²´Ù.
-    //current ÀÌÀü°ú ´ÙÀ½ ³ëµå¸¦ ¿¬°á ½ÃÄÑ¼­ currentÀÇ ¾ø¾Öµµ ¸®½ºÆ®°¡ ³¡¾îÁöÁö¾Ê°Ô ÇÑ´Ù.
+    prevNode->next = nextNode; //ì´ì „ë…¸ë“œì˜ ë‹¤ìŒì„ ë‹¤ìŒë…¸ë“œë¡œ ì—°ê²° ì‹œí‚¨ë‹¤.
+    nextNode->prev = prevNode; // ë‹¤ìŒë…¸ë“œì˜ ì´ì „ë¥¼ ì´ì „ë…¸ë“œë¡œ ì—°ê²° ì‹œí‚¨ë‹¤.
+    //current ì´ì „ê³¼ ë‹¤ìŒ ë…¸ë“œë¥¼ ì—°ê²° ì‹œì¼œì„œ currentì˜ ì—†ì• ë„ ë¦¬ìŠ¤íŠ¸ê°€ ëì–´ì§€ì§€ì•Šê²Œ í•œë‹¤.
 
-    delete current; // currentÀÇ ÀÚ¸®¿¡ ÀÖ´Â ³ëµå »èÁ¦ 
-    count--; // Ä«¿îÆ® -1 
+    delete current; // currentì˜ ìžë¦¬ì— ìžˆëŠ” ë…¸ë“œ ì‚­ì œ 
+    count--; // ì¹´ìš´íŠ¸ -1 
 }
 
 int DoublyCircularLinkedList::get(int index) const {
-    if (index < 0 || index >= count) return  -1; // Á¶°ÇÀÌ ÂüÀÌ¸é ±×ÀÚ¸®¿¡¼­ ÇÔ¼ö¸¦ Á¾·áÇÏ°í
-    // ÀÌ Á¶°ÇÀÌ °ÅÁþÀÌ¸é ½ÇÇàÇÏÁö ¾Ê°í ¾Æ·¡ ÄÚµå°¡ ½ÇÇàÇÑ´Ù.
+    if (index < 0 || index >= count) return  -1; // ì¡°ê±´ì´ ì°¸ì´ë©´ ê·¸ìžë¦¬ì—ì„œ í•¨ìˆ˜ë¥¼ ì¢…ë£Œí•˜ê³ 
+    // ì´ ì¡°ê±´ì´ ê±°ì§“ì´ë©´ ì‹¤í–‰í•˜ì§€ ì•Šê³  ì•„ëž˜ ì½”ë“œê°€ ì‹¤í–‰í•œë‹¤.
 
-    Node* current = dummyHead->next; // ´õ¹ÌÇìµåÀÇ ´ÙÀ½ ³ëµå¸¦ current¶ó´Â ÀÌ¸§À¸·Î Á¤ÇÑ´Ù.
-    for (int i = 0; i < index; ++i) // currentÀÇ À§Ä¡¸¦ ÀÌµ¿ ½ÃÅ²´Ù. 
+    Node* current = dummyHead->next; // ë”ë¯¸í—¤ë“œì˜ ë‹¤ìŒ ë…¸ë“œë¥¼ currentë¼ëŠ” ì´ë¦„ìœ¼ë¡œ ì •í•œë‹¤.
+    for (int i = 0; i < index; ++i) // currentì˜ ìœ„ì¹˜ë¥¼ ì´ë™ ì‹œí‚¨ë‹¤. 
         current = current->next;
-    return current->data; //ÀÌµ¿ ½ÃÅ² current¿¡ ÀÖ´Â data °ªÀ» ¹ÝÈ¯ÇÑ´Ù.
+    return current->data; //ì´ë™ ì‹œí‚¨ currentì— ìžˆëŠ” data ê°’ì„ ë°˜í™˜í•œë‹¤.
 }
 
 void DoublyCircularLinkedList::print() const {
-    Node* current = dummyHead->next; // ³ëµåÀÇ ÁÖ¼Ò¸¦ ÀúÀåÇÏ´Â Àå¼Ò¸¦ current·Î Á¤ÇÏ°í °Å±â¿¡ ´õ¹ÌÇìµåÀÇ ´ÙÀ½¸¦ °¡¸®Å°´Â ÁÖ¼Ò°ªÀ» ³Ö´Â´Ù.
+    Node* current = dummyHead->next; // ë…¸ë“œì˜ ì£¼ì†Œë¥¼ ì €ìž¥í•˜ëŠ” ìž¥ì†Œë¥¼ currentë¡œ ì •í•˜ê³  ê±°ê¸°ì— ë”ë¯¸í—¤ë“œì˜ ë‹¤ìŒë¥¼ ê°€ë¦¬í‚¤ëŠ” ì£¼ì†Œê°’ì„ ë„£ëŠ”ë‹¤.
     cout << "List: ";
-    for (int i = 0; i < count; ++i) { // countÀÇ ¼ýÀÚ ¸¸Å­ ¹Ýº¹µÇ°Ô ÇÑ´Ù
-        cout << current->data << " "; // currentÀÇ data°ªÀ» Ãâ·ÂÇÑ´Ù
-        current = current->next; // currentÀÇ À§Ä¡¸¦ º¯°æ½ÃÅ²´Ù.
+    for (int i = 0; i < count; ++i) { // countì˜ ìˆ«ìž ë§Œí¼ ë°˜ë³µë˜ê²Œ í•œë‹¤
+        cout << current->data << " "; // currentì˜ dataê°’ì„ ì¶œë ¥í•œë‹¤
+        current = current->next; // currentì˜ ìœ„ì¹˜ë¥¼ ë³€ê²½ì‹œí‚¨ë‹¤.
     }
     cout << endl;
 }
 
 
 void DoublyCircularLinkedList::clear() {
-    while (count > 0) // count°¡ 0ÀÌ µÉ¶§±îÁö ½ÇÇàÇÑ´Ù.
+    while (count > 0) // countê°€ 0ì´ ë ë•Œê¹Œì§€ ì‹¤í–‰í•œë‹¤.
         remove(0); // 
 }
 
 int DoublyCircularLinkedList::size() const {
     cout << count << endl;
-    return count; //ÇöÀç ±îÁö ÀÖ´Â ³ëµå ¼ýÀÚ¸¦ °¡Á®¿Í¼­ ¹ÝÈ¯ÇÏ±â
+    return count; //í˜„ìž¬ ê¹Œì§€ ìžˆëŠ” ë…¸ë“œ ìˆ«ìžë¥¼ ê°€ì ¸ì™€ì„œ ë°˜í™˜í•˜ê¸°
 }
-// ÀåÁ¡ : 
-// ¾Õ°ú µÚ·Î ÀÚÀ¯·Ó°Ô ÀÌŠEÇÒ ¼ö ÀÖ´Ù.
-// ´õ À¯¿¬ÇÑ ÀÚ·á±¸Á¶ ±¸ÇöÀÌ °¡´ÉÇÏ´Ù
-// »ðÀÔ/»èÁ¦°¡ È¿À²ÀûÀÌ´Ù.
-// ¾ç ³¡ ³ëµå ¿¬°áµÇ¼­ Æ¯º° Ã³¸® ÁÙ¾îµç´Ù
-
-// ´ÜÁ¡ :
-// ¸Þ¸ð¸® »ç¿ë Áõ°¡: Æ÷ÀÎÅÍ°¡ 2°³¶ó ³ëµå´ç ¸Þ¸ð¸® »ç¿ë·®ÀÌ ´ÜÀÏ ¿¬°á ¸®½ºÆ®º¸´Ù Å©´Ù 
-// ¹ö±× °¡´É¼º ³ô´Ù : »ðÀÔ/ »èÁ¦ ½Ã ¸ðµÎ ¿Ã¹Ù¸£°Ô ¿¬°áÇØ¾ßÇÑ´Ù. 
-// ¹«ÇÑ ·çÇÁ À§Çè¼º 
-
-// »ç¿ë ¿¹½Ã : 
-// Ä³¸¯ÅÍ ÅÏ µÇ°¨±â ½Ã½ºÅÛ - ÇÃ·¹ÀÌ¾î°¡ ÇÑ ÅÏ Àü/ÈÄ·Î ÀÌµ¿ °¡´É 
-// ¹«±â/ ¾ÆÀÌÅÛ Ä¶¸®¼¿ - ¹«±â¸¦ ¿ÞÂÊ/ ¿À¸¥ÂÊÀ¸·Î ³Ñ±â¸ç ¼±ÅÃ °¡´É, ¸¶Áö¸·-> Ã³À½ °¡´É
-// UI Ä¿¼­ ¼øÈ¯ - ¸Þ´º Ä¿¼­°¡ ³¡¿¡¼­ ´Ù½Ã Ã³À½À¸·Î ¶Ç´Â µÚ·Î ÀÌµ¿(Ä³¸¯ÅÍ ¼±ÅÃUI)
-// È÷½ºÅä¸®/Çàµ¿ µÇµ¹¸®±â - Çàµ¿À» ÀúÀåÇØ ³õ°í ÀÌµ¿ÇÏ¸ç Ãë¼Ò/ ´Ù½ÃÇÏ±â ±¸Çö 
-
-// ´Ü¹æÇâ ¿øÇü ¸®½ºÆ®¿Í ¾ç¹æÇâ ¿øÇü ¸®½ºÆ®ÀÇ Â÷ÀÌ
-// ´Ü¹æÇâ ¿øÇü ¸®½ºÆ®´Â ´Ü¼øÇÑ ¼øÈ¯ ±¸Á¶·Î °¡º±°í ±¸ÇöÀÌ ½±´Ù ÇÏÁö¸¸ µÚ·Î ÀÌµ¿ÇÏ´Â °Ç ºÒ°¡´ÉÇÐ »èÁ¦½Ã ÀÌÀü ³ëµå¸¦ ¾Ë¾Æ¾ß ÇØ¼­ ºÒÆíÇÏ´Ù
-// ¾ç¹æÇâ ¿øÇü ¸®½ºÆ®´Â ¾ÕµÚ·Î ÀÚÀ¯·Ó°Ô Å½»ö °¡´ÉÇÏ¸ç, Áß°£ »ðÀÔ/ »èÁ¦µµ Æí¸®ÇÏÁö¸¸, Æ÷ÀÎÅÍ 2°³ °ü¸®·Î ±¸ÇöÀÌ º¹ÀâÇÏ°í ¸Þ¸ð¸®µµ ´õ »ç¿ëÇØ¾ßÇÑ´Ù.
