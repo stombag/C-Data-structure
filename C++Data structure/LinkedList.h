@@ -3,54 +3,75 @@
 #include<iostream>
 
 typedef int DataType;
-// �ڷ��� int�� DataType�̶�� �ɷ� �̸��� �ٲپ���. ����� int�� �����ϴ�
-// ����ϴ� ���� : int ���� �ٸ� �ڷ��� float ���� �ɷ� �ٲܶ� ���⸸ �ٲٸ� �ȴ�., ���� DataType�̶�� ���� ���Ḯ��Ʈ���� ����ϴ� �������� Ÿ���ΰ� �� �� �ִ�.
+// 자료형 int를 DataType이라는 걸로 이름만 바꾸었다. 기능은 int와 동일하다
+// 사용하는 이유 : int 말고 다른 자료형 float 같은 걸로 바꿀때 여기만 바꾸면 된다., 또한 DataType이라고 쓰면 연결리스트에만 사용하는 데이터의 타입인걸 알 수 있다.
 
 class LinkedList
 {
 private:
 
-	struct Node // ��� ����ü �����
+	struct Node // 노드 구조체 만들기
 	{
 		DataType Data;
-		// ����� �����͸� ������ ��
+		// 노드의 데이터를 저장할 곳
 		Node* NextNode;
-		// ���� ����� �ּҸ� �����ϴ� ������
-		// ���� ��尡 ����Ű�� �ּҴ� ���� ����� ��ġ�̴�. ���� ����� �ּҸ� �����Ѵ�.
+		// 다음 노드의 주소를 저장하는 포인터
+		// 현재 노드가 간리키는 주소는 다음 노드의 위치이다. 다음 노드의 주소를 저장한다.
 
-		Node(DataType d = 0) : Data(d), NextNode(nullptr) {}// ��ü�� �ִ� ������ �ּҰ��� ���ϴ� �Ŵ�
+		Node(DataType d = 0) : Data(d), NextNode(nullptr) {}// 객체에 있는 변수의 최소값을 정하는 거다
 
-		//Node(DataType d = 0) �̰� ������ �Լ�. �Ű����� d�� �޴µ� �⺻���� 0�Դϴ�. ��, ���ڰ� ��� ȣ�� �ȴ�.
-		// :Data(d) ��� �ʱ�ȭ ����Ʈ. ��� �Լ� Data�� d�� �ʱ�ȭ�Ѵ�
-		//NextNode(nullptr) ��� ���� NextNode�� nullptr�� �ʱ�ȭ�Ѵ�
-		// {} �̰� �����ں����� ������� �ʿ��� �۾��� ������ ����
+		//Node(DataType d = 0) 이건 생성자 함수. 매개변수 d를 받는데 기본값은 0입니다. 즉, 인자가 없어도 호출 된다.
+		// :Data(d) 멤버 초기화 리스트. 멤버 함수 Data를 d로 초기화한다
+		//NextNode(nullptr) 멤버 변수 NextNode룰 nullptr로 초기화한다
+		// {} 이건 생성자본문이 비어있음 필요한 작업은 위에서 끝냄
 
 
 	};
-	Node* dummyHead;// ���� ���
+	Node* dummyHead;// 더미 노드
 
 public:
-	LinkedList() // ���̵����͸� ������ִ� ������ �Ѵ�.
+	LinkedList() // 더미데이터를 만들어주는 역할을 한다.
 	{
-		dummyHead = new Node(); //ȣ�� �ϸ� �⺻ �����ڸ� ���� node��ü�� �ϳ� �����ǰ� �� �ּҰ� ������忡 ����.
+		dummyHead = new Node(); //호울 하면 기본 생성자를 통해 node객체가 하나 생성되고 그 주소가 더미헤드에 들어간다.
 	}
 	~LinkedList()
 	{
 		Clear();
 		delete dummyHead;
 	}
-	void Push(DataType data); //����Ʈ�� �ǵڿ� �����͸� �߰��Ѵ�.
+	void Push(DataType data); //리스트의 맨뒤에 데이터를 추가한다.
 
-	void Insert(int index, DataType data);// ������ ��ġ�� �����͸� �����Ѵ�.
+	void Insert(int index, DataType data);// 지정한 위치에 데이터를 삽입한다.
 
-	void Remove(int index); //������ ��ġ�� �����͸� �����Ѵ�.(�ش� ��带 �����ϰ� ������ �ٽ� �̾��ش�.
+	void Remove(int index); //지정한 위치의 데이터를 삭제한다.(해당 노드를 제거하고 연결을 다시 이어준다.
 
-	DataType Get(int index); //������ ��ġ�� �ִ� �����͸� ��ȯ�մϴ�.(�б� ����, ����X)
-	// ��ȯ�� �ᰣ �ٸ� ������ ���ٰ� ���� ��� �ٽ� ���ƿ��� �����̴�. 
+	DataType Get(int index); //지정한 위치에 있는 데이터를 반환합니다.(읽기 전용, 삭제X)
+	// 반환은 잠간 다른 바으로 갔다가 값을 들고 다시 돌아오는 느낌이다. 
 
-	int Count() const; //����Ʈ�� ����� ����� ������ ��ȯ�Ѵ�.
+	int Count() const; //리스트에 저장된 요소의 개수를 반환한다.
 
-	void print() const; //����Ʈ�� ��� �����͸� ������� ����Ѵ�.
+	void print() const; //리스트의 모든 데이터를 순서대로 출력한다.
 
-	void Clear(); // ����Ʈ�� ��� ��带 �����Ͽ� ����. 
+	void Clear(); // 리스트의 모든 노드를 삭제하여 비운다. 
 };
+// 장점 :
+// 1. 순서를 바꾸기 매우 쉽다.
+// 2. 중간에서 새로운 자료를 넣거나 빼기도 싶다
+// 3. 크기가 고정되지 않는다(배열처럼 정하지 않아도 된다)
+// 4. 데이터 저장을 위한 메모리를 공간이 필요할 때마다 동적으로 만들어 쉽게 추가할 수 있다.
+
+// 단점 :
+// 1. 임의 접근 불가 - 배열처럼 list[3]으로 바로 접근이 불가능하다. -> 항상 head부터 하나씩 따라가야한다. 시간 복잡도 O(n)
+// 2. 이전 노드로 이동 불가 
+// 3. 삭제 시 이전 노드 필요
+// 4. 포인터 메모리 소모 - 각 노드마다 next 포인터가 필요하다.
+// 5. 복잡한 삽입 삭제 조건 처리 : 코드가 복잡해지고 지저분해질 수 있다.
+// 6. 순환 구조 없음 - 끝에 도달하면 다시 시작하려면 다시 head부터 가야한다.-> 비효율적이다.
+// 7. 탐색이 느리다. 
+
+
+// 사용 예시 : 
+// 게임 이벤트 큐 - 이벤트들를 순서대로 처리하는 구조(ex. 몬스터 생성-> 이팩트->대사출력)
+// 스킬 이펙트 연속 처리 - 여러 이펙트를 시간 순서대로 연결해서 발동(ex. 불꽃-> 폭발-> 연기)
+// 애니메이션 프레임 처리 - 애니메이션 프레임을 순차적으로 연결하여 재생
+// 미사일 경로 -  단순한 궤적/노드 연결(앞으로만 이동)
