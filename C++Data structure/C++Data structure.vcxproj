@@ -132,6 +132,7 @@
     <ClCompile Include="CircularQueue.cpp" />
     <ClCompile Include="DoublyCircularLinkedList.cpp" />
     <ClCompile Include="Execute.cpp" />
+    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="VariadicCircularLinkedLis.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="CircularLinkedList.h" />
     <ClInclude Include="CircularQueue.h" />
     <ClInclude Include="DoublyCircularLinkedList.h" />
+    <ClInclude Include="Heap.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackLinkedList.h" />
