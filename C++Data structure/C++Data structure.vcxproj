@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArrayQueue.cpp" />
     <ClCompile Include="CircularLinkedList.cpp" />
     <ClCompile Include="DoublyCircularLinkedList.cpp" />
     <ClCompile Include="Execute.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="StackLinkedList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArrayQueue.h" />
     <ClInclude Include="CircularLinkedList.h" />
     <ClInclude Include="DoublyCircularLinkedList.h" />
     <ClInclude Include="LinkedList.h" />
