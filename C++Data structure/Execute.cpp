@@ -86,7 +86,7 @@ int main()
 	//return 0;
 
 
-	//ArrayQueue queue(5);  // 크기 5인 큐 생성
+	ArrayQueue queue(5);  // 크기 5인 큐 생성
 
 	//// 값 추가
 	//queue.push(10);
