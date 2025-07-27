@@ -157,24 +157,27 @@ int main()
 
 
 
-	//Heap heap(10);
+	Heap heap(10);
 
-	//heap.insert(30);
-	//heap.insert(10);
-	//heap.insert(50);
-	//heap.insert(40);
-	//heap.insert(60);
+	heap.insert(30);
+	heap.insert(10);
+	heap.insert(50);
+	heap.insert(40);
+	heap.insert(60);
 
-	//heap.print(); // 출력: 60 40 50 10 30
+	heap.print(); // 출력: 60 40 50 10 30
 
-	//cout << "최댓값(top): " << heap.top() << endl;
+	cout << "최댓값(top): " << heap.top() << endl;
 
-	//cout << "삭제된 값: " << heap.pop() << endl;
-	//heap.print(); // 가장 큰 값 삭제 후 출력
+	cout << "삭제된 값: " << heap.pop() << endl;
+	heap.print(); // 가장 큰 값 삭제 후 출력
 
-	//cout << "최댓값(top): " << heap.top() << endl;
+	cout << "최댓값(top): " << heap.top() << endl;
 
-	//return 0;
+	heap.heapSort();
+
+	heap.print();
+	return 0;
 
 
 }
