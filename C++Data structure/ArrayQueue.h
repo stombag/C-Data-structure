@@ -12,7 +12,7 @@ private:
     int capacity; // 용량
 
 public:
-    ArrayQueue(int size = 100); // 용량을 생성자에서 정하기 
+    ArrayQueue(int size = 100); // 용량을 생성자에서 정하기 이걸로 호출할때 유연하게 size를 변경할 수 있다 
     ~ArrayQueue(); // 소멸자 
 
     void push(int value);              // 큐에 값 추가
