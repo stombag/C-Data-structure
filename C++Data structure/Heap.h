@@ -33,4 +33,10 @@ public:
 
 	void heapSort();
 
+	void mergeSort();
+
+	void quicksort();
+
+	
+	
 };

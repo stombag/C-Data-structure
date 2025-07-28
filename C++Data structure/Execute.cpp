@@ -138,8 +138,7 @@ int main()
 
 
 	cout << "원형 큐" << endl;
-	CircularQueue Cqueue;  // 크기가 5인 원형 큐 생성
-
+	CircularQueue Cqueue;  
 	// 값 추가
 	Cqueue.push(10);
 	Cqueue.push(20);
@@ -169,12 +168,15 @@ int main()
 	cout << "힙" << endl;
 	Heap heap(10);
 
+	heap.insert(50);
 	heap.insert(30);
 	heap.insert(10);
-	heap.insert(50);
-	heap.insert(40);
 	heap.insert(60);
+	heap.insert(40);
+	heap.insert(29);
+	heap.insert(199);
 
+	heap.heapSort();
 	heap.print(); // 출력: 60 40 50 10 30
 
 	cout << "최댓값(top): " << heap.top() << endl;
@@ -184,9 +186,14 @@ int main()
 
 	cout << "최댓값(top): " << heap.top() << endl;
 
-	heap.heapSort();
+	heap.mergeSort();
 
 	heap.print();
+
+	heap.quicksort();
+
+	heap.print();
+
 	return 0;
 
 
