@@ -176,6 +176,7 @@ int main()
 	heap.insert(29);
 	heap.insert(199);
 
+	cout << endl;
 	heap.heapSort();
 	heap.print(); // Ãâ·Â: 60 40 50 10 30
 
@@ -186,10 +187,12 @@ int main()
 
 	cout << "ÃÖ´ñ°ª(top): " << heap.top() << endl;
 
+	cout << endl;
 	heap.mergeSort();
 
 	heap.print();
 
+	cout << endl;
 	heap.quicksort();
 
 	heap.print();

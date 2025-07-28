@@ -19,12 +19,12 @@ void Heap::insert(int value) {
 
 void Heap::heapifyUP(int index) {
     while (index > 0) { //인덱스의 값이 0보다 클경우 반복한다. 
-        int parent = (index - 1) / 2; // 현재 노드의 부모 인덱스를 계산한다. index가 3이면 2로 나누어 1이 된다 index가 4이면 1이된다 5이면 2가 된다 
+        int parent = (index - 1) / 2; // index를 계산해서 부모의 기준을 새운다. index가 3이면 2로 나누어 1이 된다 index가 4이면 1이된다 5이면 2가 된다 
         // 즉 보모의 인덱스값을 나타내는 것이 parant이다. 0번층 1번층 2번층으로 생각하면 된다
         if (heap[index] > heap[parent]) { // 힙의 성질(부모>=자식)이 깨졌는지 확인 
             swap(heap[index], heap[parent]);  // 자식이 더 크면 실행하며 스왑으로 부모와 자식의 값을 변경한다.
             index = parent; // 부모를 새로운 기준으로 반복시킨다. 처음에 인덱스가 5이면 부모는 2가 되고 다시 전달해서 인덱스의 값이 2가되면 부모의 값이 0이된다 .
-        } // 즉 부모와 자식의 위치를 확인하고 자식이 더 값이 크면 값을 교환하는 식으로써 
+        } // 즉 부모와 자식의 위치를 확인하고 자식이 더 값이 크면 값을 교환하는 식으로 사용한다. 
         else break;
     }
 }
@@ -36,9 +36,10 @@ int Heap::pop() {
 
     int root = heap[0]; // 가장 위에 있는 위치를 가져온다
     heap[0] = heap[size - 1]; // 사이즈에서 1를 뺏 값을 0에 넣는다. 
+    // 가장 마지막에 있는 값을 위로 보내서 바꾸고 그후 힙의 규칙에 따라 정렬한다. 
     size--; // size 줄이기 
+    //가장 위에 있는 것 부터 없애 버린다. 
     heapifyDown(0); // 0번 인덱스부터 정렬 시작 
-
     return root; //가장 위에 있는 값은 보낸다.
 }
 
@@ -49,9 +50,13 @@ void Heap::heapifyDown(int index) {
         // 왼쪽과 오른쪽을 정하는 과정이다.
         int largest = index; // 왼쪽과 오른쪽을 비교해서 더 큰 수를 넣기 위한 장소 
 
-        if (left < size && heap[left] > heap[largest]) largest = left; // 왼쪽가 총 사이즈보다 작을 경우와 왼쪽 힙이 가장큰 힙보다 클 경우 largest에 left를 넣은다
-        if (right < size && heap[right] > heap[largest]) largest = right; // 오른쪽가 총 사이즈보다 작을 경우와 오른쪽 힘이 가장 큰 힙보다 클경우 largest에 right를 넣는다.
+        if (left < size && heap[left] > heap[largest])
+            largest = left; // 왼쪽가 총 사이즈보다 작을 경우와 왼쪽 힙이 가장큰 힙보다 클 경우 largest에 left를 넣은다
+        // 즉 왼쪽에 있는 값이 부모의 값보다 높으면 왼쪽에 있는 값을 부모쪽에 넣는다.
+        if (right < size && heap[right] > heap[largest]) 
+            largest = right; // 오른쪽가 총 사이즈보다 작을 경우와 오른쪽 힘이 가장 큰 힙보다 클경우 largest에 right를 넣는다.
         // 여기까지 left와 right를 비교하여 큰 값을 largest에 넣는 과정이다.
+        // 즉 오른쪽 있는 값이 부모의 값보다 높으면 오른쪽에 있는 값을 부모쪽에 넣는다. 
 
         if (largest != index) { // index와 largest의 값이 같지 않을 경우 
             swap(heap[index], heap[largest]);// 가장 위에 있는 값과 largest를 바꾼다.
@@ -84,8 +89,10 @@ void Heap::print() const {
     cout << endl;
 }
 
-// 힙정렬
 
+
+\
+// 힙정렬
 void Heap::heapSort() {
     // 원래 heap 배열과 size를 백업
     int* backup = new int[size]; // 일단 백업에 배열의 크기는 size만큼 만든다
@@ -100,6 +107,9 @@ void Heap::heapSort() {
         heapifyDown(0);           // 루트부터 다시 정렬
     }
 
+    // 마지막 인덱스와 첫번째 인덱스를 값을 바꾸고 그걸 규칙에 맞게 하나씩 다시 배치하는 느낌으로 
+    // 마지막 인덱스를 가장 위로 올리고 내려오면서 비교하면서 인덱스를 배치하여 순서대도 배치한다.
+
     // 정렬된 배열 출력
     for (int i = 0; i < originalSize; ++i)
         cout << heap[i] << " ";
@@ -109,12 +119,15 @@ void Heap::heapSort() {
     for (int i = 0; i < originalSize; ++i) // 원래 넣은거 대로 다시 정렬 
         heap[i] = backup[i];
     size = originalSize;
+    // 값 순서대로 배치한걸 다시 원래 넣었던 형식으로 바꾼다. 
 
     delete[] backup;
 }
 
-// 머지정렬
 
+
+
+// 머지정렬
 void merge(int arr[], int left, int mid, int right) { // 정렬한 배열, 왼쪽 부분 배열,오른쪽 부분 배열 이미 정렬 되어 있음 
     int n1 = mid - left + 1;  // 임시배열 만들기 왼쪽 부분배열의 길이 
     // +1을 하는 이유는 left~mid 범위가 양 끝 포함이기 때문이다 
@@ -155,13 +168,18 @@ void merge(int arr[], int left, int mid, int right) { // 정렬한 배열, 왼쪽 부분 
 void mergeSortInternal(int arr[], int left, int right) { // 배열을 정렬하는 재귀함수이다
     // copy, 0, size-1 == 시작 인덱스(left), 끝 인덱스(right)로 배열을 나누고 정렬한뒤 다시 병함한다.
     if (left < right) { // 배열이 두 개 이상일때 만 정렬을 수행한다.
-        int mid = (left + right) / 2; // 배열을 왼쪽 절반, 오른쪽 절반으로 나누기 위한 기준점이다
-        mergeSortInternal(arr, left, mid); // 왼쪽 절반 재귀 정렬
-        mergeSortInternal(arr, mid + 1, right); // 오른쪽 절반 재뒤 정렬 +1를 하는 이유는 배열을 정확히 겹치지 않게 양쪽으로 분할하기 위해서이다. 
-        // 여기까지 왼쪽과 오른쪽을 정렬된 상태이다.
+        int mid = (left + right) / 2; // 중간점 
+        // 배열을 왼쪽 절반, 오른쪽 절반으로 나누기 위한 기준점이다
+        // 10, 20, 30, 40, 50, 60
+        mergeSortInternal(arr, left, mid); // 왼쪽 절반 재귀 정렬 10, 20, 30
+        mergeSortInternal(arr, mid + 1, right); // 오른쪽 절반 재귀 정렬  40, 50, 60
+        // +1를 하는 이유는 배열을 정확히 겹치지 않게 양쪽으로 분할하기 위해서이다. 
+        // 여기까지 왼쪽과 오른쪽을 정렬된 상태이다. 
+        // 조건문은 개별로 재귀함수를 실행하며 왼쪽부터 시작해서 오ㅠㅠ른쪽를 왼쪽을 끝낸다음에 실행한다.
         merge(arr, left, mid, right); // 이제 left와 right를 병합해서 정렬된 배열로 만든다.
     }
-}
+    
+}// 배열을 계속 반으로 나눈다 
 
 
 void Heap::mergeSort()
@@ -182,6 +200,14 @@ void Heap::mergeSort()
     delete[] copy;
 
 }
+
+
+
+
+
+
+
+
 
 // 쿽 솔트 
 
