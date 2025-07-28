@@ -101,7 +101,7 @@ int LinkedList::Count() const // 리스트에 들어있는 노드의 개수를 �
 	int count = 0; // 리스트 노드 개수를 셀 변수 cout를 0으로 초기화한다.
 	Node* current = dummyHead->NextNode; // 더미 헤드 노드의 다음노드 부터 시작한다
 	// 실제 데이터가 저장된 첫 번째 노드를 가리키는 포인터를 선언하고 초기화 한다
-	while (current != nullptr) // current가 nullptr이 아닐 때 즉 리스트 끝에 도달하지 않았을 동안 반暉磯. 
+	while (current != nullptr) // current가 nullptr이 아닐 때 즉 리스트 끝에 도달하지 않았을 동안 반환 
 		// 리스트의 끝을 nullptr로 표시하기때문에 이조건으로 반복문을 멈출 수 있다. 
 	{
 		count++;
