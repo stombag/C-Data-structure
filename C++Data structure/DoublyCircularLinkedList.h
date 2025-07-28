@@ -5,46 +5,46 @@ class DoublyCircularLinkedList {
 private:
     struct Node {
         int data;
-        Node* prev;//ì´ì „ë…¸ë“œ
-        Node* next;// ë‹¤ìŒë…¸ë“œ
+        Node* prev;//ÀÌÀü³ëµå
+        Node* next;// ´ÙÀ½³ëµå
 
-        Node(int d = 0) : data(d), prev(nullptr), next(nullptr) {} // ì´ˆê¸°í™” 
+        Node(int d = 0) : data(d), prev(nullptr), next(nullptr) {} // ÃÊ±âÈ­ 
     };
 
-    Node* dummyHead;// ë”ë¯¸í—¤ë“œ 
-    int count; //ì¹´ìš´ë“œ 
+    Node* dummyHead;// ´õ¹ÌÇìµå 
+    int count; //Ä«¿îµå 
 
 public:
-    DoublyCircularLinkedList(); //ìƒì„±ìž
+    DoublyCircularLinkedList(); //»ý¼ºÀÚ
 
-    ~DoublyCircularLinkedList();//ì†Œë©¸ìž
+    ~DoublyCircularLinkedList();//¼Ò¸êÀÚ
 
-    void append(int value);// ë„£ê¸°
-    void insert(int index, int value);//ì‚½ìž…
-    void remove(int index);//ì‚­ì œ
-    int get(int index) const; //ê°€ì ¸ì˜¤ê¸°
-    
-    void print() const; // ì¶œë ¥
-    void clear(); // ë‹¤ ì§€ìš°ê¸°
-    int size() const; // ì‚¬ì´ì¦ˆ í™•ì¸
+    void append(int value);// ³Ö±â
+    void insert(int index, int value);//»ðÀÔ
+    void remove(int index);//»èÁ¦
+    int get(int index) const; //°¡Á®¿À±â
+
+    void print() const; // Ãâ·Â
+    void clear(); // ´Ù Áö¿ì±â
+    int size() const; // »çÀÌÁî È®ÀÎ
 };
-// ìž¥ì  : 
-// ì•žê³¼ ë’¤ë¡œ ìžìœ ë¡­ê²Œ ì´ÂŠEí•  ìˆ˜ ìžˆë‹¤.
-// ë” ìœ ì—°í•œ ìžë£Œêµ¬ì¡° êµ¬í˜„ì´ ê°€ëŠ¥í•˜ë‹¤
-// ì‚½ìž…/ì‚­ì œê°€ íš¨ìœ¨ì ì´ë‹¤.
-// ì–‘ ë ë…¸ë“œ ì—°ê²°ë˜ì„œ íŠ¹ë³„ ì²˜ë¦¬ ì¤„ì–´ë“ ë‹¤
+// ÀåÁ¡ : 
+// ¾Õ°ú µÚ·Î ÀÚÀ¯·Ó°Ô ÀÌ?EÇÒ ¼ö ÀÖ´Ù.
+// ´õ À¯¿¬ÇÑ ÀÚ·á±¸Á¶ ±¸ÇöÀÌ °¡´ÉÇÏ´Ù
+// »ðÀÔ/»èÁ¦°¡ È¿À²ÀûÀÌ´Ù.
+// ¾ç ³¡ ³ëµå ¿¬°áµÇ¼­ Æ¯º° Ã³¸® ÁÙ¾îµç´Ù
 
-// ë‹¨ì  :
-// ë©”ëª¨ë¦¬ ì‚¬ìš© ì¦ê°€: í¬ì¸í„°ê°€ 2ê°œë¼ ë…¸ë“œë‹¹ ë©”ëª¨ë¦¬ ì‚¬ìš©ëŸ‰ì´ ë‹¨ì¼ ì—°ê²° ë¦¬ìŠ¤íŠ¸ë³´ë‹¤ í¬ë‹¤ 
-// ë²„ê·¸ ê°€ëŠ¥ì„± ë†’ë‹¤ : ì‚½ìž…/ ì‚­ì œ ì‹œ ëª¨ë‘ ì˜¬ë°”ë¥´ê²Œ ì—°ê²°í•´ì•¼í•œë‹¤. 
-// ë¬´í•œ ë£¨í”„ ìœ„í—˜ì„± 
+// ´ÜÁ¡ :
+// ¸Þ¸ð¸® »ç¿ë Áõ°¡: Æ÷ÀÎÅÍ°¡ 2°³¶ó ³ëµå´ç ¸Þ¸ð¸® »ç¿ë·®ÀÌ ´ÜÀÏ ¿¬°á ¸®½ºÆ®º¸´Ù Å©´Ù 
+// ¹ö±× °¡´É¼º ³ô´Ù : »ðÀÔ/ »èÁ¦ ½Ã ¸ðµÎ ¿Ã¹Ù¸£°Ô ¿¬°áÇØ¾ßÇÑ´Ù. 
+// ¹«ÇÑ ·çÇÁ À§Çè¼º 
 
-// ì‚¬ìš© ì˜ˆì‹œ : 
-// ìºë¦­í„° í„´ ë˜ê°ê¸° ì‹œìŠ¤í…œ - í”Œë ˆì´ì–´ê°€ í•œ í„´ ì „/í›„ë¡œ ì´ë™ ê°€ëŠ¥ 
-// ë¬´ê¸°/ ì•„ì´í…œ ìº˜ë¦¬ì…€ - ë¬´ê¸°ë¥¼ ì™¼ìª½/ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë„˜ê¸°ë©° ì„ íƒ ê°€ëŠ¥, ë§ˆì§€ë§‰-> ì²˜ìŒ ê°€ëŠ¥
-// UI ì»¤ì„œ ìˆœí™˜ - ë©”ë‰´ ì»¤ì„œê°€ ëì—ì„œ ë‹¤ì‹œ ì²˜ìŒìœ¼ë¡œ ë˜ëŠ” ë’¤ë¡œ ì´ë™(ìºë¦­í„° ì„ íƒUI)
-// ížˆìŠ¤í† ë¦¬/í–‰ë™ ë˜ëŒë¦¬ê¸° - í–‰ë™ì„ ì €ìž¥í•´ ë†“ê³  ì´ë™í•˜ë©° ì·¨ì†Œ/ ë‹¤ì‹œí•˜ê¸° êµ¬í˜„ 
+// »ç¿ë ¿¹½Ã : 
+// Ä³¸¯ÅÍ ÅÏ µÇ°¨±â ½Ã½ºÅÛ - ÇÃ·¹ÀÌ¾î°¡ ÇÑ ÅÏ Àü/ÈÄ·Î ÀÌµ¿ °¡´É 
+// ¹«±â/ ¾ÆÀÌÅÛ Ä¶¸®¼¿ - ¹«±â¸¦ ¿ÞÂÊ/ ¿À¸¥ÂÊÀ¸·Î ³Ñ±â¸ç ¼±ÅÃ °¡´É, ¸¶Áö¸·-> Ã³À½ °¡´É
+// UI Ä¿¼­ ¼øÈ¯ - ¸Þ´º Ä¿¼­°¡ ³¡¿¡¼­ ´Ù½Ã Ã³À½À¸·Î ¶Ç´Â µÚ·Î ÀÌµ¿(Ä³¸¯ÅÍ ¼±ÅÃUI)
+// È÷½ºÅä¸®/Çàµ¿ µÇµ¹¸®±â - Çàµ¿À» ÀúÀåÇØ ³õ°í ÀÌµ¿ÇÏ¸ç Ãë¼Ò/ ´Ù½ÃÇÏ±â ±¸Çö 
 
-// ë‹¨ë°©í–¥ ì›í˜• ë¦¬ìŠ¤íŠ¸ì™€ ì–‘ë°©í–¥ ì›í˜• ë¦¬ìŠ¤íŠ¸ì˜ ì°¨ì´
-// ë‹¨ë°©í–¥ ì›í˜• ë¦¬ìŠ¤íŠ¸ëŠ” ë‹¨ìˆœí•œ ìˆœí™˜ êµ¬ì¡°ë¡œ ê°€ë³ê³  êµ¬í˜„ì´ ì‰½ë‹¤ í•˜ì§€ë§Œ ë’¤ë¡œ ì´ë™í•˜ëŠ” ê±´ ë¶ˆê°€ëŠ¥í•™ ì‚­ì œì‹œ ì´ì „ ë…¸ë“œë¥¼ ì•Œì•„ì•¼ í•´ì„œ ë¶ˆíŽ¸í•˜ë‹¤
-// ì–‘ë°©í–¥ ì›í˜• ë¦¬ìŠ¤íŠ¸ëŠ” ì•žë’¤ë¡œ ìžìœ ë¡­ê²Œ íƒìƒ‰ ê°€ëŠ¥í•˜ë©°, ì¤‘ê°„ ì‚½ìž…/ ì‚­ì œë„ íŽ¸ë¦¬í•˜ì§€ë§Œ, í¬ì¸í„° 2ê°œ ê´€ë¦¬ë¡œ êµ¬í˜„ì´ ë³µìž¡í•˜ê³  ë©”ëª¨ë¦¬ë„ ë” ì‚¬ìš©í•´ì•¼í•œë‹¤.
+// ´Ü¹æÇâ ¿øÇü ¸®½ºÆ®¿Í ¾ç¹æÇâ ¿øÇü ¸®½ºÆ®ÀÇ Â÷ÀÌ
+// ´Ü¹æÇâ ¿øÇü ¸®½ºÆ®´Â ´Ü¼øÇÑ ¼øÈ¯ ±¸Á¶·Î °¡º±°í ±¸ÇöÀÌ ½±´Ù ÇÏÁö¸¸ µÚ·Î ÀÌµ¿ÇÏ´Â °Ç ºÒ°¡´ÉÇÐ »èÁ¦½Ã ÀÌÀü ³ëµå¸¦ ¾Ë¾Æ¾ß ÇØ¼­ ºÒÆíÇÏ´Ù
+// ¾ç¹æÇâ ¿øÇü ¸®½ºÆ®´Â ¾ÕµÚ·Î ÀÚÀ¯·Ó°Ô Å½»ö °¡´ÉÇÏ¸ç, Áß°£ »ðÀÔ/ »èÁ¦µµ Æí¸®ÇÏÁö¸¸, Æ÷ÀÎÅÍ 2°³ °ü¸®·Î ±¸ÇöÀÌ º¹ÀâÇÏ°í ¸Þ¸ð¸®µµ ´õ »ç¿ëÇØ¾ßÇÑ´Ù.

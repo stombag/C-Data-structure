@@ -2,148 +2,148 @@
 #include "LinkedList.h"
 using namespace std;
 
-void LinkedList::Push(DataType data) // ì—°ê²° ë¦¬ìŠ¤íŠ¸ì˜ ëì— ìƒˆë¡œìš´ ë…¸ë“œë¥¼ ì¶”ê°€í•˜ëŠ” ì—­í• ì„ í•œë‹¤.
-// voidì´ë¯€ë¡œ ê°’ì„ ë°˜í™˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. 
+void LinkedList::Push(DataType data) // ¿¬°á ¸®½ºÆ®ÀÇ ³¡¿¡ »õ·Î¿î ³ëµå¸¦ Ãß°¡ÇÏ´Â ¿ªÇÒÀ» ÇÑ´Ù.
+// voidÀÌ¹Ç·Î °ªÀ» ¹ÝÈ¯ÇÏÁö ¾Ê½À´Ï´Ù. 
 {
-	// Node* ëŠ” Node íƒ€ìž…ì˜ ì£¼ì†Œë§Œ ì €ìž¥í•  ìˆ˜ ìžˆëŠ” ë³€ìˆ˜ì´ë‹¤. 
-	// ì¦‰ Nodeë¥¼ ê°€ë¦¬í‚¤ëŠ” í¬ì¸í„°ë¥¼ ì˜ë¯¸í•œë‹¤ .
+	// Node* ´Â Node Å¸ÀÔÀÇ ÁÖ¼Ò¸¸ ÀúÀåÇÒ ¼ö ÀÖ´Â º¯¼öÀÌ´Ù. 
+	// Áï Node¸¦ °¡¸®Å°´Â Æ÷ÀÎÅÍ¸¦ ÀÇ¹ÌÇÑ´Ù .
 
-	Node* newNode = new Node(data); 
-	// ë™ì ìœ¼ë¡œ ìƒì„±í•˜ê³  dataê°’ìœ¼ë¡œ ê°–ëŠ” ë…¸ë“œë¥¼ í•˜ë‚˜ ë§Œë“¤ê³  newNodeëŠ” ë§Œë“  ë…¸ë“œì˜ ì£¼ì†Œë¥¼ ì €ìž¥í•œë‹¤.
-	// ìƒˆë¡œ ë§Œë“¤ì—ˆê¸°ë•Œë¬¸ì— newNode ì™€ tailëŠ” ì£¼ì†Œê°’ì´ ë‹¤ë¥´ë‹¤
+	Node* newNode = new Node(data);
+	// µ¿ÀûÀ¸·Î »ý¼ºÇÏ°í data°ªÀ¸·Î °®´Â ³ëµå¸¦ ÇÏ³ª ¸¸µé°í newNode´Â ¸¸µç ³ëµåÀÇ ÁÖ¼Ò¸¦ ÀúÀåÇÑ´Ù.
+	// »õ·Î ¸¸µé¾ú±â¶§¹®¿¡ newNode ¿Í tail´Â ÁÖ¼Ò°ªÀÌ ´Ù¸£´Ù
 
 	Node* tail = dummyHead;
-	//tail í¬ì¸í„°ë¥¼ ì‚¬ìš©í•´ ë¦¬ìŠ¤íŠ¸ì˜ ë§ˆì§€ë§‰ ë…¸ë“œë¥¼ ì°¾ê¸° ìœ„í•œ ì¤€ë¹„ë¥¼ í•œë‹¤.
+	//tail Æ÷ÀÎÅÍ¸¦ »ç¿ëÇØ ¸®½ºÆ®ÀÇ ¸¶Áö¸· ³ëµå¸¦ Ã£±â À§ÇÑ ÁØºñ¸¦ ÇÑ´Ù.
 
-	// new Node()ëŠ” ìƒˆë¡œìš´ ê°ì²´ë¥¼ ë§Œë“¤ê³  ê°’ì„ ë°˜í™˜í•œë‹¤ newNodeëŠ” Node* íƒ€ìž…ì˜ ê°ì²´ì˜ ì£¼ì†Œê°’ì„ ì €ìž¥í•˜ëŠ”ê±°ë‹¤ 
-	// new ëŠ” ë™ì í• ë‹¹í•˜ê³  ì£¼ì†Œê°’ì„ ë°˜í™˜í•œë‹¤
+	// new Node()´Â »õ·Î¿î °´Ã¼¸¦ ¸¸µé°í °ªÀ» ¹ÝÈ¯ÇÑ´Ù newNode´Â Node* Å¸ÀÔÀÇ °´Ã¼ÀÇ ÁÖ¼Ò°ªÀ» ÀúÀåÇÏ´Â°Å´Ù 
+	// new ´Â µ¿ÀûÇÒ´çÇÏ°í ÁÖ¼Ò°ªÀ» ¹ÝÈ¯ÇÑ´Ù
 
-	while (tail->NextNode != nullptr) //NextNoderê°€ nullptrì´ ì•„ë‹ ë•Œê¹Œì§€ ì´ë™í•œë‹¤. 
-		tail = tail->NextNode; // ë¦¬ìŠ¤íŠ¸ ëìœ¼ë¡œ ì´ë™í•œë‹¤. 
-	// ì²«ë²ˆì§¸ë…¸ë“œì—ì„œ Nextnodeê°€ ê°’ì´ ìž‡ìœ¼ë©´ tailì— ê·¸ ì²«ë²ˆì§¸ ë…¸ë“œì˜ NextNodeë¥¼ ë„£ìœ¼ë©´ tailì´ ê°€ë¦¬í‚¤ëŠ”ê±´ ì²«ë²ˆì§¸ë…¸ë“œì˜ NextNodeì´ë‹¤ 
-	// ê·¸ NextNodeê°€ ê°’ì´ ì—†ìœ¼ë©´ ì¢…ë£Œí•˜ê³  ìžˆìœ¼ë©´ ë‘ë²ˆì§¸ ë…¸ë“œì˜ NextNodeë¥¼ tailì— ë„£ëŠ”ë‹¤
+	while (tail->NextNode != nullptr) //NextNoder°¡ nullptrÀÌ ¾Æ´Ò ¶§±îÁö ÀÌµ¿ÇÑ´Ù. 
+		tail = tail->NextNode; // ¸®½ºÆ® ³¡À¸·Î ÀÌµ¿ÇÑ´Ù. 
+	// Ã¹¹øÂ°³ëµå¿¡¼­ Nextnode°¡ °ªÀÌ ÀÕÀ¸¸é tail¿¡ ±× Ã¹¹øÂ° ³ëµåÀÇ NextNode¸¦ ³ÖÀ¸¸é tailÀÌ °¡¸®Å°´Â°Ç Ã¹¹øÂ°³ëµåÀÇ NextNodeÀÌ´Ù 
+	// ±× NextNode°¡ °ªÀÌ ¾øÀ¸¸é Á¾·áÇÏ°í ÀÖÀ¸¸é µÎ¹øÂ° ³ëµåÀÇ NextNode¸¦ tail¿¡ ³Ö´Â´Ù
 
-	//tailì„ ë§ˆì§€ë§‰ ë…¸ë“œê¹Œì§€ ì´ë™ì‹œí‚¨ ë’¤, ê·¸ ë…¸ë“œì˜ NextNodeì— ì´ë²ˆì— ë§Œë“  ë…¸ë“œë¥¼ ì—°ê²°í•œë‹¤.
-	tail->NextNode = newNode; 
+	//tailÀ» ¸¶Áö¸· ³ëµå±îÁö ÀÌµ¿½ÃÅ² µÚ, ±× ³ëµåÀÇ NextNode¿¡ ÀÌ¹ø¿¡ ¸¸µç ³ëµå¸¦ ¿¬°áÇÑ´Ù.
+	tail->NextNode = newNode;
 
 }
 
-void LinkedList::Insert(int index, DataType data)// linkedlist í´ëž˜ìŠ¤ ë©¤ë²„í•¨ìˆ˜ì´ë©° index ìœ„ì¹˜ì— data ê°’ì„ data ê°’ì„ ì‚½ìž…í•œë‹¤.
+void LinkedList::Insert(int index, DataType data)// linkedlist Å¬·¡½º ¸â¹öÇÔ¼öÀÌ¸ç index À§Ä¡¿¡ data °ªÀ» data °ªÀ» »ðÀÔÇÑ´Ù.
 {
-	Node* newNode = new Node(data); // data ê°’ì„ ê°€ì§€ê³  ìžˆëŠ” ìƒˆë¡œìš´ ë…¸ë“œë¥¼ ë™ì ìœ¼ë¡œ ìƒì„±í•œë‹¤. newNodeëŠ” ìƒˆë¡œ ì¶”ê°€í•  ë…¸ë“œë¥¼ ê°€ë¦¬í‚¨ë‹¤. 
-	Node* current = dummyHead; //ì‚½ìž… ìœ„ì¹˜ë¥¼ ì°¾ê¸° ìœ„í•´ current í¬ì¸íŠ¸ë¥¼ ì‹œìž‘ì ì„ ì„¤ì •í•œë‹¤. 
-	// ë”ë¯¸ í—¤ë“œë¥¼ ì‚¬ìš©í•˜ë©´ ì‚½ìž…/ ì‚­ì œ ì‹œ íŠ¹ìˆ˜í•œ ê²½ìš° ì²˜ë¦¬ê°€ ì‰¬ì›Œì§„ë‹¤.
+	Node* newNode = new Node(data); // data °ªÀ» °¡Áö°í ÀÖ´Â »õ·Î¿î ³ëµå¸¦ µ¿ÀûÀ¸·Î »ý¼ºÇÑ´Ù. newNode´Â »õ·Î Ãß°¡ÇÒ ³ëµå¸¦ °¡¸®Å²´Ù. 
+	Node* current = dummyHead; //»ðÀÔ À§Ä¡¸¦ Ã£±â À§ÇØ current Æ÷ÀÎÆ®¸¦ ½ÃÀÛÁ¡À» ¼³Á¤ÇÑ´Ù. 
+	// ´õ¹Ì Çìµå¸¦ »ç¿ëÇÏ¸é »ðÀÔ/ »èÁ¦ ½Ã Æ¯¼öÇÑ °æ¿ì Ã³¸®°¡ ½¬¿öÁø´Ù.
 
-	while (index-- > 0 && current->NextNode != nullptr) // ì‚½ìž…í•  ìœ„ì¹˜ ë°”ë¡œ ì•žì˜ ë…¸ë“œê¹Œì§€ ì´ë™í•œë‹¤.
-	{//index --> 0: indexë¥¼ 1ì”© ì¤„ì´ë©´ì„œ 0ë³´ë‹¤ í° ë™ì•ˆ ë°˜ë³µí•œë‹¤.
-	// ë™ì‹œì— current->NextNodeê°€ Nullptrì´ ì•„ë‹Œ ë™ì•ˆë§Œ ë°˜ë³µí•œë‹¤.
-		//ê²°ê³¼ ì ìœ¼ë¡œ currentëŠ” ì‚½ìž… ìœ„ì¹˜ ì§ì „ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ê²Œ ëœë‹¤.
+	while (index-- > 0 && current->NextNode != nullptr) // »ðÀÔÇÒ À§Ä¡ ¹Ù·Î ¾ÕÀÇ ³ëµå±îÁö ÀÌµ¿ÇÑ´Ù.
+	{//index --> 0: index¸¦ 1¾¿ ÁÙÀÌ¸é¼­ 0º¸´Ù Å« µ¿¾È ¹Ýº¹ÇÑ´Ù.
+	// µ¿½Ã¿¡ current->NextNode°¡ NullptrÀÌ ¾Æ´Ñ µ¿¾È¸¸ ¹Ýº¹ÇÑ´Ù.
+		//°á°ú ÀûÀ¸·Î current´Â »ðÀÔ À§Ä¡ Á÷Àü³ëµå¸¦ °¡¸®Å°°Ô µÈ´Ù.
 		current = current->NextNode;
-		// current->NextNodeê°€ ê°€ë¦¬í‚¤ëŠ” ë…¸ë“œë¥¼ currentì— ì£¼ì†Œê°’ì„ ë„£ëŠ”ë‹¤ .
+		// current->NextNode°¡ °¡¸®Å°´Â ³ëµå¸¦ current¿¡ ÁÖ¼Ò°ªÀ» ³Ö´Â´Ù .
 	}
 	newNode->NextNode = current->NextNode;
-	// ìƒˆ ë…¸ë“œì˜ NextNodeë¥¼ í˜„ìž¬ ë…¸ë“œì˜ ë‹¤ìŒ ë…¸ë“œë¡œ ì„¤ì •í•œë‹¤.
-	// ì¦‰ ìƒˆ ë…¸ë“œë¥¼ ê¸°ì¡´ ë¦¬ìŠ¤íŠ¸ì— ì—°ê²°í•˜ëŠ” ì¤€ë¹„ë¥¼ í•œë‹¤. 
+	// »õ ³ëµåÀÇ NextNode¸¦ ÇöÀç ³ëµåÀÇ ´ÙÀ½ ³ëµå·Î ¼³Á¤ÇÑ´Ù.
+	// Áï »õ ³ëµå¸¦ ±âÁ¸ ¸®½ºÆ®¿¡ ¿¬°áÇÏ´Â ÁØºñ¸¦ ÇÑ´Ù. 
 
 	current->NextNode = newNode;
-	// í˜„ìž¬ ë…¸ë“œì˜ nextNodeë¥¼ ìƒˆë…¸ë“œë¡œ ì„¤ì •í•œë‹¤. 
-	// ì´ë¡œì¨ ìƒˆ ë…¸ë“œê°€ ë¦¬ìŠ¤íŠ¸ì— ì‹¤ì œë¡œ ì‚½ìž…í•œë‹¤.
+	// ÇöÀç ³ëµåÀÇ nextNode¸¦ »õ³ëµå·Î ¼³Á¤ÇÑ´Ù. 
+	// ÀÌ·Î½á »õ ³ëµå°¡ ¸®½ºÆ®¿¡ ½ÇÁ¦·Î »ðÀÔÇÑ´Ù.
 }
 
-void LinkedList::Remove(int index) // index ìœ„ì¹˜ì— ìžˆëŠ” ë…¸ë“œë¥¼ ì‚­ì œí•œë‹¤.
+void LinkedList::Remove(int index) // index À§Ä¡¿¡ ÀÖ´Â ³ëµå¸¦ »èÁ¦ÇÑ´Ù.
 {
-	Node* current = dummyHead;//ë”ë¯¸í—¤ë“œëŠ” ë¦¬ìŠ¤íŠ¸ì˜ ì‹œìž‘ì„ ë‚˜íƒ€ë‚´ëŠ” ë”ë¯¸í—¤ë“œ ë…¸ë“œì´ë‹¤ 
-	// ì‚­ì œí•  ë…¸ë“œ ë°”ë¡œ ì•ž ë…¸ë“œê¹Œì§€ ì´ë™í•˜ê¸° ìœ„í•´ currentë¥¼ ì—¬ê¸°ì„œ ì´ˆê¸°í™” í•œë‹¤. 
+	Node* current = dummyHead;//´õ¹ÌÇìµå´Â ¸®½ºÆ®ÀÇ ½ÃÀÛÀ» ³ªÅ¸³»´Â ´õ¹ÌÇìµå ³ëµåÀÌ´Ù 
+	// »èÁ¦ÇÒ ³ëµå ¹Ù·Î ¾Õ ³ëµå±îÁö ÀÌµ¿ÇÏ±â À§ÇØ current¸¦ ¿©±â¼­ ÃÊ±âÈ­ ÇÑ´Ù. 
 	while (index-- > 0 && current->NextNode != nullptr)
-	{// ì‚­ì œí•  ìœ„ì¹˜ ë°”ë¡œ ì „ ë…¸ë“œê¹Œì§€ ì´ë™í•˜ëŠ” ë°˜ë³µë¬¸ìž…ë‹ˆë‹¤. 
-		// ë™ì‹œì— ë‹¤ìŒ ë…¸ë“œê°€ nullptrì´ ì•„ë‹Œì§€ í™•ì¸í•˜ì—¬ ë²”ìœ„ ì´ˆê³¼ ë°©ì§€ë„ í•©ë‹ˆë‹¤. 
+	{// »èÁ¦ÇÒ À§Ä¡ ¹Ù·Î Àü ³ëµå±îÁö ÀÌµ¿ÇÏ´Â ¹Ýº¹¹®ÀÔ´Ï´Ù. 
+		// µ¿½Ã¿¡ ´ÙÀ½ ³ëµå°¡ nullptrÀÌ ¾Æ´ÑÁö È®ÀÎÇÏ¿© ¹üÀ§ ÃÊ°ú ¹æÁöµµ ÇÕ´Ï´Ù. 
 		current = current->NextNode;
-		// indexê°€ 0ë³´ë‹¤ í´ ë•Œë§ˆë‹¤ curretë¥¼ í•œ ì¹¸ì”© ë‹¤ìŒìœ¼ë¡œ ì´ë™í•œë‹¤.
+		// index°¡ 0º¸´Ù Å¬ ¶§¸¶´Ù curret¸¦ ÇÑ Ä­¾¿ ´ÙÀ½À¸·Î ÀÌµ¿ÇÑ´Ù.
 
 	}
 
-	Node* target = current->NextNode; // ì‹¤ì œë¡œ ì‚­ì œí•  ë…¸ë“œì´ë‹¤. 
-	if (target != nullptr) //ì‚­ì œí•  ë…¸ë“œê°€ ì¡´ìž¬í•˜ëŠ”ì§€ í™•ì¸í•œë‹¤. 
+	Node* target = current->NextNode; // ½ÇÁ¦·Î »èÁ¦ÇÒ ³ëµåÀÌ´Ù. 
+	if (target != nullptr) //»èÁ¦ÇÒ ³ëµå°¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎÇÑ´Ù. 
 	{
-		current->NextNode = target->NextNode; // currentê°€ targetì„ ê°€ë¦¬í‚¤ì§€ ì•Šê³  target ë‹¤ìŒ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ë„ë¡ ì—°ê²°ì„ ë°”ê¿‰ë‹ˆë‹¤
-		// ì´ë ‡ê²Œ í•˜ë©´ target ë…¸ë“œê°€ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±° í•œë‹¤
+		current->NextNode = target->NextNode; // current°¡ targetÀ» °¡¸®Å°Áö ¾Ê°í target ´ÙÀ½ ³ëµå¸¦ °¡¸®Å°µµ·Ï ¿¬°áÀ» ¹Ù²ß´Ï´Ù
+		// ÀÌ·¸°Ô ÇÏ¸é target ³ëµå°¡ ¸®½ºÆ®¿¡¼­ Á¦°Å ÇÑ´Ù
 		delete target;
-		// ì œê±°í•œ ë…¸ë“œì˜ ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•œë‹¤. ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ ë°©ì§€ 
+		// Á¦°ÅÇÑ ³ëµåÀÇ ¸Þ¸ð¸®¸¦ ÇØÁ¦ÇÑ´Ù. ¸Þ¸ð¸® ´©¼ö ¹æÁö 
 	}
 
-	// indexê°€ 1ì¸ê²½ìš° 2ë²ˆì§¸ ë…¸ë“œë¥¼ ì—†ì•  ë²„ë¦°ë‹¤ .
+	// index°¡ 1ÀÎ°æ¿ì 2¹øÂ° ³ëµå¸¦ ¾ø¾Ö ¹ö¸°´Ù .
 }
 
-DataType LinkedList::Get(int index) // ë¦¬ìŠ¤íŠ¸ì—ì„œ indexìœ„ì¹˜ì— ìžˆëŠ” ë…¸ë“œì˜ ë°ì´í„° ê°’ì„ ë°˜í™˜í•œë‹¤.
-// indexëŠ” 0ë¶€í„° ì‹œìž‘í•˜ë©°, ë°˜í™˜ íƒ€ìž…ì€ DataTypeì´ë‹¤.
+DataType LinkedList::Get(int index) // ¸®½ºÆ®¿¡¼­ indexÀ§Ä¡¿¡ ÀÖ´Â ³ëµåÀÇ µ¥ÀÌÅÍ °ªÀ» ¹ÝÈ¯ÇÑ´Ù.
+// index´Â 0ºÎÅÍ ½ÃÀÛÇÏ¸ç, ¹ÝÈ¯ Å¸ÀÔÀº DataTypeÀÌ´Ù.
 {
-	Node* current = dummyHead->NextNode;//ë¦¬ìŠ¤íŠ¸ì˜ ì²«ë²ˆì§¸ ì‹¤ì œ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¨ë‹¤.
+	Node* current = dummyHead->NextNode;//¸®½ºÆ®ÀÇ Ã¹¹øÂ° ½ÇÁ¦ ³ëµå¸¦ °¡¸®Å²´Ù.
 
 	while (index-- > 0 && current != nullptr)
-		//indexê°€ 0ë³´ë‹¤ í´ ë™ì•ˆ, currentë¥¼ ê³„ì† ë‹¤ìŒ ë…¸ë“œë¡œ ì´ë™ì‹œí‚¨ë‹¤.
-		// ë™ì‹œì— currentê°€ nullptrì´ë©´ ë©ˆì¶¥ë‹ˆë‹¤. 
+		//index°¡ 0º¸´Ù Å¬ µ¿¾È, current¸¦ °è¼Ó ´ÙÀ½ ³ëµå·Î ÀÌµ¿½ÃÅ²´Ù.
+		// µ¿½Ã¿¡ current°¡ nullptrÀÌ¸é ¸ØÃä´Ï´Ù. 
 	{
 		current = current->NextNode;
-		// ê²°ê³¼ : currentê°€ indexë²ˆì§¸ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ê²Œ ë©ë‹ˆë‹¤. 
+		// °á°ú : current°¡ index¹øÂ° ³ëµå¸¦ °¡¸®Å°°Ô µË´Ï´Ù. 
 
 	}
 	if (current == nullptr) throw out_of_range("Index out of range");
-	// í˜„ìž¬(current)ê°€ nullptr ì¸ ê²½ìš° ì¦‰ ì°¾ìœ¼ë ¤ëŠ” ì¸ë±ìŠ¤ê°€ ë¦¬ìŠ¤íŠ¸ ë²”ìœ„ë¥¼ ë²—ì–´ë‚¬ì„ë•Œ ì˜ˆì™¸ë¥¼ ë°œìƒí•œë‹¤ 
-	// throw out_of_range("Index out of range") ì´ê±´ ë¬¸ì œê°€ ë°œìƒí–ˆì„ë•Œ ì˜ˆì™¸ë¡œ ë‘ê³  ë°”ê¹¥ ì½”ë“œì—ì„œ ì²˜ë¦¬í•˜ê²Œ í•˜ëŠ”ë° out of rangeëŠ” ì˜ˆì™¸í´ëž˜ìŠ¤ ì´ë¦„ì´ë‹¤ ë§ê·¸ëŒ€ë¡œ ë²”ìœ„ë¥¼ ë²—ì–´ë‚œê²½ìš° ì“°ëŠ” ì˜ˆì™¸ ì²˜ë¦¬ ëª…ë ¹ì–´ì´ë‹¤.
-	// out of range ëŠ” ì´ ë¬¸ì œëŠ” ë²”ìœ„ë¥¼ ë²—ì–´ê²ƒì„ ì˜ë¯¸í•˜ëŠ” ì˜ˆì™¸ ê°ì²´ë¥¼ ë§Œë“¤ê³  
-	// throwëŠ” ê·¸ ì˜ˆì™¸ ê°ì²´ë¥¼ ë˜ì ¸ì„œ í”„ë¡œê·¸ëž¨ì—ê²Œ ë¬¸ì œê°€ ìƒê²¼ë‹¤ê³  ì•Œë¦°ë‹¤ëŠ” ê²ƒë‹¤ ** ì•„ì§ ì´í•´ ëª»í•¨ **
+	// ÇöÀç(current)°¡ nullptr ÀÎ °æ¿ì Áï Ã£À¸·Á´Â ÀÎµ¦½º°¡ ¸®½ºÆ® ¹üÀ§¸¦ ¹þ¾î³µÀ»¶§ ¿¹¿Ü¸¦ ¹ß»ýÇÑ´Ù 
+	// throw out_of_range("Index out of range") ÀÌ°Ç ¹®Á¦°¡ ¹ß»ýÇßÀ»¶§ ¿¹¿Ü·Î µÎ°í ¹Ù±ù ÄÚµå¿¡¼­ Ã³¸®ÇÏ°Ô ÇÏ´Âµ¥ out of range´Â ¿¹¿ÜÅ¬·¡½º ÀÌ¸§ÀÌ´Ù ¸»±×´ë·Î ¹üÀ§¸¦ ¹þ¾î³­°æ¿ì ¾²´Â ¿¹¿Ü Ã³¸® ¸í·É¾îÀÌ´Ù.
+	// out of range ´Â ÀÌ ¹®Á¦´Â ¹üÀ§¸¦ ¹þ¾î°ÍÀ» ÀÇ¹ÌÇÏ´Â ¿¹¿Ü °´Ã¼¸¦ ¸¸µé°í 
+	// throw´Â ±× ¿¹¿Ü °´Ã¼¸¦ ´øÁ®¼­ ÇÁ·Î±×·¥¿¡°Ô ¹®Á¦°¡ »ý°å´Ù°í ¾Ë¸°´Ù´Â °Í´Ù ** ¾ÆÁ÷ ÀÌÇØ ¸øÇÔ **
 	return current->Data;
 }
 
-int LinkedList::Count() const // ë¦¬ìŠ¤íŠ¸ì— ë“¤ì–´ìžˆëŠ” ë…¸ë“œì˜ ê°œìˆ˜ë¥¼ ì„¸ì„œ ì •ìˆ˜ë¡œ ë°˜í™˜í•©ë‹ˆë‹¤.
-// constë¡œ í‚¤ì›Œë“œê°€ ìžˆì–´ ë¦¬ìŠ¤íŠ¸ì˜ ë‚´ìš©ì„ ë³€ê²½í•˜ì§€ ì•ŠìŒì„ ë³´ìž¥í•œë‹¤
+int LinkedList::Count() const // ¸®½ºÆ®¿¡ µé¾îÀÖ´Â ³ëµåÀÇ °³¼ö¸¦ ¼¼¼­ Á¤¼ö·Î ¹ÝÈ¯ÇÕ´Ï´Ù.
+// const·Î Å°¿öµå°¡ ÀÖ¾î ¸®½ºÆ®ÀÇ ³»¿ëÀ» º¯°æÇÏÁö ¾ÊÀ½À» º¸ÀåÇÑ´Ù
 {
-	int count = 0; // ë¦¬ìŠ¤íŠ¸ ë…¸ë“œ ê°œìˆ˜ë¥¼ ì…€ ë³€ìˆ˜ coutë¥¼ 0ìœ¼ë¡œ ì´ˆê¸°í™”í•œë‹¤.
-	Node* current = dummyHead->NextNode; // ë”ë¯¸ í—¤ë“œ ë…¸ë“œì˜ ë‹¤ìŒë…¸ë“œ ë¶€í„° ì‹œìž‘í•œë‹¤
-	// ì‹¤ì œ ë°ì´í„°ê°€ ì €ìž¥ëœ ì²« ë²ˆì§¸ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ëŠ” í¬ì¸í„°ë¥¼ ì„ ì–¸í•˜ê³  ì´ˆê¸°í™” í•œë‹¤
-	while (current != nullptr) // currentê°€ nullptrì´ ì•„ë‹ ë•Œ ì¦‰ ë¦¬ìŠ¤íŠ¸ ëì— ë„ë‹¬í•˜ì§€ ì•Šì•˜ì„ ë™ì•ˆ ë°˜í™˜ 
-		// ë¦¬ìŠ¤íŠ¸ì˜ ëì„ nullptrë¡œ í‘œì‹œí•˜ê¸°ë•Œë¬¸ì— ì´ì¡°ê±´ìœ¼ë¡œ ë°˜ë³µë¬¸ì„ ë©ˆì¶œ ìˆ˜ ìžˆë‹¤. 
+	int count = 0; // ¸®½ºÆ® ³ëµå °³¼ö¸¦ ¼¿ º¯¼ö cout¸¦ 0À¸·Î ÃÊ±âÈ­ÇÑ´Ù.
+	Node* current = dummyHead->NextNode; // ´õ¹Ì Çìµå ³ëµåÀÇ ´ÙÀ½³ëµå ºÎÅÍ ½ÃÀÛÇÑ´Ù
+	// ½ÇÁ¦ µ¥ÀÌÅÍ°¡ ÀúÀåµÈ Ã¹ ¹øÂ° ³ëµå¸¦ °¡¸®Å°´Â Æ÷ÀÎÅÍ¸¦ ¼±¾ðÇÏ°í ÃÊ±âÈ­ ÇÑ´Ù
+	while (current != nullptr) // current°¡ nullptrÀÌ ¾Æ´Ò ¶§ Áï ¸®½ºÆ® ³¡¿¡ µµ´ÞÇÏÁö ¾Ê¾ÒÀ» µ¿¾È ¹ÝÈ¯ 
+		// ¸®½ºÆ®ÀÇ ³¡À» nullptr·Î Ç¥½ÃÇÏ±â¶§¹®¿¡ ÀÌÁ¶°ÇÀ¸·Î ¹Ýº¹¹®À» ¸ØÃâ ¼ö ÀÖ´Ù. 
 	{
 		count++;
 
 		current = current->NextNode;
-		//currentë¥¼ ë‹¤ìŒ ë…¸ë“œë¡œ ì´ë™ì‹œí‚¨ë‹¤. 
-		// ì¹´ìš´íŠ¸ í•˜ê³  ë‹¤ìŒìœ¼ë¡œ ë„˜ì–´ê°€ê¸° 
+		//current¸¦ ´ÙÀ½ ³ëµå·Î ÀÌµ¿½ÃÅ²´Ù. 
+		// Ä«¿îÆ® ÇÏ°í ´ÙÀ½À¸·Î ³Ñ¾î°¡±â 
 	}
 
 	return count;
-	// ë°˜ë³µë¬¸ì´ ëë‚˜ë©´ í˜¸ì¶œí•œ ê³³ìœ¼ë¡œ ì¹´ìš´íŠ¸ì˜ ìˆ˜ë¥¼ ë³´ë‚¸ë‹¤ 
+	// ¹Ýº¹¹®ÀÌ ³¡³ª¸é È£ÃâÇÑ °÷À¸·Î Ä«¿îÆ®ÀÇ ¼ö¸¦ º¸³½´Ù 
 }
 
-void LinkedList::print() const // í™”ë©´ ì¶œë ¥ 
+void LinkedList::print() const // È­¸é Ãâ·Â 
 {
-	Node* current = dummyHead->NextNode; // ì²«ë²ˆì§¸ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ëŠ” í¬ì¸í„° currentë¥¼ ì„ ì–¸í•˜ê³  ì´ˆê¸°í™”í•œë‹¤.
-	// dummyHeadëŠ” ë”ë¯¸ ë…¸ë“œì´ê³  ì‹¤ì œ ë°ì´í„°ëŠ” dummyHead -> NextNodeë¶€í„° ì‹œìž‘í•œë‹¤. 
-	while (current != nullptr) // currentê°€ nullptrì´ ì•„ë‹ ë•Œ ì¦‰ ë¦¬ìŠ¤íŠ¸ ëì— ë„ë‹¬í•˜ì§€ ì•Šì„ë•Œ ê³„ì† ë°˜ë³µí•œë‹¤.
+	Node* current = dummyHead->NextNode; // Ã¹¹øÂ° ³ëµå¸¦ °¡¸®Å°´Â Æ÷ÀÎÅÍ current¸¦ ¼±¾ðÇÏ°í ÃÊ±âÈ­ÇÑ´Ù.
+	// dummyHead´Â ´õ¹Ì ³ëµåÀÌ°í ½ÇÁ¦ µ¥ÀÌÅÍ´Â dummyHead -> NextNodeºÎÅÍ ½ÃÀÛÇÑ´Ù. 
+	while (current != nullptr) // current°¡ nullptrÀÌ ¾Æ´Ò ¶§ Áï ¸®½ºÆ® ³¡¿¡ µµ´ÞÇÏÁö ¾ÊÀ»¶§ °è¼Ó ¹Ýº¹ÇÑ´Ù.
 	{
 		cout << current->Data << " -> ";
-		// í˜„ìž¬ ë…¸ë“œì— ì €ìž¥ëœ ë°ì´í„°ë¥¼ ì¶œë ¥í•˜ê³  ë’¤ì— ë¬¸ìžì—´ë„ ì¶œë ¥í•´ì„œ ë…¸ë“œë¥¼ ì—°ê²°í•˜ëŠ” ëª¨ì–‘ì„ ë³´ì—¬ì¤€ë‹¤. 
+		// ÇöÀç ³ëµå¿¡ ÀúÀåµÈ µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÏ°í µÚ¿¡ ¹®ÀÚ¿­µµ Ãâ·ÂÇØ¼­ ³ëµå¸¦ ¿¬°áÇÏ´Â ¸ð¾çÀ» º¸¿©ÁØ´Ù. 
 		current = current->NextNode;
-		// currentë¥¼ ë‹¤ìŒ ë…¸ë“œë¡œ ì´ë™ì‹œí‚¨ë‹¤. 
+		// current¸¦ ´ÙÀ½ ³ëµå·Î ÀÌµ¿½ÃÅ²´Ù. 
 	}
 	cout << "NULL" << endl;
-	// ë§ˆì§€ë§‰ ì¶œë ¥í•œë‹¤. 
+	// ¸¶Áö¸· Ãâ·ÂÇÑ´Ù. 
 }
 
-void LinkedList::Clear() // ë¦¬ìŠ¤íŠ¸ì— ìžˆëŠ” ëª¨ë“  ë…¸ë“œë¥¼ ë©”ëª¨ë¦¬ì—ì„œ ì‚­ì œí•´ì„œ ë¦¬ìŠ¤íŠ¸ë¥¼ ë¹ˆ ìƒíƒœë¡œ ë§Œë“ ë‹¤
+void LinkedList::Clear() // ¸®½ºÆ®¿¡ ÀÖ´Â ¸ðµç ³ëµå¸¦ ¸Þ¸ð¸®¿¡¼­ »èÁ¦ÇØ¼­ ¸®½ºÆ®¸¦ ºó »óÅÂ·Î ¸¸µç´Ù
 {
-	Node* current = dummyHead->NextNode; // ë”ë¯¸ í—¤ë“œ ë‹¤ìŒë¶€í„°ê°€ ì‹¤ì œ ë°ì´í„°ê°€ ìžˆëŠ” ë…¸ë“œë“¤ì´ë‹¤. 
-	// ê·¸ëž˜ì„œ ê±°ê¸°ë¶€í„° í•˜ë‚˜ì”© ì‚­ì œí•˜ë ¤ê³  current í¬ì¸í„°ë¥¼ ê±°ê¸°ì— ë§žì¶° ì‹œìž‘í•œë‹¤ 
+	Node* current = dummyHead->NextNode; // ´õ¹Ì Çìµå ´ÙÀ½ºÎÅÍ°¡ ½ÇÁ¦ µ¥ÀÌÅÍ°¡ ÀÖ´Â ³ëµåµéÀÌ´Ù. 
+	// ±×·¡¼­ °Å±âºÎÅÍ ÇÏ³ª¾¿ »èÁ¦ÇÏ·Á°í current Æ÷ÀÎÅÍ¸¦ °Å±â¿¡ ¸ÂÃç ½ÃÀÛÇÑ´Ù 
 	while (current != nullptr)
 	{
-		
-		Node* temp = current; // ì‚­ì œí•  ë…¸ë“œë¥¼ temp í¬ì¸í„°ë¡œ ì €ìž¥í•œë‹¤. 
-		// ë‚˜ì¤‘ì— delete í•˜ê¸° ìœ„í•´ ìž ê¹ ë³´ê´€í•´ë‘ëŠ” ê±°ë‹¤ 
-		current = current->NextNode; // currentë¥¼ ë‹¤ìŒ ë…¸ë“œë¡œ ì´ë™ì‹œí‚¨ë‹¤. 
+
+		Node* temp = current; // »èÁ¦ÇÒ ³ëµå¸¦ temp Æ÷ÀÎÅÍ·Î ÀúÀåÇÑ´Ù. 
+		// ³ªÁß¿¡ delete ÇÏ±â À§ÇØ Àá±ñ º¸°üÇØµÎ´Â °Å´Ù 
+		current = current->NextNode; // current¸¦ ´ÙÀ½ ³ëµå·Î ÀÌµ¿½ÃÅ²´Ù. 
 		delete temp;
-		//tempê°€ ê°€ë¦¬í‚¤ëŠ” ë…¸ë“œë¥¼ ë©”ëª¨ë¦¬ì—ì„œ ì‚­ì œí•œë‹¤. ì´ê±¸í•˜ì§€ ì•Šìœ¼ë©´ ë©”ëª¨ë¦¬ ëˆ„ìˆ˜(leak)ì´ ë°œìƒí•œë‹¤
+		//temp°¡ °¡¸®Å°´Â ³ëµå¸¦ ¸Þ¸ð¸®¿¡¼­ »èÁ¦ÇÑ´Ù. ÀÌ°ÉÇÏÁö ¾ÊÀ¸¸é ¸Þ¸ð¸® ´©¼ö(leak)ÀÌ ¹ß»ýÇÑ´Ù
 	}
 	dummyHead->NextNode = nullptr;
-	// ë”ë¯¸ í—¤ë“œê°€ ê°€ë¦¬í‚¤ëŠ” ì²« ë…¸ë“œë¥¼ nullptrë¡œ ë³€ê²½í•´ì„œ ì´ì œ ë¦¬ìŠ¤íŠ¸ëŠ” ì™„ì „ížˆ ë¹ˆ ìƒíƒœê°€ ëœë‹¤.
-	// ì´ë•Œ ì¹´ìš´íŠ¸ëŠ” 0ì´ ëœë‹¤.
+	// ´õ¹Ì Çìµå°¡ °¡¸®Å°´Â Ã¹ ³ëµå¸¦ nullptr·Î º¯°æÇØ¼­ ÀÌÁ¦ ¸®½ºÆ®´Â ¿ÏÀüÈ÷ ºó »óÅÂ°¡ µÈ´Ù.
+	// ÀÌ¶§ Ä«¿îÆ®´Â 0ÀÌ µÈ´Ù.
 }

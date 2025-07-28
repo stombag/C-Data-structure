@@ -3,7 +3,7 @@
 using namespace std;
 
 Stack::Stack(int size) {
-    capacity = size; 
+    capacity = size;
     arr = new int[capacity]; // 동적메모리 할당 
     top = -1; // -1을 비어 있다는 뜻으로 의미한다. 에러 신호로 -1를 이용한것이다. 
 }
@@ -13,7 +13,7 @@ Stack::~Stack() {
 }
 
 void Stack::push(int value) {
-    if (isFull()) { 
+    if (isFull()) {
         cout << "스택이 가득 찼습니다!" << endl;
         return;
     }
@@ -45,7 +45,7 @@ bool Stack::isEmpty() const {
 bool Stack::isFull() const {
     return top == capacity - 1;
 }
-1
+
 void Stack::print() const {
     if (isEmpty()) {
         cout << "스택이 비어있습니다!" << endl;

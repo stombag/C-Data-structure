@@ -1,22 +1,22 @@
 #pragma once
 
 class CircularLinkedList {
-private: 
+private:
     struct Node {
-        // ë…¸ë“œ ê°ì²´ ë§Œë“¤ê¸° 
-    int data; // ë…¸ë“œì— ë“¤ì–´ê°ˆ ë°ì´í„°
-    Node* next; // ë‹¤ìŒë…¸ë“œ ì£¼ì†Œê°’ ì €ìž¥í•˜ê¸°
+        // ³ëµå °´Ã¼ ¸¸µé±â 
+        int data; // ³ëµå¿¡ µé¾î°¥ µ¥ÀÌÅÍ
+        Node* next; // ´ÙÀ½³ëµå ÁÖ¼Ò°ª ÀúÀåÇÏ±â
 
-    Node(int d = 0) : data(d), next(nullptr) {} // ì´ˆê¸°í™” 
+        Node(int d = 0) : data(d), next(nullptr) {} // ÃÊ±âÈ­ 
 
-};
-    Node* dummyHead; // ë”ë¯¸í—¤ë“œ 
-    int count ;
+    };
+    Node* dummyHead; // ´õ¹ÌÇìµå 
+    int count;
 
 public:
-    CircularLinkedList(); // ìƒì„±ìž
-    ~CircularLinkedList(); // ì†Œë©¸ìž 
- 
+    CircularLinkedList(); // »ý¼ºÀÚ
+    ~CircularLinkedList(); // ¼Ò¸êÀÚ 
+
     void Push(int value);
 
     void insert(int index, int value);
@@ -30,28 +30,28 @@ public:
     void claen();
 
 };
-// ìž¥ì :
-// ë°˜ë³µ ì²˜ë¦¬ì— ìœ ë¦¬í•˜ë‹¤
-// ì–‘ ë ì²˜ë¦¬ê°€ íŽ¸ë¦¬í•˜ë‹¤
-// NULL ê±±ì •í•  í•„ìš”ê°€ ì—†ë‹¤ 
-// í•˜ë‚˜ì˜ ë…¸ë“œì—ì„œ ë‹¤ë¥¸ ëª¨ë“  ë…¸ë“œë¡œì˜ ì ‘ê·¼ì´ ê°€ëŠ¥í•˜ë‹¤.
-// ë¦¬ìŠ¤íŠ¸ì˜ ëì— ë…¸ë“œë¥¼ ì‚½ìž… í•˜ëŠ” ì—°ì‚°ì´ ë‹¨ìˆœ ì—°ê²°ë¦¬ìŠ¤íŠ¸ë³´ë‹¤ íš¨ìœ¨ì ì´ë‹¤.
+// ÀåÁ¡:
+// ¹Ýº¹ Ã³¸®¿¡ À¯¸®ÇÏ´Ù
+// ¾ç ³¡ Ã³¸®°¡ Æí¸®ÇÏ´Ù
+// NULL °ÆÁ¤ÇÒ ÇÊ¿ä°¡ ¾ø´Ù 
+// ÇÏ³ªÀÇ ³ëµå¿¡¼­ ´Ù¸¥ ¸ðµç ³ëµå·ÎÀÇ Á¢±ÙÀÌ °¡´ÉÇÏ´Ù.
+// ¸®½ºÆ®ÀÇ ³¡¿¡ ³ëµå¸¦ »ðÀÔ ÇÏ´Â ¿¬»êÀÌ ´Ü¼ø ¿¬°á¸®½ºÆ®º¸´Ù È¿À²ÀûÀÌ´Ù.
 
-// ë‹¨ì :
-// ë íŒë‹¨ì´ ì–´ë µë‹¤.
-// ë³µìž¡í•œ êµ¬í˜„
-// ë¬´í•œ ë£¨í”„ ìœ„í—˜ì„±
-// ë‹¨ìˆœ ìš©ë„ì—ëŠ” ì˜¤ë²„ìŠ¤íŒ©ì´ë‹¤.
+// ´ÜÁ¡:
+// ³¡ ÆÇ´ÜÀÌ ¾î·Æ´Ù.
+// º¹ÀâÇÑ ±¸Çö
+// ¹«ÇÑ ·çÇÁ À§Çè¼º
+// ´Ü¼ø ¿ëµµ¿¡´Â ¿À¹ö½ºÆÑÀÌ´Ù.
 
-// ì‚¬ìš©ì˜ˆì‹œ
-// í„´ì œ ê²Œìž„(ex. ë³´ë“œê²Œìž„,ì¹´ë“œê²Œìž„) - í”Œë ˆì´ì–´ê°€ ë°˜ë³µì ìœ¼ë¡œ ëŒì•„ê°€ë©° í„´ì„ ê°€ì§„ë‹¤.
-// Ai ìˆœí™˜ í–‰ë™ ë£¨í‹´ - ë°˜ë³µì ì¸ í–‰ë™ ë£¨í‹´ì„ ìˆœì„œëŒ€ë¡œ ëŒë©° ì²˜ë¦¬í•œë‹¤. (ex. ì •ì°°-> ìˆ˜ë¦¬->ê³µê²©->ì •ì°°-..)
-// ë£¨í”„ ì• ë‹ˆë§¤ì´ì…˜ - ëì—†ì´ ë°˜ë³µë˜ëŠ” ëª¬ìŠ¤í„° ë˜ëŠ” ë°°ê²½ ì• ë‹ˆë©”ë‹ˆì…˜
-// ë³´ìŠ¤ íŒ¨í„´ ìˆœí™˜ - ë³´ìŠ¤ê°€ íŠ¹ì • ê³µê²© íŒ¨í„´ì„ ê³„ì† ë°˜ë³µí•œë‹¤.(ex. ê³µê²©1->ê³µê²©2->íšŒí”¼-...)
+// »ç¿ë¿¹½Ã
+// ÅÏÁ¦ °ÔÀÓ(ex. º¸µå°ÔÀÓ,Ä«µå°ÔÀÓ) - ÇÃ·¹ÀÌ¾î°¡ ¹Ýº¹ÀûÀ¸·Î µ¹¾Æ°¡¸ç ÅÏÀ» °¡Áø´Ù.
+// Ai ¼øÈ¯ Çàµ¿ ·çÆ¾ - ¹Ýº¹ÀûÀÎ Çàµ¿ ·çÆ¾À» ¼ø¼­´ë·Î µ¹¸ç Ã³¸®ÇÑ´Ù. (ex. Á¤Âû-> ¼ö¸®->°ø°Ý->Á¤Âû-..)
+// ·çÇÁ ¾Ö´Ï¸ÅÀÌ¼Ç - ³¡¾øÀÌ ¹Ýº¹µÇ´Â ¸ó½ºÅÍ ¶Ç´Â ¹è°æ ¾Ö´Ï¸Þ´Ï¼Ç
+// º¸½º ÆÐÅÏ ¼øÈ¯ - º¸½º°¡ Æ¯Á¤ °ø°Ý ÆÐÅÏÀ» °è¼Ó ¹Ýº¹ÇÑ´Ù.(ex. °ø°Ý1->°ø°Ý2->È¸ÇÇ-...)
 
 
-// ì›í˜• ë§í¬ë” ë¦¬ìŠ¤íŠ¸ì™€ ë§í¬ë” ë¦¬ìŠ¤íŠ¸ ì°¨ì´
-// linkedlistëŠ” ê°„ë‹¨í•˜ê³  ì¼ë°˜ì ì¸ êµ¬ì¡°,íƒìƒ‰ì‹œ ëì„ nullptrë¡œ ì‰½ê²Œ ê°ì§€ ê°€ëŠ¥ - ë‹¨ìˆœêµ¬ì¡°, ë§ˆì§€ë§‰ ë…¸ë“œì²˜ë¦¬ ë³µìž¡(ì§ì ‘ê´€ë¦¬ í•´ì•¼í•œë‹¤.)
-// CircularLinkedListê°€ í•„ìš”í•œ ê²½ìš°ì— ì í•©, ëê³¼ ì²˜ìŒì„ ì—°ê²°í•´ ë†“ì•˜ê¸° ë•Œë¬¸ì— íŠ¹ì • ìž‘ì—…(ë¬´í•œ ë°˜ë³µë“±) ìœ ë¦¬í•˜ë‹¤ - ë³µìž¡êµ¬ì¡°, ë§ˆì§€ë§‰ ë…¸ë“œì²˜ë¦¬ ê°„ë‹¨
+// ¿øÇü ¸µÅ©´õ ¸®½ºÆ®¿Í ¸µÅ©´õ ¸®½ºÆ® Â÷ÀÌ
+// linkedlist´Â °£´ÜÇÏ°í ÀÏ¹ÝÀûÀÎ ±¸Á¶,Å½»ö½Ã ³¡À» nullptr·Î ½±°Ô °¨Áö °¡´É - ´Ü¼ø±¸Á¶, ¸¶Áö¸· ³ëµåÃ³¸® º¹Àâ(Á÷Á¢°ü¸® ÇØ¾ßÇÑ´Ù.)
+// CircularLinkedList°¡ ÇÊ¿äÇÑ °æ¿ì¿¡ ÀûÇÕ, ³¡°ú Ã³À½À» ¿¬°áÇØ ³õ¾Ò±â ¶§¹®¿¡ Æ¯Á¤ ÀÛ¾÷(¹«ÇÑ ¹Ýº¹µî) À¯¸®ÇÏ´Ù - º¹Àâ±¸Á¶, ¸¶Áö¸· ³ëµåÃ³¸® °£´Ü
 
 

@@ -1,32 +1,32 @@
 #include "Heap.h"
 
-Heap::Heap(int capaticy) :capacity(capacity), size(0) { // 초기화 및  매개 변수 값 전달 
-	heap = new int[capacity]; // 정한 용량을 만든다.
+Heap::Heap(int capacity) :capacity(capacity), size(0) { // 초기화 및  매개 변수 값 전달 
+    heap = new int[capacity]; // 정한 용량을 만든다.
 }
 Heap::~Heap() {
-	delete[]heap; // 힙을 삭제하여 메모리 손실을 없애버린다.
+    delete[]heap; // 힙을 삭제하여 메모리 손실을 없애버린다.
 }
 
 void Heap::insert(int value) {
-	if (isFull) { // 가득 차면 함수 종료
-		return;
-	}
+    if (isFull()) { // 가득 차면 함수 종료
+        return;
+    }
 
-	heap[size] = value; // 사이즈에 위치한 인덱스에 접근한다. 
-	heapifyUP(size); // 부모와 자식을 비교해서 자식이 더 크면 그 값을 보모랑 교환하는 식이다
-	size++; // 사이즈의 값을 증가 시킨다. 
+    heap[size] = value; // 사이즈에 위치한 인덱스에 접근한다. 
+    heapifyUP(size); // 부모와 자식을 비교해서 자식이 더 크면 그 값을 보모랑 교환하는 식이다
+    size++; // 사이즈의 값을 증가 시킨다. 
 }
 
 void Heap::heapifyUP(int index) {
-	while (index > 0) { //인덱스의 값이 0보다 클경우 반복한다. 
-		int parent = (index - 1) / 2; // 현재 노드의 부모 인덱스를 계산한다. index가 3이면 2로 나누어 1이 된다 index가 4이면 1이된다 5이면 2가 된다 
+    while (index > 0) { //인덱스의 값이 0보다 클경우 반복한다. 
+        int parent = (index - 1) / 2; // 현재 노드의 부모 인덱스를 계산한다. index가 3이면 2로 나누어 1이 된다 index가 4이면 1이된다 5이면 2가 된다 
         // 즉 보모의 인덱스값을 나타내는 것이 parant이다. 0번층 1번층 2번층으로 생각하면 된다
-		if (heap[index] > heap[parent]) { // 힙의 성질(부모>=자식)이 깨졌는지 확인 
-			swap(heap[index], heap[parent]);  // 자식이 더 크면 실행하며 스왑으로 부모와 자식의 값을 변경한다.
-			index = parent; // 부모를 새로운 기준으로 반복시킨다. 처음에 인덱스가 5이면 부모는 2가 되고 다시 전달해서 인덱스의 값이 2가되면 부모의 값이 0이된다 .
-		} // 즉 부모와 자식의 위치를 확인하고 자식이 더 값이 크면 값을 교환하는 식으로써 
-		else break;
-	}
+        if (heap[index] > heap[parent]) { // 힙의 성질(부모>=자식)이 깨졌는지 확인 
+            swap(heap[index], heap[parent]);  // 자식이 더 크면 실행하며 스왑으로 부모와 자식의 값을 변경한다.
+            index = parent; // 부모를 새로운 기준으로 반복시킨다. 처음에 인덱스가 5이면 부모는 2가 되고 다시 전달해서 인덱스의 값이 2가되면 부모의 값이 0이된다 .
+        } // 즉 부모와 자식의 위치를 확인하고 자식이 더 값이 크면 값을 교환하는 식으로써 
+        else break;
+    }
 }
 int Heap::pop() {
     if (isEmpty()) {

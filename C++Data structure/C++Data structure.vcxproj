@@ -135,7 +135,6 @@
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Stack.cpp" />
-    <ClCompile Include="VariadicCircularLinkedLis.cpp" />
     <ClCompile Include="StackLinkedList.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -147,7 +146,6 @@
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackLinkedList.h" />
-    <ClInclude Include="VariadicCircularLinkedList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

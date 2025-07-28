@@ -1,12 +1,12 @@
 #include "ArrayQueue.h"
 
-ArrayQueue::ArrayQueue(int size):capacity(size),front(0),rear(0) { // 변수 초기화 
+ArrayQueue::ArrayQueue(int size) :capacity(size), front(0), rear(0) { // 변수 초기화 
 	// 헤더파일에서 입력한 size값을 capacity에 넣는다. 나머지 변수는 초기화를 진행한다. 
 	arr = new int[capacity]; //capacity를 넣어서 배열을 크기를 정한다.
 }
 ArrayQueue::~ArrayQueue() {
 	delete[] arr; // 배열을 다 삭제 
-		
+
 }
 
 void ArrayQueue::push(int value) {
@@ -64,6 +64,7 @@ bool ArrayQueue::isEmpty() const {
 		cout << arr[i]; // 배열이 다들어 있는지 확인 
 	}
 	cout << endl;
+	return true;
 }
 
 bool ArrayQueue::isFull()const {

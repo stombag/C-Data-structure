@@ -14,16 +14,16 @@ StackLinkedList::~StackLinkedList()
 	{
 		pop();
 	}
-	
+
 }
 
 void StackLinkedList::push(int value)
 {
 	Node* newNode = new Node(value);
-	
+
 	newNode->next = top;
 	top = newNode;
-// ¾î? ÀÇ¿Ü·Î °£´ÜÇÏ³×
+	// ¾î? ÀÇ¿Ü·Î °£´ÜÇÏ³×
 }
 bool StackLinkedList::pop()
 {
@@ -53,7 +53,7 @@ int StackLinkedList::peek() const // °¡Àå À§¿¡ ¹«½¼ µ¥ÀÌÅÍ°¡ ÀÖ´ÂÁö º¼ ¼ö ÀÖ°Ô È
 bool StackLinkedList::isEmpty() const
 {
 	return top == nullptr;// topÀÌ NULLÀÌ¸é ½ÇÇàÇÑ´Ù´Â ÀÇ¹ÌÈ÷´Ù. 
-	
+
 }
 
 

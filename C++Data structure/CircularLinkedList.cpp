@@ -3,38 +3,38 @@
 
 using namespace std;
 
-// ìƒì„±ì 
+// »ı¼ºÀÚ 
 
 
 CircularLinkedList::CircularLinkedList()
 {
-    dummyHead = new Node();         // ë”ë¯¸ í—¤ë“œ ìƒì„±
-    // ë”ë¯¸í—¤ë“œì— ìƒˆë¡œìš´ ë…¸ë“œë¥¼ ë„£ê¸° 
-    dummyHead->next = dummyHead;    // ì›í˜• ì—°ê²°
-    // ë”ë¯¸í—¤ë“œì— ë‹¤ìŒ ë…¸ë“œë¥¼ ë‹¤ìŒ ë”ë¯¸í—¤ë“œë¡œ ë„£ê¸° 
+    dummyHead = new Node();         // ´õ¹Ì Çìµå »ı¼º
+    // ´õ¹ÌÇìµå¿¡ »õ·Î¿î ³ëµå¸¦ ³Ö±â 
+    dummyHead->next = dummyHead;    // ¿øÇü ¿¬°á
+    // ´õ¹ÌÇìµå¿¡ ´ÙÀ½ ³ëµå¸¦ ´ÙÀ½ ´õ¹ÌÇìµå·Î ³Ö±â 
     count = 0;
 }
 
-// ì†Œë©¸ì
+// ¼Ò¸êÀÚ
 CircularLinkedList::~CircularLinkedList() {
     Node* current = dummyHead->next;
-    // ë”ë¯¸í—¤ë“œì˜ ë‹¤ìŒ ë…¸ë“œì˜ ì´ë¦„ì„ currentë¡œ ì •í•˜ê¸°
+    // ´õ¹ÌÇìµåÀÇ ´ÙÀ½ ³ëµåÀÇ ÀÌ¸§À» current·Î Á¤ÇÏ±â
     while (current != dummyHead) {
-        // currentê°€ ë”ë¯¸í—¤ë“œê°€ ì•„ë‹ë•Œê¹Œì§€ ì‹¤í–‰í•œë‹¤
-        Node* temp = current; // curretì„ tempë¡œ ì •í•œë‹¤.
-        current = current->next; // currentì˜ ë‹¤ìŒ ë…¸ë“œë¥¼ currentì— ë„£ëŠ”ë‹¤.
-        delete temp; // tempì— ìˆëŠ” í•´ë‹¹ ì£¼ì†Œê°’ì„ ì‚­ì œí•œë‹¤.
+        // current°¡ ´õ¹ÌÇìµå°¡ ¾Æ´Ò¶§±îÁö ½ÇÇàÇÑ´Ù
+        Node* temp = current; // curretÀ» temp·Î Á¤ÇÑ´Ù.
+        current = current->next; // currentÀÇ ´ÙÀ½ ³ëµå¸¦ current¿¡ ³Ö´Â´Ù.
+        delete temp; // temp¿¡ ÀÖ´Â ÇØ´ç ÁÖ¼Ò°ªÀ» »èÁ¦ÇÑ´Ù.
 
-        // temì— currentì˜ ì£¼ì†Œê°’ì„ ë„£ê³  ë‹¤ìŒì¤„ì— currentë¥¼ ë‹¤ìŒ ë…¸ë“œë¡œ ì´ë™ì‹œí‚¨ë‹¤.
-        // temì€ currentê°€ ì „ì— ê°€ì§€ê³  ìˆì—ˆë˜ ì£¼ì†Œê°’ì„ ê°€ì§€ê³  ìˆì–´ ê·¸ê±¸ ì‚­ì œí•œë‹¤.
-        // ì´ê³¼ì •ì„ ë°˜ë³µí•´ì„œ ë…¸ë“œë¥¼ ë‹¤ ì œê±°í•˜ê³  currentê°€ ë”ë¯¸í—¤ë“œê°€ ë ë•Œ ì‹¤í–‰ë¥¼ ì¢…ë£Œí•œë‹¤
+        // tem¿¡ currentÀÇ ÁÖ¼Ò°ªÀ» ³Ö°í ´ÙÀ½ÁÙ¿¡ current¸¦ ´ÙÀ½ ³ëµå·Î ÀÌµ¿½ÃÅ²´Ù.
+        // temÀº current°¡ Àü¿¡ °¡Áö°í ÀÖ¾ú´ø ÁÖ¼Ò°ªÀ» °¡Áö°í ÀÖ¾î ±×°É »èÁ¦ÇÑ´Ù.
+        // ÀÌ°úÁ¤À» ¹İº¹ÇØ¼­ ³ëµå¸¦ ´Ù Á¦°ÅÇÏ°í current°¡ ´õ¹ÌÇìµå°¡ µÉ¶§ ½ÇÇà¸¦ Á¾·áÇÑ´Ù
     }
-    delete dummyHead;  // ë”ë¯¸ í—¤ë“œ ì‚­ì œ
+    delete dummyHead;  // ´õ¹Ì Çìµå »èÁ¦
 }
 
 void CircularLinkedList::Push(int value)
 {
-    // ë‚´ê°€ ë§Œë“¬ 
+    // ³»°¡ ¸¸µë 
     Node* newNode = new Node();
     newNode->data = value;
     Node* tail = dummyHead;
@@ -44,7 +44,7 @@ void CircularLinkedList::Push(int value)
         tail = tail->next;
 
     }
-    
+
     tail->next = newNode;
     newNode->next = dummyHead;
     count++;
@@ -53,11 +53,11 @@ void CircularLinkedList::Push(int value)
 void CircularLinkedList::insert(int index, int value)
 {
     if (index<0 || index>count)return;
-    // ë§Œì•½ ì¸ë±ìŠ¤ê°€ ë§ˆì´ë„ˆìŠ¤ ì´ë©´ ì‹¤í–‰ì´ ë˜ì§€ ì•Šê²Œ í•˜ê³ 
-    //  indexê°€ countë³´ë‹¤ ì‘ì„ ê²½ìš° ì—ë„ ì‹¤í–‰ë˜ì§€ ì•ŠëŠ”ë‹¤.
+    // ¸¸¾à ÀÎµ¦½º°¡ ¸¶ÀÌ³Ê½º ÀÌ¸é ½ÇÇàÀÌ µÇÁö ¾Ê°Ô ÇÏ°í
+    //  index°¡ countº¸´Ù ÀÛÀ» °æ¿ì ¿¡µµ ½ÇÇàµÇÁö ¾Ê´Â´Ù.
     Node* newNode = new Node();
 
-   
+
     newNode->data = value;
 
     Node* current = dummyHead->next;
@@ -65,19 +65,19 @@ void CircularLinkedList::insert(int index, int value)
     while (index-- > 0)
         current = current->next;
 
-    newNode->next = current->next       ;
+    newNode->next = current->next;
     current->next = newNode;
 
-    count++; 
+    count++;
 }
 
 void CircularLinkedList::remove(int index)
 {
-    if (index<0 || index>=count) return;
-    // ì¸ë±ìŠ¤ëŠ” 0ë¶€í„° ì‹œì‘í•˜ë¯€ë¡œ ì‚­ì œ ê°€ëŠ¥í•œ ìµœëŒ€ ì¸ë°ìŠ¤ëŠ” 1ì´ë‹¤.
-    //ë§Œì•½ index == countì¼ ê²½ìš°ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë…¸ë“œì´ë¯€ë¡œ ì‚­ì œí•˜ë©´ ì•ˆëœë‹¤.
+    if (index < 0 || index >= count) return;
+    // ÀÎµ¦½º´Â 0ºÎÅÍ ½ÃÀÛÇÏ¹Ç·Î »èÁ¦ °¡´ÉÇÑ ÃÖ´ë ÀÎµ¥½º´Â 1ÀÌ´Ù.
+    //¸¸¾à index == countÀÏ °æ¿ì´Â Á¸ÀçÇÏÁö ¾Ê´Â ³ëµåÀÌ¹Ç·Î »èÁ¦ÇÏ¸é ¾ÈµÈ´Ù.
     if (count == 0) {
-        cout << "ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆë‹¤" << endl;
+        cout << "¸®½ºÆ®°¡ ºñ¾îÀÖ´Ù" << endl;
     }
 
     Node* current = dummyHead;
@@ -86,7 +86,7 @@ void CircularLinkedList::remove(int index)
 
     Node* target = current->next;
     current->next = target->next;
-   
+
     delete target;
     count--;
 }
@@ -94,7 +94,7 @@ void CircularLinkedList::remove(int index)
 int CircularLinkedList::get(int index) const
 {
     if (index < 0 || index >= count) {
-        cout << "ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”" << endl;
+        cout << "´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä" << endl;
         return -1;
     }
 
@@ -112,11 +112,11 @@ void CircularLinkedList::Print() const
     Node* current = dummyHead->next;
 
     if (current == dummyHead) {
-        cout << "ë¹„ì–´ ìˆìŠµë‹ˆë‹¤." << endl;
+        cout << "ºñ¾î ÀÖ½À´Ï´Ù." << endl;
         return;
     }
 
-    cout << "ë¦¬ìŠ¤íŠ¸ ë‚´ìš©: ";
+    cout << "¸®½ºÆ® ³»¿ë: ";
 
     while (current != dummyHead)
     {
