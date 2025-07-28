@@ -12,21 +12,38 @@ using namespace std;
 
 int main()
 {
-	//LinkedList list;
-	//list.Push(10);
-	//list.Push(20);
-	//list.Push(30);
-	//list.print();
+	/*LinkedList list;
+	list.Push(10);
+	list.Push(20);
+	list.Push(30);
+	list.print();
 
-	//list.Insert(1, 49);
-	//list.print();
+	list.Insert(1, 49);
+	list.print();
 
-	//list.Remove(2);
-	//list.print();
+	list.Remove(2);
+	list.print();
 
-	//cout << "2" << list.Get(2) << endl;
-	//cout << "³ëµå ¼ö" << list.Count() << endl;
+	cout << "2" << list.Get(2) << endl;
+	cout << "ë…¸ë“œ ìˆ˜" << list.Count() << endl;*/
 
+	//CircularLinkedList List;
+
+	//List.Push(19);
+	//List.Push(20);
+	//List.Push(49);
+	//List.Print();
+
+	//List.insert(1, 59);
+	//List.Print();
+
+	//List.remove(3);
+	//List.Print();
+
+	//cout << List.get(2) << endl;
+
+	//List.Print();
+	//List.claen();
 
 	//DoublyCircularLinkedList list;
 
@@ -41,15 +58,15 @@ int main()
 
 
 	//VariadicCircularLinkedList list;
- //   list.push(100);              // ¸Ç ¾Õ¿¡ 100 Ãß°¡
+ //   list.push(100);              // ë§¨ ì•ì— 100 ì¶”ê°€
 	//list.push(200);
 	//list.insert(2, 111);
 	//list.push(300);
 	//list.addMultiple(5,12,22, 10, 22, 55);
- //   list.print(); // Ãâ·Â ¿¹: 100 -> 200 -> 10 -> 20 -> 30 -> (back to dummy)
+ //   list.print(); // ì¶œë ¥ ì˜ˆ: 100 -> 200 -> 10 -> 20 -> 30 -> (back to dummy)
 
 	//list.addMultiple(5,12,22, 10, 22, 55);
- //   list.print(); // Ãâ·Â ¿¹: 100 -> 200 -> 10 -> 20 -> 30 -> (back to dummy)
+ //   list.print(); // ì¶œë ¥ ì˜ˆ: 100 -> 200 -> 10 -> 20 -> 30 -> (back to dummy)
  //   return 0;
    
 	//Stack s(5);
@@ -62,12 +79,12 @@ int main()
  //   int value;
 
  //   if (s.pop(value))
- //       cout << "popµÈ °ª: " << value << endl;
+ //       cout << "popëœ ê°’: " << value << endl;
 
  //   if (s.pop(value))
- //       cout << "popµÈ °ª: " << value << endl;
+ //       cout << "popëœ ê°’: " << value << endl;
 
- //   s.print();  // ³²Àº °ª Ãâ·Â
+ //   s.print();  // ë‚¨ì€ ê°’ ì¶œë ¥
  //   return 0;
 
 
@@ -86,98 +103,94 @@ int main()
 	//return 0;
 
 
-	ArrayQueue queue(5);  // Å©±â 5ÀÎ Å¥ »ı¼º
+	//ArrayQueue queue(5);  // í¬ê¸° 5ì¸ í ìƒì„±
 
-	//// °ª Ãß°¡
+	//// ê°’ ì¶”ê°€
 	//queue.push(10);
 	//queue.push(20);
 	//queue.push(30);
-	//cout << "Å¥ »óÅÂ: ";
+	//cout << "í ìƒíƒœ: ";
 	//queue.print(); // 10 20 30
 
-	//// Áß°£¿¡ »ğÀÔ
+	//// ì¤‘ê°„ì— ì‚½ì…
 	//queue.insert(1, 15); // 10 15 20 30
-	//cout << "»ğÀÔ ÈÄ: ";
+	//cout << "ì‚½ì… í›„: ";
 	//queue.print();
 
-	//// Á¦°Å
-	//int removed = queue.remove(); // 10 Á¦°Å
-	//cout << "Á¦°ÅµÈ °ª: " << removed << endl;
-	//cout << "Á¦°Å ÈÄ Å¥: ";
+	//// ì œê±°
+	//int removed = queue.remove(); // 10 ì œê±°
+	//cout << "ì œê±°ëœ ê°’: " << removed << endl;
+	//cout << "ì œê±° í›„ í: ";
 	//queue.print();
 
-	//// Å¥°¡ °¡µæ Ã¡´ÂÁö È®ÀÎ
+	//// íê°€ ê°€ë“ ì°¼ëŠ”ì§€ í™•ì¸
 	//queue.push(40);
 	//queue.push(50);
-	//queue.push(60); // °¡µæ Âü
-	//cout << "ÃÖÁ¾ Å¥: ";
+	//queue.push(60); // ê°€ë“ ì°¸
+	//cout << "ìµœì¢… í: ";
 	//queue.print();
 
-	//cout << "ÇöÀç Å¥ÀÇ °³¼ö: " << queue.count() << endl;
-	//cout << "Å¥°¡ ºñ¾îÀÖ´Â°¡? " << (queue.isEmpty() ? "¿¹" : "¾Æ´Ï¿À") << endl;
-	//cout << "Å¥°¡ °¡µæ Ã¡´Â°¡? " << (queue.isFull() ? "¿¹" : "¾Æ´Ï¿À") << endl;
+	//cout << "í˜„ì¬ íì˜ ê°œìˆ˜: " << queue.count() << endl;
+	//cout << "íê°€ ë¹„ì–´ìˆëŠ”ê°€? " << (queue.isEmpty() ? "ì˜ˆ" : "ì•„ë‹ˆì˜¤") << endl;
+	//cout << "íê°€ ê°€ë“ ì°¼ëŠ”ê°€? " << (queue.isFull() ? "ì˜ˆ" : "ì•„ë‹ˆì˜¤") << endl;
 
 	//return 0;
 
 
+	//CircularQueue queue;  // í¬ê¸°ê°€ 5ì¸ ì›í˜• í ìƒì„±
 
-	//CircularQueue queue(5);  // Å©±â°¡ 5ÀÎ ¿øÇü Å¥ »ı¼º
-
-	//// °ª Ãß°¡
+	//// ê°’ ì¶”ê°€
 	//queue.push(10);
 	//queue.push(20);
 	//queue.push(30);
 	//queue.print(); // 10 20 30
 
-	//// °ª Á¦°Å
-	//cout << "Á¦°ÅµÈ °ª: " << queue.remove() << endl; // 10
+	//// ê°’ ì œê±°
+	//cout << "ì œê±°ëœ ê°’: " << queue.remove() << endl; // 10
 	//queue.print(); // 20 30
 
-	//// °ª Ãß°¡ °è¼Ó
+	//// ê°’ ì¶”ê°€ ê³„ì†
 	//queue.push(40);
 	//queue.push(50);
-	//queue.push(60); // Å¥°¡ °¡µæ Âü
+	//queue.push(60); // íê°€ ê°€ë“ ì°¸
 	//queue.print(); // 20 30 40 50 60
 
-	//// ´õ ³ÖÀ¸¸é ½ÇÆĞ
-	//queue.push(70); // Å¥°¡ °¡µæ Ã¡½À´Ï´Ù.
+	//// ë” ë„£ìœ¼ë©´ ì‹¤íŒ¨
+	//queue.push(70); // íê°€ ê°€ë“ ì°¼ìŠµë‹ˆë‹¤.
 
-	//// ÇÏ³ª Á¦°Å ÈÄ ´Ù½Ã Ãß°¡
+	//// í•˜ë‚˜ ì œê±° í›„ ë‹¤ì‹œ ì¶”ê°€
 	//queue.remove();
 	//queue.push(70);
 	//queue.print(); // 30 40 50 60 70
 
-	//// Å¥ »óÅÂ
-	//cout << "ÇöÀç Å¥ÀÇ °³¼ö: " << queue.count() << endl;
-	//cout << "Å¥°¡ ºñ¾ú³ª¿ä? " << (queue.isEmpty() ? "¿¹" : "¾Æ´Ï¿À") << endl;
-	//cout << "Å¥°¡ °¡µæ Ã¡³ª¿ä? " << (queue.isFull() ? "¿¹" : "¾Æ´Ï¿À") << endl;
 
 	//return 0;
 
 
 
 
-	Heap heap(10);
 
-	heap.insert(30);
-	heap.insert(10);
-	heap.insert(50);
-	heap.insert(40);
-	heap.insert(60);
+	//Heap heap(10);
 
-	heap.print(); // Ãâ·Â: 60 40 50 10 30
+	//heap.insert(30);
+	//heap.insert(10);
+	//heap.insert(50);
+	//heap.insert(40);
+	//heap.insert(60);
 
-	cout << "ÃÖ´ñ°ª(top): " << heap.top() << endl;
+	//heap.print(); // ì¶œë ¥: 60 40 50 10 30
 
-	cout << "»èÁ¦µÈ °ª: " << heap.pop() << endl;
-	heap.print(); // °¡Àå Å« °ª »èÁ¦ ÈÄ Ãâ·Â
+	//cout << "ìµœëŒ“ê°’(top): " << heap.top() << endl;
 
-	cout << "ÃÖ´ñ°ª(top): " << heap.top() << endl;
+	//cout << "ì‚­ì œëœ ê°’: " << heap.pop() << endl;
+	//heap.print(); // ê°€ì¥ í° ê°’ ì‚­ì œ í›„ ì¶œë ¥
 
-	heap.heapSort();
+	//cout << "ìµœëŒ“ê°’(top): " << heap.top() << endl;
 
-	heap.print();
-	return 0;
+	//heap.heapSort();
+
+	//heap.print();
+	//return 0;
 
 
 }
