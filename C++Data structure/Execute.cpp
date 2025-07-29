@@ -173,7 +173,7 @@ int main()
 	heap.insert(10);
 	heap.insert(60);
 	heap.insert(40);
-	heap.insert(29);
+	heap.insert(20);
 	heap.insert(199);
 
 	cout << endl;
@@ -195,6 +195,9 @@ int main()
 	cout << endl;
 	heap.quicksort();
 
+	heap.print();
+
+	heap.selectionSort();
 	heap.print();
 
 	return 0;

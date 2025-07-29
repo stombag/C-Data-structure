@@ -91,7 +91,7 @@ void Heap::print() const {
 
 
 
-\
+
 // 힙정렬
 void Heap::heapSort() {
     // 원래 heap 배열과 size를 백업
@@ -138,10 +138,10 @@ void merge(int arr[], int left, int mid, int right) { // 정렬한 배열, 왼쪽 부분 
 
     for (int i = 0; i < n1; ++i) 
         L[i] = arr[left + i]; // 임시 공간에 왼쪽 배열 배치
-    
+    // L[0] = 60    
     for (int i = 0; i < n2; ++i)
         R[i] = arr[mid + 1 + i]; //임시 공간에 오른쪽 배열 배치 
-
+    // R[0] = 50
     int i = 0, j = 0, k = left; 
     // i: L[]인덱스
     // j: R[]인덱스
@@ -171,8 +171,10 @@ void mergeSortInternal(int arr[], int left, int right) { // 배열을 정렬하는 재귀
         int mid = (left + right) / 2; // 중간점 
         // 배열을 왼쪽 절반, 오른쪽 절반으로 나누기 위한 기준점이다
         // 10, 20, 30, 40, 50, 60
-        mergeSortInternal(arr, left, mid); // 왼쪽 절반 재귀 정렬 10, 20, 30
-        mergeSortInternal(arr, mid + 1, right); // 오른쪽 절반 재귀 정렬  40, 50, 60
+        mergeSortInternal(arr, left, mid); // 왼쪽 절반 재귀 정렬 
+        // 재귀함수로 함수를 재귀해도 전에 진행되고 있는건 그래도 진행 되고 있다 .
+        mergeSortInternal(arr, mid + 1, right); // 오른쪽 절반 재귀 정렬
+
         // +1를 하는 이유는 배열을 정확히 겹치지 않게 양쪽으로 분할하기 위해서이다. 
         // 여기까지 왼쪽과 오른쪽을 정렬된 상태이다. 
         // 조건문은 개별로 재귀함수를 실행하며 왼쪽부터 시작해서 오ㅠㅠ른쪽를 왼쪽을 끝낸다음에 실행한다.
@@ -180,7 +182,6 @@ void mergeSortInternal(int arr[], int left, int right) { // 배열을 정렬하는 재귀
     }
     
 }// 배열을 계속 반으로 나눈다 
-
 
 void Heap::mergeSort()
 {
@@ -202,18 +203,17 @@ void Heap::mergeSort()
 }
 
 
-
-
-
-
-
-
-
 // 쿽 솔트 
-
 int partition(int arr[], int low, int high) {
     int pivot = arr[high]; // 맨뒤 기준
-    int i = low - 1;// 마지막 인덱스, 아직 아무적도 없어서 low-1로 초기화한다.
+    int i = low - 1;// 처음에는 아직 아무것도 없어서 low보다 하나 작게 사작한다.
+    // arr[low ~ i]까지는 pivot보다 작은 값들만 있게 만든다.
+    // 작은 숫자를 앞에 정리해 넣을 위치를 표시하는 마커이다. 
+// 밑에 j와 비교해서 교환하려면 -1로 작아야한다.
+    // i는 작은 값들을 정리하는 위치이다
+    // 피벗보다 작은 값들이 모이는 구역를 가리킨다 swap할때 이 위치로 값을 보낸다.
+    // j는 돌아다니는 탐색자터이다.
+    // 배열을 왼쪽부터 오른쪽까지 하나씩 검사하면서 피벗보다 작은 수를 찾는 역할을 한다.
 
     for (int j = low; j < high; ++j) { //j는 low부터 high - 1까지 privot을 제외한 요소들을 순회한다
         if (arr[j] < pivot) { // 현재 값이 privot보다 작다면 왼쪽으로 보내야 한다.
@@ -232,20 +232,19 @@ int partition(int arr[], int low, int high) {
 void quickSortInternal(int arr[], int low, int high) {
     if (low < high) {
         // 정렬한 구간의 원소가 2개 이상일 때만 정렬한다.
-        int pi = partition(arr, low, high);// 기준값을 두 그룹으놀 나눈다 
+        int pi = partition(arr, low, high);// 기준값을 두 그룹으로 나눈다 
         quickSortInternal(arr, low, pi - 1); // 왼쪽 그룹에 대한 큌 정렬을 다시 실행한다.
         quickSortInternal(arr, pi + 1, high); // 오른쪽 그룹에 대한 퀵 정렬을 다시 실행한다.
     }
 }
-
-
 
 void Heap::quicksort()
 {
     cout << " 퀵정렬" << endl;
     int* copy = new int[size]; 
     //카피의 배열 크기를 같은 크기의 배열로 새로 동적할당한다.     
-    for (int i = 0; i < size; ++i)
+    for (int i = 0; i < size; ++i) 
+        // 배열은 0부터 시작인데 size은 1부터 시작이라서 -1를 넣는다. 
         copy[i] = heap[i];
     // 이제 차례대로 카피본의 배열에 기존의 힙 데이터를 넣어 복사한다.
 
@@ -259,4 +258,69 @@ void Heap::quicksort()
     delete[] copy;
 
 }
+
+
+// 선택정렬
+void Heap::selectionSort()
+{
+    cout << endl;
+    int* copy = new int[size];
+    // 배열 공간 확보하기 
+    for (int i = 0; i < size; ++i)
+        copy[i] = heap[i];
+    // 확보한 공간에 원본 배열 카피해서 넣기 
+
+    for (int i = 0; i < size - 1; ++i) {
+        // size -1은 배열의 인덱스와 맞추려고 한거다
+        int minindex = i;
+        // minindex는 for문에서 값을 비교하여 바꾸어야하는 값을 선별하는 변수이다.
+        for (int j = i + 1; j < size; ++j) {
+            if (copy[j] < copy[minindex]) {
+                minindex = j; //더 작은 값을 발견하면 그 위치로 갱신한다. 
+            }
+            // 이과정은 크기가 올바른지 확인하는과정이다
+            // 만약 크기가 크다면 if문을 for문을 끝내고 if문으로 넘겨서 값을 교환한다. 
+        }
+        if (minindex != i) {
+            // minindex가 i와 같을 경우 해당 자리가 올바르기때문에 바꿀 필요가 없다 의미다
+            swap(copy[i], copy[minindex]);
+
+        }
+    }
+    cout << "선택 정렬 결과 " << endl;
+
+    for (int i = 0; i < size; ++i)
+        cout << copy[i] << " ";
+    cout << endl;
+
+    delete[] copy;
+
+}
+
+void Heap::bubbleSort()
+{
+    int* copy = new int[size];
+    for (int i = 0; i < size; ++i)
+        copy[i] = heap[i];
+
+    for (int i = 0; i < size - 1; ++i) {
+        for (int j = 0; j < size - 1 - i; ++j) {
+            if (copy[j] > copy[j + 1]) {
+                swap(copy[j], copy[j + 1]);
+            }
+        }
+    }
+    cout << "버블정렬 결과 " << endl;
+    for (int i = 0; i < size; ++i)
+        cout << copy[i] << " ";
+    cout << endl;
+
+    delete[]copy;
+
+    
+}
+
+// 선택 정렬 
+
+
 
