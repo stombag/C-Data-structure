@@ -32,15 +32,9 @@ public:
 
 
 	void heapSort(); // 힙 정렬
-
 	void mergeSort(); // 병렬 정렬
-		// 병렬 정렬은 인덱스를 다 분해해서 나누고 그 나눈 인덱스들을 비교해서 정렬하는 방식이다.
 	void quicksort(); // 퀵 정렬
-		// 퀵 정렬은 pivot보다 작은 값은 왼쪽, 큰값은 오른쪽으로 보낸 뒤 
-		// 이 과정을 재귀적으로 반복해서 정렬하는 방식이다
-
 	void selectionSort(); // 선택 정렬
-
 	void bubbleSort(); // 버블 정렬 
 	
 };

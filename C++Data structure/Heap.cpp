@@ -51,8 +51,9 @@ void Heap::heapifyDown(int index) {
         int largest = index; // 왼쪽과 오른쪽을 비교해서 더 큰 수를 넣기 위한 장소 
 
         if (left < size && heap[left] > heap[largest])
-            largest = left; // 왼쪽가 총 사이즈보다 작을 경우와 왼쪽 힙이 가장큰 힙보다 클 경우 largest에 left를 넣은다
+            largest = left; // 왼쪽가 총 사이즈보다 작을 경우와 왼쪽 힙이 가장 큰 힙보다 클 경우 largest에 left를 넣은다
         // 즉 왼쪽에 있는 값이 부모의 값보다 높으면 왼쪽에 있는 값을 부모쪽에 넣는다.
+        // 실행 된다는거는 올바른 숫자가 아니라는 증거이며 largest에 넣는 이유는 변경해야하기 때문이다.
         if (right < size && heap[right] > heap[largest]) 
             largest = right; // 오른쪽가 총 사이즈보다 작을 경우와 오른쪽 힘이 가장 큰 힙보다 클경우 largest에 right를 넣는다.
         // 여기까지 left와 right를 비교하여 큰 값을 largest에 넣는 과정이다.
@@ -100,6 +101,8 @@ void Heap::heapSort() {
         backup[i] = heap[i]; // 하나씩 백업 변수에 넣는다.
     int originalSize = size; // 사이즈 또한 백업할 수 있게 변수를 만들고 그걸 넣는다.
     cout << "힙 정렬 결과: ";
+
+
     // 정렬 진행
     for (int i = size - 1; i >= 0; --i) { // size를 점점 줄이면서 반복시킨다 0 미만이 될때 까지
         swap(heap[0], heap[i]);   // 최대값을 맨 뒤로 보냄
@@ -299,16 +302,21 @@ void Heap::selectionSort()
 
 void Heap::bubbleSort()
 {
+    // 카피
     int* copy = new int[size];
     for (int i = 0; i < size; ++i)
         copy[i] = heap[i];
 
+    // 정렬
     for (int i = 0; i < size - 1; ++i) {
         for (int j = 0; j < size - 1 - i; ++j) {
             if (copy[j] > copy[j + 1]) {
                 swap(copy[j], copy[j + 1]);
             }
+            // 비교해서 교환하고 큰수를 계속 오른쪽으로 보낸다.
+            // 순서가 맞을 경우 값을 교환하지 않는다. 
         }
+       
     }
     cout << "버블정렬 결과 " << endl;
     for (int i = 0; i < size; ++i)
@@ -320,7 +328,6 @@ void Heap::bubbleSort()
     
 }
 
-// 선택 정렬 
 
 
 
