@@ -1,67 +1,67 @@
 #include "Heap.h"
 
-Heap::Heap(int capacity) :capacity(capacity), size(0) { // ÃÊ±âÈ­ ¹×  ¸Å°³ º¯¼ö °ª Àü´Þ 
-    heap = new int[capacity]; // Á¤ÇÑ ¿ë·®À» ¸¸µç´Ù.
+Heap::Heap(int capacity) :capacity(capacity), size(0) { // ì´ˆê¸°í™” ë°  ë§¤ê°œ ë³€ìˆ˜ ê°’ ì „ë‹¬ 
+    heap = new int[capacity]; // ì •í•œ ìš©ëŸ‰ì„ ë§Œë“ ë‹¤.
 }
 Heap::~Heap() {
-    delete[]heap; // ÈüÀ» »èÁ¦ÇÏ¿© ¸Þ¸ð¸® ¼Õ½ÇÀ» ¾ø¾Ö¹ö¸°´Ù.
+    delete[]heap; // íž™ì„ ì‚­ì œí•˜ì—¬ ë©”ëª¨ë¦¬ ì†ì‹¤ì„ ì—†ì• ë²„ë¦°ë‹¤.
 }
 
 void Heap::insert(int value) {
-    if (isFull()) { // °¡µæ Â÷¸é ÇÔ¼ö Á¾·á
+    if (isFull()) { // ê°€ë“ ì°¨ë©´ í•¨ìˆ˜ ì¢…ë£Œ
         return;
     }
 
-    heap[size] = value; // »çÀÌÁî¿¡ À§Ä¡ÇÑ ÀÎµ¦½º¿¡ Á¢±ÙÇÑ´Ù. 
-    heapifyUP(size); // ºÎ¸ð¿Í ÀÚ½ÄÀ» ºñ±³ÇØ¼­ ÀÚ½ÄÀÌ ´õ Å©¸é ±× °ªÀ» º¸¸ð¶û ±³È¯ÇÏ´Â ½ÄÀÌ´Ù
-    size++; // »çÀÌÁîÀÇ °ªÀ» Áõ°¡ ½ÃÅ²´Ù. 
+    heap[size] = value; // ì‚¬ì´ì¦ˆì— ìœ„ì¹˜í•œ ì¸ë±ìŠ¤ì— ì ‘ê·¼í•œë‹¤. 
+    heapifyUP(size); // ë¶€ëª¨ì™€ ìžì‹ì„ ë¹„êµí•´ì„œ ìžì‹ì´ ë” í¬ë©´ ê·¸ ê°’ì„ ë³´ëª¨ëž‘ êµí™˜í•˜ëŠ” ì‹ì´ë‹¤
+    size++; // ì‚¬ì´ì¦ˆì˜ ê°’ì„ ì¦ê°€ ì‹œí‚¨ë‹¤. 
 }
 
 void Heap::heapifyUP(int index) {
-    while (index > 0) { //ÀÎµ¦½ºÀÇ °ªÀÌ 0º¸´Ù Å¬°æ¿ì ¹Ýº¹ÇÑ´Ù. 
-        int parent = (index - 1) / 2; // index¸¦ °è»êÇØ¼­ ºÎ¸ðÀÇ ±âÁØÀ» »õ¿î´Ù. index°¡ 3ÀÌ¸é 2·Î ³ª´©¾î 1ÀÌ µÈ´Ù index°¡ 4ÀÌ¸é 1ÀÌµÈ´Ù 5ÀÌ¸é 2°¡ µÈ´Ù 
-        // Áï º¸¸ðÀÇ ÀÎµ¦½º°ªÀ» ³ªÅ¸³»´Â °ÍÀÌ parantÀÌ´Ù. 0¹øÃþ 1¹øÃþ 2¹øÃþÀ¸·Î »ý°¢ÇÏ¸é µÈ´Ù
-        if (heap[index] > heap[parent]) { // ÈüÀÇ ¼ºÁú(ºÎ¸ð>=ÀÚ½Ä)ÀÌ ±úÁ³´ÂÁö È®ÀÎ 
-            swap(heap[index], heap[parent]);  // ÀÚ½ÄÀÌ ´õ Å©¸é ½ÇÇàÇÏ¸ç ½º¿ÒÀ¸·Î ºÎ¸ð¿Í ÀÚ½ÄÀÇ °ªÀ» º¯°æÇÑ´Ù.
-            index = parent; // ºÎ¸ð¸¦ »õ·Î¿î ±âÁØÀ¸·Î ¹Ýº¹½ÃÅ²´Ù. Ã³À½¿¡ ÀÎµ¦½º°¡ 5ÀÌ¸é ºÎ¸ð´Â 2°¡ µÇ°í ´Ù½Ã Àü´ÞÇØ¼­ ÀÎµ¦½ºÀÇ °ªÀÌ 2°¡µÇ¸é ºÎ¸ðÀÇ °ªÀÌ 0ÀÌµÈ´Ù .
-        } // Áï ºÎ¸ð¿Í ÀÚ½ÄÀÇ À§Ä¡¸¦ È®ÀÎÇÏ°í ÀÚ½ÄÀÌ ´õ °ªÀÌ Å©¸é °ªÀ» ±³È¯ÇÏ´Â ½ÄÀ¸·Î »ç¿ëÇÑ´Ù. 
+    while (index > 0) { //ì¸ë±ìŠ¤ì˜ ê°’ì´ 0ë³´ë‹¤ í´ê²½ìš° ë°˜ë³µí•œë‹¤. 
+        int parent = (index - 1) / 2; // indexë¥¼ ê³„ì‚°í•´ì„œ ë¶€ëª¨ì˜ ê¸°ì¤€ì„ ìƒˆìš´ë‹¤. indexê°€ 3ì´ë©´ 2ë¡œ ë‚˜ëˆ„ì–´ 1ì´ ëœë‹¤ indexê°€ 4ì´ë©´ 1ì´ëœë‹¤ 5ì´ë©´ 2ê°€ ëœë‹¤ 
+        // ì¦‰ ë³´ëª¨ì˜ ì¸ë±ìŠ¤ê°’ì„ ë‚˜íƒ€ë‚´ëŠ” ê²ƒì´ parantì´ë‹¤. 0ë²ˆì¸µ 1ë²ˆì¸µ 2ë²ˆì¸µìœ¼ë¡œ ìƒê°í•˜ë©´ ëœë‹¤
+        if (heap[index] > heap[parent]) { // íž™ì˜ ì„±ì§ˆ(ë¶€ëª¨>=ìžì‹)ì´ ê¹¨ì¡ŒëŠ”ì§€ í™•ì¸ 
+            swap(heap[index], heap[parent]);  // ìžì‹ì´ ë” í¬ë©´ ì‹¤í–‰í•˜ë©° ìŠ¤ì™‘ìœ¼ë¡œ ë¶€ëª¨ì™€ ìžì‹ì˜ ê°’ì„ ë³€ê²½í•œë‹¤.
+            index = parent; // ë¶€ëª¨ë¥¼ ìƒˆë¡œìš´ ê¸°ì¤€ìœ¼ë¡œ ë°˜ë³µì‹œí‚¨ë‹¤. ì²˜ìŒì— ì¸ë±ìŠ¤ê°€ 5ì´ë©´ ë¶€ëª¨ëŠ” 2ê°€ ë˜ê³  ë‹¤ì‹œ ì „ë‹¬í•´ì„œ ì¸ë±ìŠ¤ì˜ ê°’ì´ 2ê°€ë˜ë©´ ë¶€ëª¨ì˜ ê°’ì´ 0ì´ëœë‹¤ .
+        } // ì¦‰ ë¶€ëª¨ì™€ ìžì‹ì˜ ìœ„ì¹˜ë¥¼ í™•ì¸í•˜ê³  ìžì‹ì´ ë” ê°’ì´ í¬ë©´ ê°’ì„ êµí™˜í•˜ëŠ” ì‹ìœ¼ë¡œ ì‚¬ìš©í•œë‹¤. 
         else break;
     }
 }
 int Heap::pop() {
     if (isEmpty()) {
-        cout << "ÈüÀÌ ºñ¾î ÀÖ½À´Ï´Ù." << endl;
-        return -1; // ÈüÀÌ ºñ¾î ÀÖÀ¸¸é ÇÔ¼ö¸¦ Á¾·áÇÑ´Ù
+        cout << "íž™ì´ ë¹„ì–´ ìžˆìŠµë‹ˆë‹¤." << endl;
+        return -1; // íž™ì´ ë¹„ì–´ ìžˆìœ¼ë©´ í•¨ìˆ˜ë¥¼ ì¢…ë£Œí•œë‹¤
     }
 
-    int root = heap[0]; // °¡Àå À§¿¡ ÀÖ´Â À§Ä¡¸¦ °¡Á®¿Â´Ù
-    heap[0] = heap[size - 1]; // »çÀÌÁî¿¡¼­ 1¸¦ »¯ °ªÀ» 0¿¡ ³Ö´Â´Ù. 
-    // °¡Àå ¸¶Áö¸·¿¡ ÀÖ´Â °ªÀ» À§·Î º¸³»¼­ ¹Ù²Ù°í ±×ÈÄ ÈüÀÇ ±ÔÄ¢¿¡ µû¶ó Á¤·ÄÇÑ´Ù. 
-    size--; // size ÁÙÀÌ±â 
-    //°¡Àå À§¿¡ ÀÖ´Â °Í ºÎÅÍ ¾ø¾Ö ¹ö¸°´Ù. 
-    heapifyDown(0); // 0¹ø ÀÎµ¦½ººÎÅÍ Á¤·Ä ½ÃÀÛ 
-    return root; //°¡Àå À§¿¡ ÀÖ´Â °ªÀº º¸³½´Ù.
+    int root = heap[0]; // ê°€ìž¥ ìœ„ì— ìžˆëŠ” ìœ„ì¹˜ë¥¼ ê°€ì ¸ì˜¨ë‹¤
+    heap[0] = heap[size - 1]; // ì‚¬ì´ì¦ˆì—ì„œ 1ë¥¼ ëº ê°’ì„ 0ì— ë„£ëŠ”ë‹¤. 
+    // ê°€ìž¥ ë§ˆì§€ë§‰ì— ìžˆëŠ” ê°’ì„ ìœ„ë¡œ ë³´ë‚´ì„œ ë°”ê¾¸ê³  ê·¸í›„ íž™ì˜ ê·œì¹™ì— ë”°ë¼ ì •ë ¬í•œë‹¤. 
+    size--; // size ì¤„ì´ê¸° 
+    //ê°€ìž¥ ìœ„ì— ìžˆëŠ” ê²ƒ ë¶€í„° ì—†ì•  ë²„ë¦°ë‹¤. 
+    heapifyDown(0); // 0ë²ˆ ì¸ë±ìŠ¤ë¶€í„° ì •ë ¬ ì‹œìž‘ 
+    return root; //ê°€ìž¥ ìœ„ì— ìžˆëŠ” ê°’ì€ ë³´ë‚¸ë‹¤.
 }
 
 void Heap::heapifyDown(int index) {
-    while (index * 2 + 1 < size) { // ÇöÀç ³ëµåÀÇ ¿ÞÂÊ ÀÚ½ÄÀÌ Á¸ÀçÇÒ ±îÁö¸¸ ¹Ýº¹ÇÑ´Ù. 
-        int left = index * 2 + 1; // ¿ÞÂÊ 
-        int right = index * 2 + 2; // ¿À¸¥ÂÊ 
-        // ¿ÞÂÊ°ú ¿À¸¥ÂÊÀ» Á¤ÇÏ´Â °úÁ¤ÀÌ´Ù.
-        int largest = index; // ¿ÞÂÊ°ú ¿À¸¥ÂÊÀ» ºñ±³ÇØ¼­ ´õ Å« ¼ö¸¦ ³Ö±â À§ÇÑ Àå¼Ò 
+    while (index * 2 + 1 < size) { // í˜„ìž¬ ë…¸ë“œì˜ ì™¼ìª½ ìžì‹ì´ ì¡´ìž¬í•  ê¹Œì§€ë§Œ ë°˜ë³µí•œë‹¤. 
+        int left = index * 2 + 1; // ì™¼ìª½ 
+        int right = index * 2 + 2; // ì˜¤ë¥¸ìª½ 
+        // ì™¼ìª½ê³¼ ì˜¤ë¥¸ìª½ì„ ì •í•˜ëŠ” ê³¼ì •ì´ë‹¤.
+        int largest = index; // ì™¼ìª½ê³¼ ì˜¤ë¥¸ìª½ì„ ë¹„êµí•´ì„œ ë” í° ìˆ˜ë¥¼ ë„£ê¸° ìœ„í•œ ìž¥ì†Œ 
 
         if (left < size && heap[left] > heap[largest])
-            largest = left; // ¿ÞÂÊ°¡ ÃÑ »çÀÌÁîº¸´Ù ÀÛÀ» °æ¿ì¿Í ¿ÞÂÊ ÈüÀÌ °¡Àå Å« Èüº¸´Ù Å¬ °æ¿ì largest¿¡ left¸¦ ³ÖÀº´Ù
-        // Áï ¿ÞÂÊ¿¡ ÀÖ´Â °ªÀÌ ºÎ¸ðÀÇ °ªº¸´Ù ³ôÀ¸¸é ¿ÞÂÊ¿¡ ÀÖ´Â °ªÀ» ºÎ¸ðÂÊ¿¡ ³Ö´Â´Ù.
-        // ½ÇÇà µÈ´Ù´Â°Å´Â ¿Ã¹Ù¸¥ ¼ýÀÚ°¡ ¾Æ´Ï¶ó´Â Áõ°ÅÀÌ¸ç largest¿¡ ³Ö´Â ÀÌÀ¯´Â º¯°æÇØ¾ßÇÏ±â ¶§¹®ÀÌ´Ù.
+            largest = left; // ì™¼ìª½ê°€ ì´ ì‚¬ì´ì¦ˆë³´ë‹¤ ìž‘ì„ ê²½ìš°ì™€ ì™¼ìª½ íž™ì´ ê°€ìž¥ í° íž™ë³´ë‹¤ í´ ê²½ìš° largestì— leftë¥¼ ë„£ì€ë‹¤
+        // ì¦‰ ì™¼ìª½ì— ìžˆëŠ” ê°’ì´ ë¶€ëª¨ì˜ ê°’ë³´ë‹¤ ë†’ìœ¼ë©´ ì™¼ìª½ì— ìžˆëŠ” ê°’ì„ ë¶€ëª¨ìª½ì— ë„£ëŠ”ë‹¤.
+        // ì‹¤í–‰ ëœë‹¤ëŠ”ê±°ëŠ” ì˜¬ë°”ë¥¸ ìˆ«ìžê°€ ì•„ë‹ˆë¼ëŠ” ì¦ê±°ì´ë©° largestì— ë„£ëŠ” ì´ìœ ëŠ” ë³€ê²½í•´ì•¼í•˜ê¸° ë•Œë¬¸ì´ë‹¤.
         if (right < size && heap[right] > heap[largest]) 
-            largest = right; // ¿À¸¥ÂÊ°¡ ÃÑ »çÀÌÁîº¸´Ù ÀÛÀ» °æ¿ì¿Í ¿À¸¥ÂÊ ÈûÀÌ °¡Àå Å« Èüº¸´Ù Å¬°æ¿ì largest¿¡ right¸¦ ³Ö´Â´Ù.
-        // ¿©±â±îÁö left¿Í right¸¦ ºñ±³ÇÏ¿© Å« °ªÀ» largest¿¡ ³Ö´Â °úÁ¤ÀÌ´Ù.
-        // Áï ¿À¸¥ÂÊ ÀÖ´Â °ªÀÌ ºÎ¸ðÀÇ °ªº¸´Ù ³ôÀ¸¸é ¿À¸¥ÂÊ¿¡ ÀÖ´Â °ªÀ» ºÎ¸ðÂÊ¿¡ ³Ö´Â´Ù. 
+            largest = right; // ì˜¤ë¥¸ìª½ê°€ ì´ ì‚¬ì´ì¦ˆë³´ë‹¤ ìž‘ì„ ê²½ìš°ì™€ ì˜¤ë¥¸ìª½ íž˜ì´ ê°€ìž¥ í° íž™ë³´ë‹¤ í´ê²½ìš° largestì— rightë¥¼ ë„£ëŠ”ë‹¤.
+        // ì—¬ê¸°ê¹Œì§€ leftì™€ rightë¥¼ ë¹„êµí•˜ì—¬ í° ê°’ì„ largestì— ë„£ëŠ” ê³¼ì •ì´ë‹¤.
+        // ì¦‰ ì˜¤ë¥¸ìª½ ìžˆëŠ” ê°’ì´ ë¶€ëª¨ì˜ ê°’ë³´ë‹¤ ë†’ìœ¼ë©´ ì˜¤ë¥¸ìª½ì— ìžˆëŠ” ê°’ì„ ë¶€ëª¨ìª½ì— ë„£ëŠ”ë‹¤. 
 
-        if (largest != index) { // index¿Í largestÀÇ °ªÀÌ °°Áö ¾ÊÀ» °æ¿ì 
-            swap(heap[index], heap[largest]);// °¡Àå À§¿¡ ÀÖ´Â °ª°ú largest¸¦ ¹Ù²Û´Ù.
-            index = largest; // indexÀÇ °ªÀ» largest·Î º¯°æÇÑ´Ù.
+        if (largest != index) { // indexì™€ largestì˜ ê°’ì´ ê°™ì§€ ì•Šì„ ê²½ìš° 
+            swap(heap[index], heap[largest]);// ê°€ìž¥ ìœ„ì— ìžˆëŠ” ê°’ê³¼ largestë¥¼ ë°”ê¾¼ë‹¤.
+            index = largest; // indexì˜ ê°’ì„ largestë¡œ ë³€ê²½í•œë‹¤.
         }
         else break;
     }
@@ -69,7 +69,7 @@ void Heap::heapifyDown(int index) {
 
 int Heap::top() const {
     if (isEmpty()) {
-        cout << "ÈüÀÌ ºñ¾î ÀÖ½À´Ï´Ù." << endl;
+        cout << "íž™ì´ ë¹„ì–´ ìžˆìŠµë‹ˆë‹¤." << endl;
         return -1;
     }
     return heap[0];
@@ -84,7 +84,7 @@ bool Heap::isFull() const {
 }
 
 void Heap::print() const {
-    cout << "Èü ³»¿ë: ";
+    cout << "íž™ ë‚´ìš©: ";
     for (int i = 0; i < size; ++i)
         cout << heap[i] << " ";
     cout << endl;
@@ -93,36 +93,36 @@ void Heap::print() const {
 
 
 
-// ÈüÁ¤·Ä
+// íž™ì •ë ¬
 void Heap::heapSort() {
-    // ¿ø·¡ heap ¹è¿­°ú size¸¦ ¹é¾÷
-    int* backup = new int[size]; // ÀÏ´Ü ¹é¾÷¿¡ ¹è¿­ÀÇ Å©±â´Â size¸¸Å­ ¸¸µç´Ù
-    for (int i = 0; i < size; ++i) // size¸¸Å­ ¹Ýº¹½ÃÅ°¸ç ÀüÀ§·Î i°ªÀ» ¹Ù·Î 1ºÎÅÍ ½ÃÀÛÇÑ´Ù
-        backup[i] = heap[i]; // ÇÏ³ª¾¿ ¹é¾÷ º¯¼ö¿¡ ³Ö´Â´Ù.
-    int originalSize = size; // »çÀÌÁî ¶ÇÇÑ ¹é¾÷ÇÒ ¼ö ÀÖ°Ô º¯¼ö¸¦ ¸¸µé°í ±×°É ³Ö´Â´Ù.
-    cout << "Èü Á¤·Ä °á°ú: ";
+    // ì›ëž˜ heap ë°°ì—´ê³¼ sizeë¥¼ ë°±ì—…
+    int* backup = new int[size]; // ì¼ë‹¨ ë°±ì—…ì— ë°°ì—´ì˜ í¬ê¸°ëŠ” sizeë§Œí¼ ë§Œë“ ë‹¤
+    for (int i = 0; i < size; ++i) // sizeë§Œí¼ ë°˜ë³µì‹œí‚¤ë©° ì „ìœ„ë¡œ iê°’ì„ ë°”ë¡œ 1ë¶€í„° ì‹œìž‘í•œë‹¤
+        backup[i] = heap[i]; // í•˜ë‚˜ì”© ë°±ì—… ë³€ìˆ˜ì— ë„£ëŠ”ë‹¤.
+    int originalSize = size; // ì‚¬ì´ì¦ˆ ë˜í•œ ë°±ì—…í•  ìˆ˜ ìžˆê²Œ ë³€ìˆ˜ë¥¼ ë§Œë“¤ê³  ê·¸ê±¸ ë„£ëŠ”ë‹¤.
+    cout << "íž™ ì •ë ¬ ê²°ê³¼: ";
 
 
-    // Á¤·Ä ÁøÇà
-    for (int i = size - 1; i >= 0; --i) { // size¸¦ Á¡Á¡ ÁÙÀÌ¸é¼­ ¹Ýº¹½ÃÅ²´Ù 0 ¹Ì¸¸ÀÌ µÉ¶§ ±îÁö
-        swap(heap[0], heap[i]);   // ÃÖ´ë°ªÀ» ¸Ç µÚ·Î º¸³¿
-        size--;                   // Èü Å©±â ÁÙÀÌ°í
-        heapifyDown(0);           // ·çÆ®ºÎÅÍ ´Ù½Ã Á¤·Ä
+    // ì •ë ¬ ì§„í–‰
+    for (int i = size - 1; i >= 0; --i) { // sizeë¥¼ ì ì  ì¤„ì´ë©´ì„œ ë°˜ë³µì‹œí‚¨ë‹¤ 0 ë¯¸ë§Œì´ ë ë•Œ ê¹Œì§€
+        swap(heap[0], heap[i]);   // ìµœëŒ€ê°’ì„ ë§¨ ë’¤ë¡œ ë³´ëƒ„
+        size--;                   // íž™ í¬ê¸° ì¤„ì´ê³ 
+        heapifyDown(0);           // ë£¨íŠ¸ë¶€í„° ë‹¤ì‹œ ì •ë ¬
     }
 
-    // ¸¶Áö¸· ÀÎµ¦½º¿Í Ã¹¹øÂ° ÀÎµ¦½º¸¦ °ªÀ» ¹Ù²Ù°í ±×°É ±ÔÄ¢¿¡ ¸Â°Ô ÇÏ³ª¾¿ ´Ù½Ã ¹èÄ¡ÇÏ´Â ´À³¦À¸·Î 
-    // ¸¶Áö¸· ÀÎµ¦½º¸¦ °¡Àå À§·Î ¿Ã¸®°í ³»·Á¿À¸é¼­ ºñ±³ÇÏ¸é¼­ ÀÎµ¦½º¸¦ ¹èÄ¡ÇÏ¿© ¼ø¼­´ëµµ ¹èÄ¡ÇÑ´Ù.
+    // ë§ˆì§€ë§‰ ì¸ë±ìŠ¤ì™€ ì²«ë²ˆì§¸ ì¸ë±ìŠ¤ë¥¼ ê°’ì„ ë°”ê¾¸ê³  ê·¸ê±¸ ê·œì¹™ì— ë§žê²Œ í•˜ë‚˜ì”© ë‹¤ì‹œ ë°°ì¹˜í•˜ëŠ” ëŠë‚Œìœ¼ë¡œ 
+    // ë§ˆì§€ë§‰ ì¸ë±ìŠ¤ë¥¼ ê°€ìž¥ ìœ„ë¡œ ì˜¬ë¦¬ê³  ë‚´ë ¤ì˜¤ë©´ì„œ ë¹„êµí•˜ë©´ì„œ ì¸ë±ìŠ¤ë¥¼ ë°°ì¹˜í•˜ì—¬ ìˆœì„œëŒ€ë„ ë°°ì¹˜í•œë‹¤.
 
-    // Á¤·ÄµÈ ¹è¿­ Ãâ·Â
+    // ì •ë ¬ëœ ë°°ì—´ ì¶œë ¥
     for (int i = 0; i < originalSize; ++i)
         cout << heap[i] << " ";
     cout << endl;
 
-    // ¿ø·¡ heap º¹±¸
-    for (int i = 0; i < originalSize; ++i) // ¿ø·¡ ³ÖÀº°Å ´ë·Î ´Ù½Ã Á¤·Ä 
+    // ì›ëž˜ heap ë³µêµ¬
+    for (int i = 0; i < originalSize; ++i) // ì›ëž˜ ë„£ì€ê±° ëŒ€ë¡œ ë‹¤ì‹œ ì •ë ¬ 
         heap[i] = backup[i];
     size = originalSize;
-    // °ª ¼ø¼­´ë·Î ¹èÄ¡ÇÑ°É ´Ù½Ã ¿ø·¡ ³Ö¾ú´ø Çü½ÄÀ¸·Î ¹Ù²Û´Ù. 
+    // ê°’ ìˆœì„œëŒ€ë¡œ ë°°ì¹˜í•œê±¸ ë‹¤ì‹œ ì›ëž˜ ë„£ì—ˆë˜ í˜•ì‹ìœ¼ë¡œ ë°”ê¾¼ë‹¤. 
 
     delete[] backup;
 }
@@ -130,73 +130,73 @@ void Heap::heapSort() {
 
 
 
-// ¸ÓÁöÁ¤·Ä
-void merge(int arr[], int left, int mid, int right) { // Á¤·ÄÇÑ ¹è¿­, ¿ÞÂÊ ºÎºÐ ¹è¿­,¿À¸¥ÂÊ ºÎºÐ ¹è¿­ ÀÌ¹Ì Á¤·Ä µÇ¾î ÀÖÀ½ 
-    int n1 = mid - left + 1;  // ÀÓ½Ã¹è¿­ ¸¸µé±â ¿ÞÂÊ ºÎºÐ¹è¿­ÀÇ ±æÀÌ 
-    // +1À» ÇÏ´Â ÀÌÀ¯´Â left~mid ¹üÀ§°¡ ¾ç ³¡ Æ÷ÇÔÀÌ±â ¶§¹®ÀÌ´Ù 
-    int n2 = right - mid;  // ¿À¸¥ÂÊ ºÎºÐ¹è¿­ÀÇ ±æÀÌ 
+// ë¨¸ì§€ì •ë ¬
+void merge(int arr[], int left, int mid, int right) { // ì •ë ¬í•œ ë°°ì—´, ì™¼ìª½ ë¶€ë¶„ ë°°ì—´,ì˜¤ë¥¸ìª½ ë¶€ë¶„ ë°°ì—´ ì´ë¯¸ ì •ë ¬ ë˜ì–´ ìžˆìŒ 
+    int n1 = mid - left + 1;  // ìž„ì‹œë°°ì—´ ë§Œë“¤ê¸° ì™¼ìª½ ë¶€ë¶„ë°°ì—´ì˜ ê¸¸ì´ 
+    // +1ì„ í•˜ëŠ” ì´ìœ ëŠ” left~mid ë²”ìœ„ê°€ ì–‘ ë í¬í•¨ì´ê¸° ë•Œë¬¸ì´ë‹¤ 
+    int n2 = right - mid;  // ì˜¤ë¥¸ìª½ ë¶€ë¶„ë°°ì—´ì˜ ê¸¸ì´ 
 
-    int* L = new int[n1]; // ¿ÞÂÊ ¹è¿­À» ´ã´Â ÀÓ½Ã °ø°£ 
-    int* R = new int[n2]; // ¿À¸¥ÂÊ ¹è¿­À» ´ã´Â ÀÓ½Ã °ø°£ 
+    int* L = new int[n1]; // ì™¼ìª½ ë°°ì—´ì„ ë‹´ëŠ” ìž„ì‹œ ê³µê°„ 
+    int* R = new int[n2]; // ì˜¤ë¥¸ìª½ ë°°ì—´ì„ ë‹´ëŠ” ìž„ì‹œ ê³µê°„ 
 
     for (int i = 0; i < n1; ++i) 
-        L[i] = arr[left + i]; // ÀÓ½Ã °ø°£¿¡ ¿ÞÂÊ ¹è¿­ ¹èÄ¡
+        L[i] = arr[left + i]; // ìž„ì‹œ ê³µê°„ì— ì™¼ìª½ ë°°ì—´ ë°°ì¹˜
     // L[0] = 60    
     for (int i = 0; i < n2; ++i)
-        R[i] = arr[mid + 1 + i]; //ÀÓ½Ã °ø°£¿¡ ¿À¸¥ÂÊ ¹è¿­ ¹èÄ¡ 
+        R[i] = arr[mid + 1 + i]; //ìž„ì‹œ ê³µê°„ì— ì˜¤ë¥¸ìª½ ë°°ì—´ ë°°ì¹˜ 
     // R[0] = 50
     int i = 0, j = 0, k = left; 
-    // i: L[]ÀÎµ¦½º
-    // j: R[]ÀÎµ¦½º
-    // k: º´ÇÕ °á°ú¸¦ arr[]¿¡ ÀúÀåÇÒ À§Ä¡
+    // i: L[]ì¸ë±ìŠ¤
+    // j: R[]ì¸ë±ìŠ¤
+    // k: ë³‘í•© ê²°ê³¼ë¥¼ arr[]ì— ì €ìž¥í•  ìœ„ì¹˜
 
     while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) // ¿ÞÂÊ ÀÎµ¦½º°¡ ¿À¸¥ÂÊ ÀÎµ¦½ºº¸´Ù ÀÛÀ» °æ¿ì 
-            arr[k++] = L[i++]; // ¿ÞÂÊºÎÅÍ ³Ö°í 
+        if (L[i] <= R[j]) // ì™¼ìª½ ì¸ë±ìŠ¤ê°€ ì˜¤ë¥¸ìª½ ì¸ë±ìŠ¤ë³´ë‹¤ ìž‘ì„ ê²½ìš° 
+            arr[k++] = L[i++]; // ì™¼ìª½ë¶€í„° ë„£ê³  
         else
-            arr[k++] = R[j++]; // ±×À§´Â Â÷·¹´ë·Î ¿À¸¥ÂÊ¸¦ ³ÖÀº´Ù.
+            arr[k++] = R[j++]; // ê·¸ìœ„ëŠ” ì°¨ë ˆëŒ€ë¡œ ì˜¤ë¥¸ìª½ë¥¼ ë„£ì€ë‹¤.
 
     }
     while (i < n1)
-        arr[k++] = L[i++]; // ³²Àº °ªÀº ±×´ë·Î arr[] º¹»ç
+        arr[k++] = L[i++]; // ë‚¨ì€ ê°’ì€ ê·¸ëŒ€ë¡œ arr[] ë³µì‚¬
     while (j < n2)
         arr[k++] = R[j++];
-// »ç¿ëÀ» ´ÙÇÑ LRÀº »èÁ¦ÇÑ´Ù. 
+// ì‚¬ìš©ì„ ë‹¤í•œ LRì€ ì‚­ì œí•œë‹¤. 
     delete[] L;
     delete[]R;
 
 
 }
 
-void mergeSortInternal(int arr[], int left, int right) { // ¹è¿­À» Á¤·ÄÇÏ´Â Àç±ÍÇÔ¼öÀÌ´Ù
-    // copy, 0, size-1 == ½ÃÀÛ ÀÎµ¦½º(left), ³¡ ÀÎµ¦½º(right)·Î ¹è¿­À» ³ª´©°í Á¤·ÄÇÑµÚ ´Ù½Ã º´ÇÔÇÑ´Ù.
-    if (left < right) { // ¹è¿­ÀÌ µÎ °³ ÀÌ»óÀÏ¶§ ¸¸ Á¤·ÄÀ» ¼öÇàÇÑ´Ù.
-        int mid = (left + right) / 2; // Áß°£Á¡ 
-        // ¹è¿­À» ¿ÞÂÊ Àý¹Ý, ¿À¸¥ÂÊ Àý¹ÝÀ¸·Î ³ª´©±â À§ÇÑ ±âÁØÁ¡ÀÌ´Ù
+void mergeSortInternal(int arr[], int left, int right) { // ë°°ì—´ì„ ì •ë ¬í•˜ëŠ” ìž¬ê·€í•¨ìˆ˜ì´ë‹¤
+    // copy, 0, size-1 == ì‹œìž‘ ì¸ë±ìŠ¤(left), ë ì¸ë±ìŠ¤(right)ë¡œ ë°°ì—´ì„ ë‚˜ëˆ„ê³  ì •ë ¬í•œë’¤ ë‹¤ì‹œ ë³‘í•¨í•œë‹¤.
+    if (left < right) { // ë°°ì—´ì´ ë‘ ê°œ ì´ìƒì¼ë•Œ ë§Œ ì •ë ¬ì„ ìˆ˜í–‰í•œë‹¤.
+        int mid = (left + right) / 2; // ì¤‘ê°„ì  
+        // ë°°ì—´ì„ ì™¼ìª½ ì ˆë°˜, ì˜¤ë¥¸ìª½ ì ˆë°˜ìœ¼ë¡œ ë‚˜ëˆ„ê¸° ìœ„í•œ ê¸°ì¤€ì ì´ë‹¤
         // 10, 20, 30, 40, 50, 60
-        mergeSortInternal(arr, left, mid); // ¿ÞÂÊ Àý¹Ý Àç±Í Á¤·Ä 
-        // Àç±ÍÇÔ¼ö·Î ÇÔ¼ö¸¦ Àç±ÍÇØµµ Àü¿¡ ÁøÇàµÇ°í ÀÖ´Â°Ç ±×·¡µµ ÁøÇà µÇ°í ÀÖ´Ù .
-        mergeSortInternal(arr, mid + 1, right); // ¿À¸¥ÂÊ Àý¹Ý Àç±Í Á¤·Ä
+        mergeSortInternal(arr, left, mid); // ì™¼ìª½ ì ˆë°˜ ìž¬ê·€ ì •ë ¬ 
+        // ìž¬ê·€í•¨ìˆ˜ë¡œ í•¨ìˆ˜ë¥¼ ìž¬ê·€í•´ë„ ì „ì— ì§„í–‰ë˜ê³  ìžˆëŠ”ê±´ ê·¸ëž˜ë„ ì§„í–‰ ë˜ê³  ìžˆë‹¤ .
+        mergeSortInternal(arr, mid + 1, right); // ì˜¤ë¥¸ìª½ ì ˆë°˜ ìž¬ê·€ ì •ë ¬
 
-        // +1¸¦ ÇÏ´Â ÀÌÀ¯´Â ¹è¿­À» Á¤È®È÷ °ãÄ¡Áö ¾Ê°Ô ¾çÂÊÀ¸·Î ºÐÇÒÇÏ±â À§ÇØ¼­ÀÌ´Ù. 
-        // ¿©±â±îÁö ¿ÞÂÊ°ú ¿À¸¥ÂÊÀ» Á¤·ÄµÈ »óÅÂÀÌ´Ù. 
-        // Á¶°Ç¹®Àº °³º°·Î Àç±ÍÇÔ¼ö¸¦ ½ÇÇàÇÏ¸ç ¿ÞÂÊºÎÅÍ ½ÃÀÛÇØ¼­ ¿À¤Ð¤Ð¸¥ÂÊ¸¦ ¿ÞÂÊÀ» ³¡³½´ÙÀ½¿¡ ½ÇÇàÇÑ´Ù.
-        merge(arr, left, mid, right); // ÀÌÁ¦ left¿Í right¸¦ º´ÇÕÇØ¼­ Á¤·ÄµÈ ¹è¿­·Î ¸¸µç´Ù.
+        // +1ë¥¼ í•˜ëŠ” ì´ìœ ëŠ” ë°°ì—´ì„ ì •í™•ížˆ ê²¹ì¹˜ì§€ ì•Šê²Œ ì–‘ìª½ìœ¼ë¡œ ë¶„í• í•˜ê¸° ìœ„í•´ì„œì´ë‹¤. 
+        // ì—¬ê¸°ê¹Œì§€ ì™¼ìª½ê³¼ ì˜¤ë¥¸ìª½ì„ ì •ë ¬ëœ ìƒíƒœì´ë‹¤. 
+        // ì¡°ê±´ë¬¸ì€ ê°œë³„ë¡œ ìž¬ê·€í•¨ìˆ˜ë¥¼ ì‹¤í–‰í•˜ë©° ì™¼ìª½ë¶€í„° ì‹œìž‘í•´ì„œ ì˜¤ã… ã… ë¥¸ìª½ë¥¼ ì™¼ìª½ì„ ëë‚¸ë‹¤ìŒì— ì‹¤í–‰í•œë‹¤.
+        merge(arr, left, mid, right); // ì´ì œ leftì™€ rightë¥¼ ë³‘í•©í•´ì„œ ì •ë ¬ëœ ë°°ì—´ë¡œ ë§Œë“ ë‹¤.
     }
     
-}// ¹è¿­À» °è¼Ó ¹ÝÀ¸·Î ³ª´«´Ù 
+}// ë°°ì—´ì„ ê³„ì† ë°˜ìœ¼ë¡œ ë‚˜ëˆˆë‹¤ 
 
 void Heap::mergeSort()
 {
-    int* copy = new int[size]; // ¿øº»¿¡ ¿µÇâÀ» ÁÖÁö ¾Ê°Ô ÇÏ±â À§ÇØ º»»çº»¸¦ ¸¸µé°í Å©±â´Â ¿øº»ÀÇ »çÀÌÁî¿Í °°°Ô ÇÑ´Ù.
+    int* copy = new int[size]; // ì›ë³¸ì— ì˜í–¥ì„ ì£¼ì§€ ì•Šê²Œ í•˜ê¸° ìœ„í•´ ë³¸ì‚¬ë³¸ë¥¼ ë§Œë“¤ê³  í¬ê¸°ëŠ” ì›ë³¸ì˜ ì‚¬ì´ì¦ˆì™€ ê°™ê²Œ í•œë‹¤.
 
-    for (int i = 0; i < size; ++i) // ++Àº for¹®¿¡¼­ ÀüÀ§³ª ÈÄÀ§ÀÇ Â÷ÀÌ°¡ °ÅÀÇ ¾ø°í °á°ú °ªÀ¸·Î¸¸ »ç¿ëÇÏ±â ¶§¹®ÀÌ´Ù. °ªÀ» »ç¿ëÇÏÁö ¾Ê°í Áõ°¡¸¸ ÇÏ±â ¶§¹®ÀÌ´Ù.
+    for (int i = 0; i < size; ++i) // ++ì€ forë¬¸ì—ì„œ ì „ìœ„ë‚˜ í›„ìœ„ì˜ ì°¨ì´ê°€ ê±°ì˜ ì—†ê³  ê²°ê³¼ ê°’ìœ¼ë¡œë§Œ ì‚¬ìš©í•˜ê¸° ë•Œë¬¸ì´ë‹¤. ê°’ì„ ì‚¬ìš©í•˜ì§€ ì•Šê³  ì¦ê°€ë§Œ í•˜ê¸° ë•Œë¬¸ì´ë‹¤.
 
-        copy[i] = heap[i]; // ¿øº»ÀÇ »çÀÌÁî ¸¸Å­ º¹»çº»¿¡ °ªÀ» ³Ö´Â´Ù.
+        copy[i] = heap[i]; // ì›ë³¸ì˜ ì‚¬ì´ì¦ˆ ë§Œí¼ ë³µì‚¬ë³¸ì— ê°’ì„ ë„£ëŠ”ë‹¤.
 
-    mergeSortInternal(copy, 0, size - 1);// º¹»çº», ¿ÞÂÊ, ¿À¸¥ÂÊ 
+    mergeSortInternal(copy, 0, size - 1);// ë³µì‚¬ë³¸, ì™¼ìª½, ì˜¤ë¥¸ìª½ 
 
-    cout << "¸ÖÁö Á¤·Ä °á°ú :" << endl;
+    cout << "ë©€ì§€ ì •ë ¬ ê²°ê³¼ :" << endl;
     for (int i = 0; i < size; ++i)
         cout << copy[i] << " ";
     cout << endl;
@@ -206,52 +206,52 @@ void Heap::mergeSort()
 }
 
 
-// ³o ¼ÖÆ® 
+// o ì†”íŠ¸ 
 int partition(int arr[], int low, int high) {
-    int pivot = arr[high]; // ¸ÇµÚ ±âÁØ
-    int i = low - 1;// Ã³À½¿¡´Â ¾ÆÁ÷ ¾Æ¹«°Íµµ ¾ø¾î¼­ lowº¸´Ù ÇÏ³ª ÀÛ°Ô »çÀÛÇÑ´Ù.
-    // arr[low ~ i]±îÁö´Â pivotº¸´Ù ÀÛÀº °ªµé¸¸ ÀÖ°Ô ¸¸µç´Ù.
-    // ÀÛÀº ¼ýÀÚ¸¦ ¾Õ¿¡ Á¤¸®ÇØ ³ÖÀ» À§Ä¡¸¦ Ç¥½ÃÇÏ´Â ¸¶Ä¿ÀÌ´Ù. 
-// ¹Ø¿¡ j¿Í ºñ±³ÇØ¼­ ±³È¯ÇÏ·Á¸é -1·Î ÀÛ¾Æ¾ßÇÑ´Ù.
-    // i´Â ÀÛÀº °ªµéÀ» Á¤¸®ÇÏ´Â À§Ä¡ÀÌ´Ù
-    // ÇÇ¹þº¸´Ù ÀÛÀº °ªµéÀÌ ¸ðÀÌ´Â ±¸¿ª¸¦ °¡¸®Å²´Ù swapÇÒ¶§ ÀÌ À§Ä¡·Î °ªÀ» º¸³½´Ù.
-    // j´Â µ¹¾Æ´Ù´Ï´Â Å½»öÀÚÅÍÀÌ´Ù.
-    // ¹è¿­À» ¿ÞÂÊºÎÅÍ ¿À¸¥ÂÊ±îÁö ÇÏ³ª¾¿ °Ë»çÇÏ¸é¼­ ÇÇ¹þº¸´Ù ÀÛÀº ¼ö¸¦ Ã£´Â ¿ªÇÒÀ» ÇÑ´Ù.
+    int pivot = arr[high]; // ë§¨ë’¤ ê¸°ì¤€
+    int i = low - 1;// ì²˜ìŒì—ëŠ” ì•„ì§ ì•„ë¬´ê²ƒë„ ì—†ì–´ì„œ lowë³´ë‹¤ í•˜ë‚˜ ìž‘ê²Œ ì‚¬ìž‘í•œë‹¤.
+    // arr[low ~ i]ê¹Œì§€ëŠ” pivotë³´ë‹¤ ìž‘ì€ ê°’ë“¤ë§Œ ìžˆê²Œ ë§Œë“ ë‹¤.
+    // ìž‘ì€ ìˆ«ìžë¥¼ ì•žì— ì •ë¦¬í•´ ë„£ì„ ìœ„ì¹˜ë¥¼ í‘œì‹œí•˜ëŠ” ë§ˆì»¤ì´ë‹¤. 
+// ë°‘ì— jì™€ ë¹„êµí•´ì„œ êµí™˜í•˜ë ¤ë©´ -1ë¡œ ìž‘ì•„ì•¼í•œë‹¤.
+    // iëŠ” ìž‘ì€ ê°’ë“¤ì„ ì •ë¦¬í•˜ëŠ” ìœ„ì¹˜ì´ë‹¤
+    // í”¼ë²—ë³´ë‹¤ ìž‘ì€ ê°’ë“¤ì´ ëª¨ì´ëŠ” êµ¬ì—­ë¥¼ ê°€ë¦¬í‚¨ë‹¤ swapí• ë•Œ ì´ ìœ„ì¹˜ë¡œ ê°’ì„ ë³´ë‚¸ë‹¤.
+    // jëŠ” ëŒì•„ë‹¤ë‹ˆëŠ” íƒìƒ‰ìží„°ì´ë‹¤.
+    // ë°°ì—´ì„ ì™¼ìª½ë¶€í„° ì˜¤ë¥¸ìª½ê¹Œì§€ í•˜ë‚˜ì”© ê²€ì‚¬í•˜ë©´ì„œ í”¼ë²—ë³´ë‹¤ ìž‘ì€ ìˆ˜ë¥¼ ì°¾ëŠ” ì—­í• ì„ í•œë‹¤.
 
-    for (int j = low; j < high; ++j) { //j´Â lowºÎÅÍ high - 1±îÁö privotÀ» Á¦¿ÜÇÑ ¿ä¼ÒµéÀ» ¼øÈ¸ÇÑ´Ù
-        if (arr[j] < pivot) { // ÇöÀç °ªÀÌ privotº¸´Ù ÀÛ´Ù¸é ¿ÞÂÊÀ¸·Î º¸³»¾ß ÇÑ´Ù.
+    for (int j = low; j < high; ++j) { //jëŠ” lowë¶€í„° high - 1ê¹Œì§€ privotì„ ì œì™¸í•œ ìš”ì†Œë“¤ì„ ìˆœíšŒí•œë‹¤
+        if (arr[j] < pivot) { // í˜„ìž¬ ê°’ì´ privotë³´ë‹¤ ìž‘ë‹¤ë©´ ì™¼ìª½ìœ¼ë¡œ ë³´ë‚´ì•¼ í•œë‹¤.
             i++;
             swap(arr[i], arr[j]);
-           // ÀÛÀº °ªÀÌ ¹ß°ßµÇ¸é ±³È¯ÇÏ¿© ÀÛÀº °ªÀ» ¾ÕÂÊÀ¸·Î º¸³½´Ù.
+           // ìž‘ì€ ê°’ì´ ë°œê²¬ë˜ë©´ êµí™˜í•˜ì—¬ ìž‘ì€ ê°’ì„ ì•žìª½ìœ¼ë¡œ ë³´ë‚¸ë‹¤.
            
         }
     } 
     swap(arr[i + 1], arr[high]);
-    // À§ ÁÙ¿¡¼­ pivotÀ» ÀÚ±âº¸´Ù ÀÛÀº °ªµé ³¡(i+1) ÀÚ¸®·Î ÀÌµ¿½ÃÄÑ¼­ pivotÀÇ ÃÖÁ¾ Á¤·Ä À§Ä¡¸¦ È®ÀåÇÑ´Ù.
+    // ìœ„ ì¤„ì—ì„œ pivotì„ ìžê¸°ë³´ë‹¤ ìž‘ì€ ê°’ë“¤ ë(i+1) ìžë¦¬ë¡œ ì´ë™ì‹œì¼œì„œ pivotì˜ ìµœì¢… ì •ë ¬ ìœ„ì¹˜ë¥¼ í™•ìž¥í•œë‹¤.
     return i + 1;
-    // pivotÀÌ À§Ä¡ÇÑ ÀÎµ¦½º¸¦ ¹ÝÈ¯ ÇÑ´Ù.
+    // pivotì´ ìœ„ì¹˜í•œ ì¸ë±ìŠ¤ë¥¼ ë°˜í™˜ í•œë‹¤.
 }
 
 void quickSortInternal(int arr[], int low, int high) {
     if (low < high) {
-        // Á¤·ÄÇÑ ±¸°£ÀÇ ¿ø¼Ò°¡ 2°³ ÀÌ»óÀÏ ¶§¸¸ Á¤·ÄÇÑ´Ù.
-        int pi = partition(arr, low, high);// ±âÁØ°ªÀ» µÎ ±×·ìÀ¸·Î ³ª´«´Ù 
-        quickSortInternal(arr, low, pi - 1); // ¿ÞÂÊ ±×·ì¿¡ ´ëÇÑ ´W Á¤·ÄÀ» ´Ù½Ã ½ÇÇàÇÑ´Ù.
-        quickSortInternal(arr, pi + 1, high); // ¿À¸¥ÂÊ ±×·ì¿¡ ´ëÇÑ Äü Á¤·ÄÀ» ´Ù½Ã ½ÇÇàÇÑ´Ù.
+        // ì •ë ¬í•œ êµ¬ê°„ì˜ ì›ì†Œê°€ 2ê°œ ì´ìƒì¼ ë•Œë§Œ ì •ë ¬í•œë‹¤.
+        int pi = partition(arr, low, high);// ê¸°ì¤€ê°’ì„ ë‘ ê·¸ë£¹ìœ¼ë¡œ ë‚˜ëˆˆë‹¤ 
+        quickSortInternal(arr, low, pi - 1); // ì™¼ìª½ ê·¸ë£¹ì— ëŒ€í•œ W ì •ë ¬ì„ ë‹¤ì‹œ ì‹¤í–‰í•œë‹¤.
+        quickSortInternal(arr, pi + 1, high); // ì˜¤ë¥¸ìª½ ê·¸ë£¹ì— ëŒ€í•œ í€µ ì •ë ¬ì„ ë‹¤ì‹œ ì‹¤í–‰í•œë‹¤.
     }
 }
 
 void Heap::quicksort()
 {
-    cout << " ÄüÁ¤·Ä" << endl;
+    cout << " í€µì •ë ¬" << endl;
     int* copy = new int[size]; 
-    //Ä«ÇÇÀÇ ¹è¿­ Å©±â¸¦ °°Àº Å©±âÀÇ ¹è¿­·Î »õ·Î µ¿ÀûÇÒ´çÇÑ´Ù.     
+    //ì¹´í”¼ì˜ ë°°ì—´ í¬ê¸°ë¥¼ ê°™ì€ í¬ê¸°ì˜ ë°°ì—´ë¡œ ìƒˆë¡œ ë™ì í• ë‹¹í•œë‹¤.     
     for (int i = 0; i < size; ++i) 
-        // ¹è¿­Àº 0ºÎÅÍ ½ÃÀÛÀÎµ¥ sizeÀº 1ºÎÅÍ ½ÃÀÛÀÌ¶ó¼­ -1¸¦ ³Ö´Â´Ù. 
         copy[i] = heap[i];
-    // ÀÌÁ¦ Â÷·Ê´ë·Î Ä«ÇÇº»ÀÇ ¹è¿­¿¡ ±âÁ¸ÀÇ Èü µ¥ÀÌÅÍ¸¦ ³Ö¾î º¹»çÇÑ´Ù.
+    // ì´ì œ ì°¨ë¡€ëŒ€ë¡œ ì¹´í”¼ë³¸ì˜ ë°°ì—´ì— ê¸°ì¡´ì˜ íž™ ë°ì´í„°ë¥¼ ë„£ì–´ ë³µì‚¬í•œë‹¤.
 
     quickSortInternal(copy, 0, size - 1);
+    // size-1ì€ ë°°ì—´ì˜ ë§ˆì§€ë§‰ ì¸ë±ìŠ¤ë¥¼ ê°€ë¦¬í‚¨ë‹¤. 
     cout << "";
 
     for (int i = 0; i < size; ++i)
@@ -263,34 +263,34 @@ void Heap::quicksort()
 }
 
 
-// ¼±ÅÃÁ¤·Ä
+// ì„ íƒì •ë ¬
 void Heap::selectionSort()
 {
     cout << endl;
     int* copy = new int[size];
-    // ¹è¿­ °ø°£ È®º¸ÇÏ±â 
+    // ë°°ì—´ ê³µê°„ í™•ë³´í•˜ê¸° 
     for (int i = 0; i < size; ++i)
         copy[i] = heap[i];
-    // È®º¸ÇÑ °ø°£¿¡ ¿øº» ¹è¿­ Ä«ÇÇÇØ¼­ ³Ö±â 
+    // í™•ë³´í•œ ê³µê°„ì— ì›ë³¸ ë°°ì—´ ì¹´í”¼í•´ì„œ ë„£ê¸° 
 
     for (int i = 0; i < size - 1; ++i) {
-        // size -1Àº ¹è¿­ÀÇ ÀÎµ¦½º¿Í ¸ÂÃß·Á°í ÇÑ°Å´Ù
+        // size -1ì€ ë°°ì—´ì˜ ì¸ë±ìŠ¤ì™€ ë§žì¶”ë ¤ê³  í•œê±°ë‹¤
         int minindex = i;
-        // minindex´Â for¹®¿¡¼­ °ªÀ» ºñ±³ÇÏ¿© ¹Ù²Ù¾î¾ßÇÏ´Â °ªÀ» ¼±º°ÇÏ´Â º¯¼öÀÌ´Ù.
+        // minindexëŠ” forë¬¸ì—ì„œ ê°’ì„ ë¹„êµí•˜ì—¬ ë°”ê¾¸ì–´ì•¼í•˜ëŠ” ê°’ì„ ì„ ë³„í•˜ëŠ” ë³€ìˆ˜ì´ë‹¤.
         for (int j = i + 1; j < size; ++j) {
             if (copy[j] < copy[minindex]) {
-                minindex = j; //´õ ÀÛÀº °ªÀ» ¹ß°ßÇÏ¸é ±× À§Ä¡·Î °»½ÅÇÑ´Ù. 
+                minindex = j; //ë” ìž‘ì€ ê°’ì„ ë°œê²¬í•˜ë©´ ê·¸ ìœ„ì¹˜ë¡œ ê°±ì‹ í•œë‹¤. 
             }
-            // ÀÌ°úÁ¤Àº Å©±â°¡ ¿Ã¹Ù¸¥Áö È®ÀÎÇÏ´Â°úÁ¤ÀÌ´Ù
-            // ¸¸¾à Å©±â°¡ Å©´Ù¸é if¹®À» for¹®À» ³¡³»°í if¹®À¸·Î ³Ñ°Ü¼­ °ªÀ» ±³È¯ÇÑ´Ù. 
+            // ì´ê³¼ì •ì€ í¬ê¸°ê°€ ì˜¬ë°”ë¥¸ì§€ í™•ì¸í•˜ëŠ”ê³¼ì •ì´ë‹¤
+            // ë§Œì•½ í¬ê¸°ê°€ í¬ë‹¤ë©´ ifë¬¸ì„ forë¬¸ì„ ëë‚´ê³  ifë¬¸ìœ¼ë¡œ ë„˜ê²¨ì„œ ê°’ì„ êµí™˜í•œë‹¤. 
         }
         if (minindex != i) {
-            // minindex°¡ i¿Í °°À» °æ¿ì ÇØ´ç ÀÚ¸®°¡ ¿Ã¹Ù¸£±â¶§¹®¿¡ ¹Ù²Ü ÇÊ¿ä°¡ ¾ø´Ù ÀÇ¹Ì´Ù
+            // minindexê°€ iì™€ ê°™ì„ ê²½ìš° í•´ë‹¹ ìžë¦¬ê°€ ì˜¬ë°”ë¥´ê¸°ë•Œë¬¸ì— ë°”ê¿€ í•„ìš”ê°€ ì—†ë‹¤ ì˜ë¯¸ë‹¤
             swap(copy[i], copy[minindex]);
 
         }
     }
-    cout << "¼±ÅÃ Á¤·Ä °á°ú " << endl;
+    cout << "ì„ íƒ ì •ë ¬ ê²°ê³¼ " << endl;
 
     for (int i = 0; i < size; ++i)
         cout << copy[i] << " ";
@@ -302,23 +302,23 @@ void Heap::selectionSort()
 
 void Heap::bubbleSort()
 {
-    // Ä«ÇÇ
+    // ì¹´í”¼
     int* copy = new int[size];
     for (int i = 0; i < size; ++i)
         copy[i] = heap[i];
 
-    // Á¤·Ä
+    // ì •ë ¬
     for (int i = 0; i < size - 1; ++i) {
         for (int j = 0; j < size - 1 - i; ++j) {
             if (copy[j] > copy[j + 1]) {
                 swap(copy[j], copy[j + 1]);
             }
-            // ºñ±³ÇØ¼­ ±³È¯ÇÏ°í Å«¼ö¸¦ °è¼Ó ¿À¸¥ÂÊÀ¸·Î º¸³½´Ù.
-            // ¼ø¼­°¡ ¸ÂÀ» °æ¿ì °ªÀ» ±³È¯ÇÏÁö ¾Ê´Â´Ù. 
+            // ë¹„êµí•´ì„œ êµí™˜í•˜ê³  í°ìˆ˜ë¥¼ ê³„ì† ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë³´ë‚¸ë‹¤.
+            // ìˆœì„œê°€ ë§žì„ ê²½ìš° ê°’ì„ êµí™˜í•˜ì§€ ì•ŠëŠ”ë‹¤. 
         }
        
     }
-    cout << "¹öºíÁ¤·Ä °á°ú " << endl;
+    cout << "ë²„ë¸”ì •ë ¬ ê²°ê³¼ " << endl;
     for (int i = 0; i < size; ++i)
         cout << copy[i] << " ";
     cout << endl;
