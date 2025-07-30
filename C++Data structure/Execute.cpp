@@ -193,8 +193,6 @@ int main()
 	heap.print();
 
 	cout << endl;
-	heap.quicksort();
-
 	heap.print();
 
 	heap.selectionSort();
