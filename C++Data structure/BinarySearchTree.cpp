@@ -94,3 +94,34 @@ BinarySearchTree::Node* BinarySearchTree::findMin(Node* node) {
         node = node->left;
     return node;
 }
+
+// 전위 순회
+void BinarySearchTree::preorder(Node* node) {
+    if (node) {
+        cout << node->data << " ";
+        preorder(node->left);
+        preorder(node->right);
+    }
+}
+
+void BinarySearchTree::preorder() {
+    cout << "[Preorder] ";
+    preorder(root);
+    cout << endl;
+}
+
+// 후위 순회
+void BinarySearchTree::postorder(Node* node) {
+    if (node) {
+        postorder(node->left);
+        postorder(node->right);
+        cout << node->data << " ";
+    }
+}
+
+void BinarySearchTree::postorder() {
+    cout << "[Postorder] ";
+    postorder(root);
+    cout << endl;
+}
+

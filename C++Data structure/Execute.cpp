@@ -286,15 +286,21 @@ int main()
 	cout << "오름차순 출력" << endl;
 	bst.inorder();
 	cout << endl;
-
 	// 이진 탐색 트리
 	cout << "7 탐색 결과: " << (bst.search(7) ? "존재함" : "없음") << endl;
     cout << "2 탐색 결과: " << (bst.search(2) ? "존재함" : "없음") << endl;
-
    // 삭제
     bst.remove(3);
     cout << "3 삭제 후 중위 순회: ";
     bst.inorder();
+
+
+	// 트리 순회 
+	bst.inorder(); //중위
+	bst.preorder();//전위
+	bst.postorder();//후위
+
+
 
 	return 0;
 
