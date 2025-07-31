@@ -8,6 +8,12 @@
 #include "ArrayQueue.h"
 #include "CircularQueue.h"
 #include "Heap.h"
+#include "SortedArray.h"
+#include "MergeArray.h"
+#include "QuickArray.h"
+#include "BubbleArray.h"
+#include "SelectionArray.h"
+#include"BinarySearchTree.h"
 using namespace std;
 
 int main()
@@ -175,28 +181,120 @@ int main()
 	heap.insert(40);
 	heap.insert(20);
 	heap.insert(199);
-
-
 	cout << "최댓값(top): " << heap.top() << endl;
-
 	cout << "삭제된 값: " << heap.pop() << endl;
 	heap.print(); // 가장 큰 값 삭제 후 출력
-
 	cout << "최댓값(top): " << heap.top() << endl;
-
 	cout << endl;
+	
+	// 정렬
+	// 힙 정렬 
 	heap.heapSort();
 	heap.print(); // 출력: 60 40 50 10 30
 	cout << endl;
-	heap.mergeSort();
 
-	heap.print();
-
+	// 병합 정렬 
+	cout << "병합 정렬" << endl;
+	MergeArray ma;
+	ma.insert(42);
+	ma.insert(3);
+	ma.insert(40);
+	ma.insert(29);
+	ma.insert(56);
+	ma.print();
+	cout << "정렬 ";
+	ma.sort();
+	ma.print();
 	cout << endl;
-	heap.print();
 
-	heap.selectionSort();
-	heap.print();
+	// 퀵 정렬 
+	cout << "퀵 정렬" << endl;
+	QuickArray qa;
+	qa.insert(39);
+	qa.insert(10);
+	qa.insert(29);
+	qa.insert(54);
+	qa.insert(9);
+	qa.print();
+	cout << "정렬" << endl;
+	qa.sort();
+	qa.print();	
+	cout << endl;
+
+	// 버블 정렬 
+	cout << "버블 정렬" << endl;
+	BubbleArray ba;
+	ba.insert(5);
+	ba.insert(2);
+	ba.insert(7);
+	ba.insert(8);
+	ba.insert(9);
+	ba.insert(3);
+	ba.insert(1);
+	ba.print();
+	cout << "정렬" << endl;
+	ba.sort();
+	ba.print();
+	cout << endl;
+
+	//선택 정렬 
+	cout << "선택 정렬" << endl;
+	SelectionArray sar;
+	sar.insert(231);
+	sar.insert(223);
+	sar.insert(41);
+	sar.insert(23);
+	sar.insert(251);
+	sar.insert(64);
+	sar.insert(76);
+	sar.insert(235);
+	sar.print();
+	cout << "정렬" << endl;
+	sar.sort();
+	sar.print();
+	cout << endl;
+
+	// 탐색 
+	// 선형 탐색
+	heap.linearSearch(40);
+	heap.linearSearch(23);
+	cout << endl;
+
+	// 이진 탐색
+	SortedArray sa;
+	sa.insert(3);
+	sa.insert(5);
+	sa.insert(4);
+	sa.insert(7);
+	sa.insert(9);
+	sa.print();
+	sa.search(4);
+	cout << endl;
+
+	//이진 탐색 트리 
+	cout << "이진 탐색 트리" << endl;
+	BinarySearchTree bst;
+	bst.insert(1);
+	bst.insert(3);
+	bst.insert(7);
+	bst.insert(6);
+	bst.insert(35);
+	bst.insert(9);
+	bst.insert(45);
+
+	// 오름차 정렬 출력
+	cout << "오름차순 출력" << endl;
+	bst.inorder();
+	cout << endl;
+
+	// 이진 탐색 트리
+	cout << "7 탐색 결과: " << (bst.search(7) ? "존재함" : "없음") << endl;
+    cout << "2 탐색 결과: " << (bst.search(2) ? "존재함" : "없음") << endl;
+
+   // 삭제
+    bst.remove(3);
+    cout << "3 삭제 후 중위 순회: ";
+    bst.inorder();
 
 	return 0;
 

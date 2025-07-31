@@ -128,6 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArrayQueue.cpp" />
+    <ClCompile Include="BinarySearchTree.cpp" />
+    <ClCompile Include="BubbleArray.cpp" />
+    <ClCompile Include="MergeArray.cpp" />
+    <ClCompile Include="QuickArray.cpp" />
+    <ClCompile Include="SelectionArray.cpp" />
+    <ClCompile Include="SortedArray.cpp" />
     <ClCompile Include="CircularLinkedList.cpp" />
     <ClCompile Include="CircularQueue.cpp" />
     <ClCompile Include="DoublyCircularLinkedList.cpp" />
@@ -139,6 +145,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayQueue.h" />
+    <ClInclude Include="BinarySearchTree.h" />
+    <ClInclude Include="BubbleArray.h" />
+    <ClInclude Include="MergeArray.h" />
+    <ClInclude Include="QuickArray.h" />
+    <ClInclude Include="SelectionArray.h" />
+    <ClInclude Include="SortedArray.h" />
     <ClInclude Include="CircularLinkedList.h" />
     <ClInclude Include="CircularQueue.h" />
     <ClInclude Include="DoublyCircularLinkedList.h" />

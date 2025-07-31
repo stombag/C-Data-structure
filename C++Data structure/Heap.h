@@ -31,10 +31,11 @@ public:
 	// 연결 리스트로 구현하면 메모리 낭비, 느린 접근 속도, 복잡한 코드 등 여러 단점이 생기기 때문에 잘 사용하지 않는다. 
 
 
+	// 정렬
 	void heapSort(); // 힙 정렬
-	void mergeSort(); // 병렬 정렬
-	void quicksort(); // 퀵 정렬
-	void selectionSort(); // 선택 정렬
-	void bubbleSort(); // 버블 정렬 
+
+	// 탐색
+	int linearSearch(int target);
+
 	
 };
