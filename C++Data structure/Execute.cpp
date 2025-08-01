@@ -14,6 +14,9 @@
 #include "BubbleArray.h"
 #include "SelectionArray.h"
 #include"BinarySearchTree.h"
+#include "ArrayGraph.h"
+#include "listGraph.h"
+
 using namespace std;
 
 int main()
@@ -299,6 +302,34 @@ int main()
 	bst.inorder(); //중위
 	bst.preorder();//전위
 	bst.postorder();//후위
+
+	cout << endl;
+
+	ArrayGraph AG(5);
+
+	AG.addEdge(0, 1);
+    AG.addEdge(0, 4);
+    AG.addEdge(1, 2);
+    AG.addEdge(1, 3);
+    AG.addEdge(1, 4);
+    AG.addEdge(2, 3);
+    AG.addEdge(3, 4);
+    cout << "그래프 인접 행렬:" << endl;
+    AG.display();
+	cout << endl;
+	
+	listGraph lg(5);
+    lg.addEdge(0, 1);
+    lg.addEdge(0, 4);
+    lg.addEdge(1, 2);
+    lg.addEdge(1, 3);
+    lg.addEdge(1, 4);
+    lg.addEdge(2, 3);
+    lg.addEdge(3, 4);
+
+    std::cout << "그래프 인접 리스트:" << std::endl;
+    lg.display();
+
 
 
 

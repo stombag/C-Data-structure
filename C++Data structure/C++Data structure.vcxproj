@@ -127,9 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArrayGraph.cpp" />
     <ClCompile Include="ArrayQueue.cpp" />
     <ClCompile Include="BinarySearchTree.cpp" />
     <ClCompile Include="BubbleArray.cpp" />
+    <ClCompile Include="listGraph.cpp" />
     <ClCompile Include="MergeArray.cpp" />
     <ClCompile Include="QuickArray.cpp" />
     <ClCompile Include="SelectionArray.cpp" />
@@ -144,9 +146,11 @@
     <ClCompile Include="StackLinkedList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArrayGraph.h" />
     <ClInclude Include="ArrayQueue.h" />
     <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="BubbleArray.h" />
+    <ClInclude Include="listGraph.h" />
     <ClInclude Include="MergeArray.h" />
     <ClInclude Include="QuickArray.h" />
     <ClInclude Include="SelectionArray.h" />

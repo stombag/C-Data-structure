@@ -34,13 +34,19 @@ void BinarySearchTree::insert(Node*& node, int value) {
 
 bool BinarySearchTree::search(int value) {
     return search(root, value);
+    //root부터 탐색시작 
+    // 실제 탐색 로직은 밑에 있는 함수이다. 
 }
 
 bool BinarySearchTree::search(Node* node, int value) {
     if (!node) return false;
+    // 현재 노드가 nullptr이라면 트리의 끝까지 갔는데도 못찾았다는 의미다 
     if (value == node->data) return true;
+    // 현재 노드에 저장된 값이 찾고 있는 값과 같다면 탐색에 성공했다는 의미이다. 
     if (value < node->data) return search(node->left, value);
+    // 찾고 있는 값이 현재 노드의 값보다 작으면 왼쪽 서브 트리로 이동하여 탐색을 계속한다는 의미이다.
     else return search(node->right, value);
+    //만약 왼쪽이 아니면 오른쪽 서브트리로 이동하여 탐색을 계속한다. 
 }
 
 void BinarySearchTree::inorder() {

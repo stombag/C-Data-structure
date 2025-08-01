@@ -30,7 +30,8 @@ public:
     ~BinarySearchTree();
 
     void insert(int value);
-    bool search(int value);
+    bool search(int value); // 이진 탐색
+
     void inorder();
     void preorder();     // 전위 순회 함수 인터페이스
     void postorder();    // 후위 순회 함수 인터페이스
