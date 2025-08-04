@@ -3,6 +3,8 @@
 class ArrayGraph {
 private:
 	int** adjMatrix; //2차원 배열로 인접 행렬
+	// 유동적인 크기의 그래프를 만들기 위해서 2중 포인터를 선언했다.
+	// 동적으로 생성하면 클래스의 멤버 변수로 다루기 쉽다.
 	int numVertices; // 정점 개수 
 public:
 	ArrayGraph(int vertices); 

@@ -2,13 +2,18 @@
 #include "ArrayGraph.h"
 
 using namespace std;
+// 인접행렬
 
 // 생성자
 ArrayGraph::ArrayGraph(int vertices) {
+    // 정점,노드의 수
     numVertices = vertices;
+
 
     // 2차원 배열 동적 생성
     adjMatrix = new int*[numVertices];
+    // adjMatrix는 포인터 변수들을 저장하는 배열로 만들었다. 
+    // 정수형 포인터(int*)를 numVerties개 저장할 수 있는 공간을 동적으로 확보한것이다. 
     for (int i = 0; i < numVertices; ++i) {
         adjMatrix[i] = new int[numVertices];
         for (int j = 0; j < numVertices; ++j) {
@@ -21,8 +26,10 @@ ArrayGraph::ArrayGraph(int vertices) {
 ArrayGraph::~ArrayGraph() {
     for (int i = 0; i < numVertices; ++i) {
         delete[] adjMatrix[i];
+        // 하나씩 i번 삭제 
     }
     delete[] adjMatrix;
+    // 변수 자체 삭제 ;
 }
 
 // 간선 추가
