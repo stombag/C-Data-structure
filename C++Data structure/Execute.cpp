@@ -319,13 +319,18 @@ int main()
 	cout << endl;
 	
 	listGraph lg(5);
-    lg.addEdge(0, 1);
-	lg.addEdge(0, 4);
-    lg.addEdge(3, 4);
+    lg.addEdge(0, 1,10);
+	lg.addEdge(0, 4,5);
+    lg.addEdge(1,2,1);
+    lg.addEdge(2,3,4);
+    lg.addEdge(4,1,3);
+    lg.addEdge(4,2,9);
+    lg.addEdge(4,3,2);
 
     std::cout << "그래프 인접 리스트:" << std::endl;
     lg.display();
 	lg.BFS(4);
+	lg.dijkstra(0);
 
 
 	return 0;

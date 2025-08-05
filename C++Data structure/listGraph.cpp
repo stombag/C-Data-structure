@@ -1,6 +1,9 @@
 #include "listGraph.h"
 
 using namespace std;
+
+const int INF = 1e9;
+
 // 인접 리스트
 // 생성자
 listGraph::listGraph(int vertices) {
@@ -33,13 +36,13 @@ listGraph::~listGraph() {
 
 // 간선 추가 (무방향 그래프)
 // 정점에서 간선추가 
-void listGraph::addEdge(int src, int dest) {
-    Node* newNode = new Node(dest);
+void listGraph::addEdge(int src, int dest, int weight) {
+    Node* newNode = new Node(dest, weight);
     //dest값을 갖는 newNode를 만들어 
     newNode->next = adjList[src];
     adjList[src] = newNode;
 
-    newNode = new Node(src);
+    newNode = new Node(src,weight);
     newNode->next = adjList[dest];
     adjList[dest] = newNode;
 
@@ -125,4 +128,60 @@ void listGraph::BFS(int startVertex) {
     cout << endl;
     delete[] visited;
     delete[] queue;
+}
+
+void listGraph::dijkstra(int startVertex)
+{
+    int* distance = new int[numVertices];
+    bool* visited = new bool[numVertices];
+
+    for (int i = 0; i < numVertices; ++i)
+    {
+        distance[i] = INF;
+        visited[i] = false;
+
+    }
+    distance[startVertex] = 0;
+  for (int count = 0; count < numVertices - 1; ++count) {
+        // 방문하지 않은 정점 중 가장 가까운 정점 찾기
+        int minDistance = INF;
+        int minIndex = -1;
+
+        for (int i = 0; i < numVertices; ++i) {
+            if (!visited[i] && distance[i] < minDistance) {
+                minDistance = distance[i];
+                minIndex = i;
+            }
+        }
+
+        if (minIndex == -1) break; // 남은 정점 없음
+
+        visited[minIndex] = true;
+
+        // 인접 정점 거리 갱신
+        Node* current = adjList[minIndex];
+        while (current) {
+            int neighbor = current->vertex;
+            int weight = current->weight;
+
+            if (!visited[neighbor] && distance[minIndex] + weight < distance[neighbor]) {
+                distance[neighbor] = distance[minIndex] + weight;
+            }
+
+            current = current->next;
+        }
+    }
+
+    // 결과 출력
+    cout << "[다익스트라] 시작 정점: " << startVertex << "\n";
+    for (int i = 0; i < numVertices; ++i) {
+        cout << "정점 " << i << "까지 거리: ";
+        if (distance[i] == INF)
+            cout << "도달 불가\n";
+        else
+            cout << distance[i] << "\n";
+    }
+
+    delete[] distance;
+    delete[] visited;
 }
