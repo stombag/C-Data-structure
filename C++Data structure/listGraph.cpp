@@ -92,3 +92,37 @@ void listGraph::display() {
         cout << endl;
     }
 }
+void listGraph::BFS(int startVertex) {
+    bool* visited = new bool[numVertices];
+    for (int i = 0; i < numVertices; ++i)
+        visited[i] = false;
+
+    // 큐 직접 구현
+    int* queue = new int[numVertices]; // 고정 크기 큐
+    int front = 0;
+    int rear = 0;
+
+    visited[startVertex] = true;
+    queue[rear++] = startVertex;
+
+    cout << "BFS 시작 (정점 " << startVertex << "): ";
+
+    while (front < rear) {
+        int currentVertex = queue[front++];  // dequeue
+        cout << currentVertex << " ";
+
+        Node* temp = adjList[currentVertex];
+        while (temp) {
+            int adj = temp->vertex;
+            if (!visited[adj]) {
+                visited[adj] = true;
+                queue[rear++] = adj;  // enqueue
+            }
+            temp = temp->next;
+        }
+    }
+
+    cout << endl;
+    delete[] visited;
+    delete[] queue;
+}

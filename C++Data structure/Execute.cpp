@@ -308,14 +308,14 @@ int main()
 	ArrayGraph AG(5);
 
 	AG.addEdge(0, 1);
-    AG.addEdge(0, 4);
-    AG.addEdge(1, 2);
+    AG.addEdge(0, 2);
     AG.addEdge(1, 3);
-    AG.addEdge(1, 4);
-    AG.addEdge(2, 3);
-    AG.addEdge(3, 4);
-    cout << "그래프 인접 행렬:" << endl;
+	AG.addEdge(0, 4);
+	cout << "그래프 인접 행렬:" << endl;
     AG.display();
+
+	AG.DFS(3);
+
 	cout << endl;
 	
 	listGraph lg(5);
@@ -325,8 +325,7 @@ int main()
 
     std::cout << "그래프 인접 리스트:" << std::endl;
     lg.display();
-
-
+	lg.BFS(4);
 
 
 	return 0;

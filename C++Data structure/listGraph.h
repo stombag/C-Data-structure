@@ -22,4 +22,6 @@ public:
     void addEdge(int src, int dest);    // 간선 추가
     void removeEdge(int src, int dest); // 간선 제거
     void display();                     // 그래프 출력
+
+    void BFS(int startVertex);
 };

@@ -4,6 +4,9 @@
 using namespace std;
 // 인접행렬
 
+
+
+
 // 생성자
 ArrayGraph::ArrayGraph(int vertices) {
     // 정점,노드의 수
@@ -61,4 +64,38 @@ void ArrayGraph::display() {
         }
         cout << endl;
     }
+}
+
+
+void ArrayGraph::DFSUtil(int vertex, bool* visited) {
+    visited[vertex] = true;
+    // 지금 vertex 정점을 방문했다고 표시 
+    cout << vertex;
+
+    for (int i = 0; i < numVertices; i++) {
+        if (adjMatrix[vertex][i] == 1 && !visited[i]) {
+              //현재 정점 vertex와 정점 i가 연결되어 있고, 
+            //정점 i가 아직 방문하지 않았으면 실행한다.
+            DFSUtil(i, visited);
+
+        }
+    }
+}
+
+
+
+void ArrayGraph::DFS(int startVertex)
+{
+    bool* visited = new bool[numVertices];
+    // 배열을 동적으로 만들어서 정점 방문 여부를 저장한다. 
+    for (int i = 0; i < numVertices; i++)
+        visited[i] = false;
+    // 처음에는 모든 정점을 방문하지 않았으므로 false로 초기화한다. 
+
+
+    cout << "DFS 시작" << endl;
+    DFSUtil(startVertex, visited);
+    // 지금 정점에서 연결된 다른 정점들을 재귀적으로 탐색한다. 
+    cout << endl;
+    delete[] visited;
 }
