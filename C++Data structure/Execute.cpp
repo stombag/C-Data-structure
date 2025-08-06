@@ -16,6 +16,10 @@
 #include"BinarySearchTree.h"
 #include "ArrayGraph.h"
 #include "listGraph.h"
+#include "InsertionSort.h"
+#include "shellSort.h"
+#include "CountSort.h" 
+
 
 using namespace std;
 
@@ -331,9 +335,51 @@ int main()
     lg.display();
 	lg.BFS(4);
 	lg.dijkstra(0);
+	cout << endl;
+
+
+	cout << "삽입 정렬" << endl;
+
+	Insertion IS(5);
+
+	IS.push(5);
+	IS.push(1);
+	IS.push(3);
+	IS.push(2);
+	IS.push(4);
+	IS.printArray();
+	IS.sort();
+	IS.printArray();
+	cout << endl;
+
+	cout << "셀 정렬" << endl;
+	shellSort SS(5);
+	SS.push(3);
+	SS.push(5);
+	SS.push(4);
+	SS.push(2);
+	SS.push(1);
+	SS.printArray();
+	SS.Sort();
+	SS.printArray();
+	cout << endl;
+
+	cout << "카운트 정렬" << endl;
+	CountingSort CS(5);
+	CS.push(3);
+	CS.push(2);
+	CS.push(5);
+	CS.push(4);
+	CS.push(1);
+	CS.print();
+	CS.sort();
+	CS.print();
+	cout << endl;
+
+
+
+
 
 
 	return 0;
-
-
 }
