@@ -136,6 +136,7 @@
     <ClCompile Include="listGraph.cpp" />
     <ClCompile Include="MergeArray.cpp" />
     <ClCompile Include="QuickArray.cpp" />
+    <ClCompile Include="RadixSort.cpp" />
     <ClCompile Include="SelectionArray.cpp" />
     <ClCompile Include="shellSort.cpp" />
     <ClCompile Include="SortedArray.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="listGraph.h" />
     <ClInclude Include="MergeArray.h" />
     <ClInclude Include="QuickArray.h" />
+    <ClInclude Include="RadixSort.h" />
     <ClInclude Include="SelectionArray.h" />
     <ClInclude Include="shellSort.h" />
     <ClInclude Include="SortedArray.h" />

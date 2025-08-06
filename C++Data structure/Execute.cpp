@@ -19,6 +19,7 @@
 #include "InsertionSort.h"
 #include "shellSort.h"
 #include "CountSort.h" 
+#include "RadixSort.h"
 
 
 using namespace std;
@@ -376,10 +377,22 @@ int main()
 	CS.print();
 	cout << endl;
 
+	cout << "기수 정렬" << endl;
 
+	RadixSort RS(8);
 
+	RS.push(179);
+	RS.push(45);
+	RS.push(75);
+	RS.push(90);
+	RS.push(802);
+	RS.push(24);
+	RS.push(2);
+	RS.push(66);
 
-
+	RS.print();
+	RS.sort();
+	RS.print();
 
 	return 0;
 }
