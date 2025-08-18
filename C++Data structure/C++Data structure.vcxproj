@@ -148,6 +148,7 @@
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StackLinkedList.cpp" />
+    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayGraph.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackLinkedList.h" />
+    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
